@@ -1,14 +1,8 @@
 ---
 layout: page
-title: About
-permalink: /about/
+title: Contact
+permalink: /contact/
 ---
-
-To be coming soon!!!
-
-### More Information
-
-To be coming soon!!!
 
 ### Contact me
 

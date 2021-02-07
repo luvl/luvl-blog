@@ -1,4 +1,4 @@
-I"c<h2 id="on-windows">On Windows</h2>
+I"w<h2 id="on-windows">On Windows</h2>
 
 <h1 id="step-1-install-jekyll-on-your-machine">Step 1: Install Jekyll on your machine</h1>
 <ul>
@@ -27,7 +27,8 @@ http://127.0.0.1:4000/</p>
   </li>
   <li>
     <p>Use this to test local build before pushing <br />
-jekyll serve</p>
+jekyll serve <br />
+jekyll build</p>
   </li>
 </ul>
 

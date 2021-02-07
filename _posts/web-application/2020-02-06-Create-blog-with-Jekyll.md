@@ -24,7 +24,8 @@ bundle exec jekyll serve
 http://127.0.0.1:4000/
 
 - Use this to test local build before pushing \\
-jekyll serve
+jekyll serve \\
+jekyll build
 
 
 ## Jekyll Code
