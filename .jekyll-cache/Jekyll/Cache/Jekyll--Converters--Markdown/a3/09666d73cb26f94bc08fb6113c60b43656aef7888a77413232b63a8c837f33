@@ -1,0 +1,67 @@
+I"�<p>Suppose we are using windows, there are 2 big steps to create blog with Jekyll.</p>
+
+<h1 id="step-1-install-jekyll-on-your-machine">Step 1: Install Jekyll on your machine</h1>
+<ul>
+  <li>
+    <p>Use the RubyInstaller for Windows, check for version to verify <br />
+ruby -v <br />
+gem -v</p>
+  </li>
+  <li>
+    <p>Install Jekyll <br />
+gem install jekyll bundler <br />
+jekyll -v</p>
+  </li>
+</ul>
+
+<h1 id="step-2-create-a-jekyll-blog-on-your-local-machine">Step 2: Create a Jekyll Blog on your local machine</h1>
+<ul>
+  <li>
+    <p>Create new workspace via <br />
+jekyll new &lt;name&gt; <br />
+bundle exec jekyll serve</p>
+  </li>
+  <li>
+    <p>Access local host <br />
+http://127.0.0.1:4000/</p>
+  </li>
+  <li>
+    <p>Use this to test local build before pushing <br />
+jekyll serve <br />
+jekyll build</p>
+  </li>
+</ul>
+
+<h2 id="jekyll-code">Jekyll Code</h2>
+
+<p>@06/02/2020</p>
+<ul>
+  <li>host location: https://luvl.github.io/luvl-blog/</li>
+  <li>_layouts/default.html contains header and codes that is used many places</li>
+  <li>{{ content }} tag contains all of the code of the individual page</li>
+  <li>{{ page.title }} and {{ site.title }} are variables that are set in the “front matter”</li>
+  <li>Front matter is a configuration block that you can add in front of the HTML or Markdown code. For example <br />
+--- <br />
+title: “About” <br />
+description: “Some awesome description” <br />
+---</li>
+  <li>To retrieve the variables on the page, access them as attributes of the page variable set by Liquid <br />
+&lt;h1&gt;{{ page.title }}&lt;/h1&gt; <br />
+&lt;h2&gt;{{ page.description }}&lt;/h2&gt;</li>
+</ul>
+
+<h2 id="documentation">Documentation</h2>
+<ol>
+  <li>https://jekyllrb.com/docs/datafiles/</li>
+</ol>
+
+<h2 id="references">References</h2>
+<ol>
+  <li>https://jekyllrb.com/docs/installation/windows/</li>
+  <li>https://medium.com/better-programming/an-introduction-to-using-jekyll-with-bootstrap-4-6f2433afeda9</li>
+  <li>https://github.com/nicolas-van/bootstrap-4-github-pages/blob/master/_includes/head.html</li>
+  <li>https://dalanzg.github.io/tips-tutorials/posts/2016/03/25/how-to-use-sass-with-jekyll-bootstrap-and-font-awesome-example/</li>
+  <li>https://fontawesome.com/v4.7.0/icons/</li>
+</ol>
+
+:ET

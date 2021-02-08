@@ -16,20 +16,20 @@
                     <ul class="navbar-nav">
                         {% for item in site.data.navbar %}
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ site.baseurl }}{{ item.link }}">{{ item.name }}</a>
+                                <a class="nav-link uniform-font" href="{{ site.baseurl }}{{ item.link }}">{{ item.name }}</a>
                             </li>
                         {% endfor %}
                     </ul>
 
                     <ul class="navbar-nav">
                         <li class="nav-item dropdown ">
-                            <button class="btn btn-primary dropdown-toggle button-mod" type="button" data-toggle="dropdown">Contents
+                            <button class="btn btn-primary dropdown-toggle button-mod uniform-font" type="button" data-toggle="dropdown">Contents
                                 <span class="caret"></span></button>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ site.baseurl }}/web-application">Web Application</a>
                                 <a class="dropdown-item" href="#">Japanese</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">T.B.D</a>
+                                <a class="dropdown-item" href="{{ site.baseurl }}/resource">Resource</a>
                             </div>
                         </li>
                     </ul>

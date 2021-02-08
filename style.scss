@@ -5,14 +5,23 @@
 // IMPORTS
 //
 
+$fa-font-path:        "./fonts/font-awesome";
+
 @import "reset";
 @import "variables";
 @import "bootstrap/bootstrap";
+@import "font-awesome/font-awesome";
+
 // Syntax highlighting @import is at the bottom of this file
 
 /**************/
 /* BASE RULES */
 /**************/
+
+.uniform-font
+{
+   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !important;
+}
 
 // Navbar
 .navbar-mod {
@@ -86,8 +95,12 @@ h4 {
   color: $gray;
 }
 
-p {
-  margin: 15px 0;
+// p {
+//   margin: 15px 0;
+// }
+
+.entry {
+    margin-bottom: 5px;
 }
 
 a {
@@ -266,7 +279,7 @@ nav {
 
 .posts > .post {
   padding-bottom: 2em;
-  border-bottom: 1px solid $lightGray;
+  border-bottom: 0px solid $lightGray;
 }
 
 .posts > .post:last-child {
@@ -289,7 +302,6 @@ nav {
   }
 
   .read-more {
-    text-transform: uppercase;
     font-size: 15px;
   }
 }
