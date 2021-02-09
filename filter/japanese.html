@@ -1,11 +1,11 @@
 ---
 layout: default
-permalink: /web-application/
+permalink: /japanese/
 ---
 
 <div class="posts">
-    {% assign web-application = site.posts | where_exp: "item" , "item.path contains 'web-application'"%}
-        {% for post in web-application %}
+    {% assign japanese = site.posts | where_exp: "item" , "item.path contains 'japanese'"%}
+        {% for post in japanese %}
         <article class="post">
             <div class="blog-entry">
                 <div class="mb-2">
@@ -34,6 +34,7 @@ permalink: /web-application/
             <div class="entry uniform-font">
                 {{ post.excerpt }}
             </div>
+
             <a href="{{ site.baseurl }}{{ post.url }}" class="btn-custom read-more">Read More</a>
             <span class="fa fa-arrow-right fa-xs" aria-hidden="true" style="font-size: 0.8rem; color:#4183C4"></span>
         </article>

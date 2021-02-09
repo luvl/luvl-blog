@@ -2,7 +2,7 @@
 layout: post
 title: Open forex account
 tags: knowledge
-category: trading
+category: resource
 ---
 
 Resource

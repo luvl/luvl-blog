@@ -26,7 +26,7 @@ layout: default
                     <span>  </span>
                     <i class="fa fa-folder-open-o mr-2">
                         {% for category in post.category %}
-                            {{ category }}
+                            <a href="{{ site.baseurl }}/{{ category }}" style="color: black;">{{ category }}</a>
                         {% endfor %}
 
                     </i>
