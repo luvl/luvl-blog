@@ -4,7 +4,7 @@ title: About
 permalink: /info/about/
 ---
 
-Click <a href="{{ site.baseurl }}/blog/cv/cv.html">here</a> to know more about me
+Click <a href="{{ site.baseurl }}/blog/cv">here</a> to know more about me
 
 ### Contact me
 
