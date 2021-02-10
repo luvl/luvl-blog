@@ -3,6 +3,7 @@ layout: post
 title: Happy Birthday BHS
 tags: birthday
 category: other
+time: 2021-02-06
 ---
 
 今は１０時４４分ベトナム時間で、びっくりして君の誕生日忘れてしまったが、大丈夫だよね。

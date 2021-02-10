@@ -3,6 +3,7 @@ layout: post
 title: Python research
 tags: research
 category: resource
+time: 2021-02-08
 ---
 
 Resource

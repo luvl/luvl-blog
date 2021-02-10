@@ -3,6 +3,7 @@ layout: post
 title: Create blog with Jekyll
 tags: jekyll boostrap
 category: web-application
+time: 2021-02-06
 ---
 
 Suppose we are using windows, there are 2 big steps to create blog with Jekyll.

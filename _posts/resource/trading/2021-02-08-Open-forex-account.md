@@ -3,6 +3,7 @@ layout: post
 title: Open forex account
 tags: knowledge
 category: resource
+time: 2021-02-08
 ---
 
 Resource
