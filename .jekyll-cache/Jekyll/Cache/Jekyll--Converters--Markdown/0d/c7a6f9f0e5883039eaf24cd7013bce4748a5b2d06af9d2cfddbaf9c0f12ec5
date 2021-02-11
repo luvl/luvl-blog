@@ -1,0 +1,63 @@
+I"�<p>A. Android Fundamentals:</p>
+
+<ol>
+  <li>Android Basic Folder Structure:
+    <ul>
+      <li>Generate Layout file option is checked. The layout name by default is activity_main</li>
+      <li>Backwards Compatibility (App Compat) option is checked. This ensures that your app will be backwards-compatible with previous versions of Android</li>
+      <li>Build the project with Gradle <br />
+See https://developer.android.com/studio/build/index.html?authuser=1 to configure build</li>
+      <li>build.gradle(Project: HelloWorld) file. This is where you’ll find the configuration options that are common to all of the modules that make up your project</li>
+      <li>In addition to the project-level build.gradle file, each module has a build.gradle file of its own, which allows you to configure build settings for each specific module (the HelloWorld app has only one module)</li>
+      <li>The manifests folder contains files that provide essential information about your app to the Android system, which the system must have before it can run any of the app’s code
+See https://developer.android.com/guide/topics/manifest/manifest-intro.html?authuser=1 for more infos</li>
+    </ul>
+  </li>
+  <li>Android Emulator:
+    <ul>
+      <li>Android Virtual Device (AVD) manager to create a virtual device (also known as an emulator) that simulates the configuration for a particular type of Android device,</li>
+      <li>To close the virtual device, click the X button at the top of the emulator, choose Quit from the menu, or press Control-Q in Windows or Command-Q in macOS</li>
+    </ul>
+  </li>
+  <li>Physical Device:
+    <ul>
+      <li>To let Android Studio communicate with your device, you must turn on USB Debugging on your Android device. This is enabled in the Developer options settings of your device</li>
+    </ul>
+  </li>
+  <li>Change the app Gradle configuration:
+    <ul>
+      <li>When you make changes to the build configuration files in a project, Android Studio requires that you sync the project files so that it can import the build configuration changes and run some checks to make sure the configuration won’t create build errors</li>
+    </ul>
+  </li>
+  <li>Add log statements: Debug, Error, Info, and Warn
+    <ul>
+      <li>Log statements in your app code display messages in the Logcat pane</li>
+      <li>d: The Debug Log level setting to filter log message display in the Logcat pane. Other log levels are e for Error, w for Warn, and i for Info.</li>
+      <li>The first argument is a tag which can be used to filter messages in the Logcat pane. This is commonly the name of the Activity</li>
+    </ul>
+  </li>
+</ol>
+
+<p>B. User Interface:</p>
+
+<ul>
+  <li>The user interface (UI) that appears on a screen of an Android device consists of a hierarchy of objects called views — every element of the screen is a View</li>
+  <li>The View class represents the basic building block for all UI components, and the base class for classes that provide interactive UI components such as buttons, checkboxes, and text entry fields</li>
+  <li>Commonly used View subclasses:</li>
+  <li>TextView for displaying text</li>
+  <li>EditText to enable the user to enter and edit text</li>
+  <li>Button and other clickable elements (such as RadioButton, CheckBox, and Spinner) to provide interactive behavior</li>
+  <li>ScrollView and RecyclerView to display scrollable items</li>
+  <li>ImageView for displaying images</li>
+  <li>ConstraintLayout and LinearLayout for containing other View elements and positioning them</li>
+  <li>The Java code that displays and drives the UI is contained in a class that extends Activity</li>
+  <li>An Activity is usually associated with a layout of UI views defined as an XML (eXtended Markup Language) file. This XML file is usually named after its Activity and defines the layout of View elements on the screen</li>
+  <li>For example, the MainActivity code in the Hello World app displays a layout defined in the activity_main.xml layout file, which includes a TextView with the text “Hello World”</li>
+</ul>
+
+<p>References:</p>
+<ol>
+  <li>https://developer.android.com/codelabs/android-training-hello-world?index=..%2F..%2Fandroid-training&amp;authuser=1#3</li>
+  <li></li>
+</ol>
+:ET

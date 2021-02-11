@@ -1,0 +1,11 @@
+I"4<p>Android Fundamentals:</p>
+
+<ul>
+  <li>Generate Layout file option is checked. The layout name by default is activity_main</li>
+  <li>Backwards Compatibility (App Compat) option is checked. This ensures that your app will be backwards-compatible with previous versions of Android</li>
+  <li>Build the project with Gradle <br />
+See https://developer.android.com/studio/build/index.html?authuser=1 to configure build</li>
+  <li>build.gradle(Project: HelloWorld) file. This is where you’ll find the configuration options that are common to all of the modules that make up your project</li>
+  <li>In addition to the project-level build.gradle file, each module has a build.gradle file of its own, which allows you to configure build settings for each specific module (the HelloWorld app has only one module)</li>
+</ul>
+:ET
