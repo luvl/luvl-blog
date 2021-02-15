@@ -47,6 +47,12 @@ B. User Interface:
 - The Java code that displays and drives the UI is contained in a class that extends Activity
 - An Activity is usually associated with a layout of UI views defined as an XML (eXtended Markup Language) file. This XML file is usually named after its Activity and defines the layout of View elements on the screen
 - For example, the MainActivity code in the Hello World app displays a layout defined in the activity_main.xml layout file, which includes a TextView with the text "Hello World"
+- If you type this in any File Explorer window: explorer shell:AppsFolder
+
+C. Unit 1: Get Started
+
+(T.B.D)
+https://github.com/luvl/developer-android-com
 
 
 Documentation:
