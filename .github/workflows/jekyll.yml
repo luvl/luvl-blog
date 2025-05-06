@@ -25,13 +25,12 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.3'
-          bundler-cache: true
+          bundler-cache: false
 
-      # Add platform to bundle
-      - name: Update bundle platforms
+      # Clean and reinstall bundles
+      - name: Install dependencies
         run: |
-          bundle lock --add-platform x86_64-linux
-          bundle lock --add-platform ruby
+          rm -f Gemfile.lock
           bundle install
 
       - name: Setup Node.js

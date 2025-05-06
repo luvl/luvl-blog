@@ -16,6 +16,6 @@ platforms :mingw, :x64_mingw, :mswin, :jruby do
 end
 
 # Lock platforms
-platforms :x64_mingw_ucrt, :x86_64_linux, :ruby do
+platforms :x64_mingw, :ruby do
   gem "http_parser.rb"
 end
