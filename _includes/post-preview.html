@@ -1,24 +1,42 @@
-<article class="post-preview bg-white rounded-lg shadow-md overflow-hidden transform hover:scale-[1.02] transition-transform duration-300"
-         x-data
-         x-show="true"
-         x-transition:enter="transition ease-out duration-300"
-         x-transition:enter-start="opacity-0 transform translate-y-4"
-         x-transition:enter-end="opacity-100 transform translate-y-0"
+<article class="bg-white rounded-lg shadow-md overflow-hidden transform hover:scale-[1.02] transition-transform duration-300 animate-fade-in"
          style="animation-delay: {{ include.delay }}ms">
+  {% if post.image %}
+  <div class="aspect-w-16 aspect-h-9">
+    <img src="{{ site.baseurl }}{{ post.image }}" alt="{{ post.title }}" class="object-cover w-full h-48">
+  </div>
+  {% endif %}
 
-  <a href="{{ site.baseurl }}{{ include.post.url }}" class="block">
-    <div class="p-6">
-      <h2 class="text-2xl font-bold text-gray-900 mb-2 hover:text-blue-600 transition-colors">
-        {{ include.post.title }}
-      </h2>
-
-      <div class="text-sm text-gray-600 mb-4">
-        {{ include.post.date | date: "%B %e, %Y" }}
-      </div>
-
-      <div class="text-gray-700 leading-relaxed">
-        {{ include.post.excerpt | strip_html | truncatewords:50 }}
-      </div>
+  <div class="p-6">
+    {% if post.categories %}
+    <div class="mb-4">
+      {% for category in post.categories %}
+        <span class="inline-block bg-gray-100 text-gray-600 text-sm px-3 py-1 rounded-full">{{ category }}</span>
+      {% endfor %}
     </div>
-  </a>
+    {% endif %}
+
+    <h2 class="text-xl font-bold text-gray-900 mb-2 hover:text-blue-600 transition-colors">
+      <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
+    </h2>
+
+    <div class="flex items-center mb-4 text-sm text-gray-600">
+      {% if post.author %}
+        <span>{{ post.author }}</span>
+        <span class="mx-2">•</span>
+      {% endif %}
+      <span>{{ post.date | date: "%d %b %Y" }}</span>
+      {% if post.read_time %}
+        <span class="mx-2">•</span>
+        <span>{{ post.read_time }} min read</span>
+      {% endif %}
+    </div>
+
+    <div class="text-gray-600 leading-relaxed mb-4">
+      {{ post.excerpt | strip_html | truncatewords:30 }}
+    </div>
+
+    <a href="{{ site.baseurl }}{{ post.url }}" class="text-blue-600 hover:text-blue-800 font-medium">
+      Read more →
+    </a>
+  </div>
 </article>

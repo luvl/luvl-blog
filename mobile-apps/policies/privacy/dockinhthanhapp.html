@@ -1,0 +1,101 @@
+---
+layout: default
+title: DocKinhThanh Privacy Policy
+permalink: /mobile-apps/policies/privacy/dockinhthanhapp/
+---
+
+<div class="max-w-3xl mx-auto px-4 py-8" x-data="{ language: 'vi' }">
+  <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+    <div class="p-8">
+      <!-- Language Switcher -->
+      <div class="flex justify-end mb-6">
+        <div class="inline-flex rounded-md shadow-sm" role="group">
+          <button @click="language = 'vi'"
+                  :class="{ 'bg-gray-800 text-white': language === 'vi', 'bg-white text-gray-700': language !== 'vi' }"
+                  class="px-4 py-2 text-sm font-medium border rounded-l-lg hover:bg-gray-700 hover:text-white">
+            Tiếng Việt
+          </button>
+          <button @click="language = 'en'"
+                  :class="{ 'bg-gray-800 text-white': language === 'en', 'bg-white text-gray-700': language !== 'en' }"
+                  class="px-4 py-2 text-sm font-medium border-t border-b border-r rounded-r-lg hover:bg-gray-700 hover:text-white">
+            English
+          </button>
+        </div>
+      </div>
+
+      <!-- Vietnamese Version -->
+      <div x-show="language === 'vi'" class="prose prose-lg">
+        <h1 class="text-3xl font-bold mb-6">Chính sách Quyền riêng tư của DocKinhThanh</h1>
+        <p class="text-gray-600 mb-8">Cập nhật lần cuối: 03/04/2024</p>
+
+        <h2 class="text-2xl font-semibold mb-4">Tổng quan về Chính sách Quyền riêng tư</h2>
+        <p class="mb-6">
+          Chúng tôi tôn trọng quyền riêng tư của bạn và cam kết bảo vệ thông tin cá nhân của bạn.
+          Ứng dụng của chúng tôi không thu thập hoặc lưu trữ bất kỳ thông tin cá nhân nào từ người dùng.
+        </p>
+
+        <h2 class="text-2xl font-semibold mb-4">Thu thập thông tin cá nhân</h2>
+        <ul class="list-disc pl-6 mb-6">
+          <li>Chúng tôi không thu thập bất kỳ thông tin cá nhân nào từ người dùng thông qua ứng dụng của chúng tôi.</li>
+        </ul>
+
+        <h2 class="text-2xl font-semibold mb-4">Sử dụng Dịch vụ Bên thứ Ba</h2>
+        <ul class="list-disc pl-6 mb-6">
+          <li>Ứng dụng có thể sử dụng các dịch vụ bên thứ ba như Google Analytics để theo dõi và phân tích lưu lượng truy cập.</li>
+          <li>Tuy nhiên, các dịch vụ này không thu thập thông tin cá nhân của người dùng.</li>
+        </ul>
+
+        <h2 class="text-2xl font-semibold mb-4">Liên hệ</h2>
+        <p class="mb-6">
+          Nếu bạn có bất kỳ câu hỏi hoặc ý kiến nào về chính sách quyền riêng tư của chúng tôi,
+          vui lòng liên hệ với chúng tôi qua địa chỉ email:
+          <a href="mailto:linhnd34.jp@gmail.com" class="text-blue-600 hover:text-blue-800">
+            linhnd34.jp@gmail.com
+          </a>
+        </p>
+
+        <h2 class="text-2xl font-semibold mb-4">Thay đổi chính sách</h2>
+        <p class="mb-6">
+          Chúng tôi có thể cập nhật chính sách quyền riêng tư này từ thời gian này sang thời gian khác.
+          Bất kỳ thay đổi nào sẽ được công bố trên trang web của chúng tôi.
+        </p>
+      </div>
+
+      <!-- English Version -->
+      <div x-show="language === 'en'" class="prose prose-lg">
+        <h1 class="text-3xl font-bold mb-6">DocKinhThanh Privacy Policy</h1>
+        <p class="text-gray-600 mb-8">Last updated: April 3, 2024</p>
+
+        <h2 class="text-2xl font-semibold mb-4">Privacy Policy Overview</h2>
+        <p class="mb-6">
+          We respect your privacy and are committed to protecting your personal information.
+          Our application does not collect or store any personal information from users.
+        </p>
+
+        <h2 class="text-2xl font-semibold mb-4">Information Collection</h2>
+        <ul class="list-disc pl-6 mb-6">
+          <li>We do not collect any personal information through our application.</li>
+        </ul>
+
+        <h2 class="text-2xl font-semibold mb-4">Third-Party Services</h2>
+        <ul class="list-disc pl-6 mb-6">
+          <li>The application may use third-party services such as Google Analytics to track and analyze traffic.</li>
+          <li>However, these services do not collect users' personal information.</li>
+        </ul>
+
+        <h2 class="text-2xl font-semibold mb-4">Contact</h2>
+        <p class="mb-6">
+          If you have any questions or suggestions about our privacy policy, please contact us at:
+          <a href="mailto:linhnd34.jp@gmail.com" class="text-blue-600 hover:text-blue-800">
+            linhnd34.jp@gmail.com
+          </a>
+        </p>
+
+        <h2 class="text-2xl font-semibold mb-4">Policy Updates</h2>
+        <p class="mb-6">
+          We may update this privacy policy from time to time. Any changes will be posted on this page.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

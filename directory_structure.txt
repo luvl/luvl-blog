@@ -1,37 +1,34 @@
 prj-luvl-blog/
-├── _config.yml
-├── _data/
-├── _includes/
-│   ├── analytics.html
-│   ├── disqus.html
-│   ├── footer.html
-│   ├── meta.html
-│   ├── navbar.html
-│   └── svg-icons.html
-├── _layouts/
-│   ├── default.html
-│   ├── page.html
-│   └── post.html
 ├── _posts/
-├── _site/
-├── assets/
-│   └── css/
-├── blog/
-├── filter/
-├── fonts/
-├── images/
-├── info/
-├── node_modules/
-├── .github/
-├── .jekyll-cache/
-├── 404.md
-├── CNAME
-├── Gemfile
-├── Gemfile.lock
-├── LICENSE
-├── README.md
-├── index.html
-├── package.json
-├── pnpm-lock.yaml
-├── style.scss.old
-└── tailwind.config.js
+│   ├── blog/                 # Regular blog posts
+│   │   └── YYYY-MM-DD-title.md
+│   │
+│   ├── mobile-apps/         # Mobile app updates, features
+│   │   ├── android/
+│   │   │   └── YYYY-MM-DD-app-update.md
+│   │   └── ios/
+│   │       └── YYYY-MM-DD-app-update.md
+│   │
+│   ├── projects/           # Project announcements, updates
+│   │   ├── open-source/
+│   │   │   └── YYYY-MM-DD-project-name.md
+│   │   └── tools/
+│   │       └── YYYY-MM-DD-tool-update.md
+│   │
+│   └── study/             # Learning content
+│       ├── japanese/
+│       │   └── YYYY-MM-DD-lesson.md
+│       └── mobile-dev/
+│           └── YYYY-MM-DD-tutorial.md
+│
+├── _pages/                # Static pages
+│   ├── mobile-apps/
+│   │   └── policies/     # Legal documents
+│   │       ├── privacy/
+│   │       └── terms/
+│   └── about.md
+
+context:
+please full file as answer
+and make sure to read the file before suggest changes
+use i, not we,

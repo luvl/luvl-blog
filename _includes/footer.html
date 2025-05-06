@@ -1,1 +1,68 @@
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<footer class="bg-white border-t border-gray-200 mt-12">
+    <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Brand Section -->
+        <div class="col-span-1">
+          <h3 class="text-sm font-semibold text-gray-900 tracking-wider uppercase mb-4">About</h3>
+          <p class="text-gray-600">{{ site.description }}</p>
+        </div>
+
+        <!-- Links Section -->
+        <div class="col-span-1">
+          <h3 class="text-sm font-semibold text-gray-900 tracking-wider uppercase mb-4">Navigation</h3>
+          <ul class="space-y-4">
+            <li>
+              <a href="{{ site.baseurl }}/" class="text-base text-gray-600 hover:text-gray-900">Home</a>
+            </li>
+            <li>
+              <a href="{{ site.baseurl }}/blog" class="text-base text-gray-600 hover:text-gray-900">Blog</a>
+            </li>
+            <li>
+              <a href="{{ site.baseurl }}/about" class="text-base text-gray-600 hover:text-gray-900">About</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Social Links -->
+        <div class="col-span-1">
+          <h3 class="text-sm font-semibold text-gray-900 tracking-wider uppercase mb-4">Connect</h3>
+          <ul class="space-y-4">
+            {% if site.footer-links.github %}
+            <li>
+              <a href="https://github.com/{{ site.footer-links.github }}" class="text-base text-gray-600 hover:text-gray-900">
+                GitHub
+              </a>
+            </li>
+            {% endif %}
+            {% if site.footer-links.linkedin %}
+            <li>
+              <a href="https://www.linkedin.com/in/{{ site.footer-links.linkedin }}" class="text-base text-gray-600 hover:text-gray-900">
+                LinkedIn
+              </a>
+            </li>
+            {% endif %}
+            {% if site.footer-links.email %}
+            <li>
+              <a href="mailto:{{ site.footer-links.email }}" class="text-base text-gray-600 hover:text-gray-900">
+                Email
+              </a>
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+
+      <!-- Bottom Section -->
+      <div class="mt-12 pt-8 border-t border-gray-200">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <p class="text-base text-gray-600">
+            © {{ 'now' | date: "%Y" }} {{ site.name }}. All rights reserved.
+          </p>
+          <div class="mt-4 md:mt-0 flex space-x-6">
+            <a href="{{ site.baseurl }}/privacy" class="text-sm text-gray-600 hover:text-gray-900">Privacy Policy</a>
+            <a href="{{ site.baseurl }}/terms" class="text-sm text-gray-600 hover:text-gray-900">Terms of Service</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>

@@ -1,0 +1,33 @@
+---
+layout: default
+title: App Policies
+permalink: /mobile-apps/policies/
+---
+
+<div class="text-center mb-12">
+  <h1 class="text-4xl font-bold mb-4">App Policies</h1>
+  <p class="text-gray-600">Privacy policies and terms of service for our applications</p>
+</div>
+
+<div class="max-w-4xl mx-auto">
+  <!-- DocKinhThanh Policies -->
+  <div class="bg-white rounded-lg shadow-lg overflow-hidden mb-8"
+       x-data="{ hover: false }"
+       @mouseenter="hover = true"
+       @mouseleave="hover = false">
+    <div class="p-6">
+      <h2 class="text-2xl font-bold mb-4">DocKinhThanh</h2>
+      <div class="space-y-4">
+        <div>
+          <h3 class="font-semibold mb-2">Privacy Policy</h3>
+          <p class="text-gray-600 mb-2">Information about how we handle user data and privacy</p>
+          <a href="{{ site.baseurl }}/mobile-apps/policies/privacy/dockinhthanhapp"
+             :class="{ 'bg-gray-700': hover }"
+             class="inline-block bg-gray-800 text-white px-4 py-2 rounded-full transition-colors duration-200">
+            View Privacy Policy
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

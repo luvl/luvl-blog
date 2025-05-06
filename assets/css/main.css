@@ -3,21 +3,52 @@
 @tailwind utilities;
 
 @layer base {
-  body {
-    @apply bg-white dark:bg-gray-900;
+  html, body {
+    @apply bg-gray-50;
   }
 }
 
 @layer components {
   .post-preview {
-    @apply opacity-0;
-    animation-fill-mode: forwards;
+    @apply bg-white rounded-lg shadow-md;
+    opacity: 1;
+    transition: opacity 0.3s ease-out;
   }
 
   .animate-slide-up,
   .animate-slide-down,
   .animate-fade-in {
+    opacity: 1;
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+  }
+
+  /* Only hide elements initially when JS is available */
+  .js .post-preview,
+  .js .animate-slide-up,
+  .js .animate-slide-down,
+  .js .animate-fade-in {
     @apply opacity-0;
     animation-fill-mode: forwards;
   }
+
+  .content-card {
+    @apply bg-white rounded-lg shadow-md p-6;
+  }
 }
+
+@layer components {
+    .aspect-w-16 {
+      position: relative;
+      padding-bottom: 56.25%;
+    }
+
+    .aspect-w-16 > * {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+    }
+  }

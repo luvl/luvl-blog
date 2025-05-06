@@ -1,63 +1,129 @@
-<nav class="bg-gray-800 animate-slide-down">
-    <div class="max-w-7xl mx-auto px-4 py-3">
-      <div class="flex justify-between items-center">
-        <!-- Left side: Site Info -->
+<nav x-data="{ open: false, scrolled: false }"
+     @scroll.window="scrolled = (window.pageYOffset > 0)"
+     :class="{ 'bg-gray-800 shadow': scrolled, 'bg-transparent': !scrolled }"
+     class="fixed w-full top-0 z-50 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <!-- Left side: Site Info with Avatar (keeping as is) -->
         <div class="flex items-center space-x-4">
-          <!-- Avatar -->
           {% if site.avatar %}
-          <img src="{{ site.avatar }}" alt="{{ site.name }}" class="h-10 w-10 rounded-full object-cover">
+          <a href="{{ site.baseurl }}/" class="flex-shrink-0">
+            <img src="{{ site.avatar }}"
+                 alt="{{ site.name }}"
+                 class="h-10 w-10 rounded-full object-cover"
+                 :class="{ 'ring-white': scrolled, 'ring-gray-900': !scrolled }">
+          </a>
           {% endif %}
-
-          <!-- Site Name and Description -->
           <div>
-            <h1><a href="{{ site.baseurl }}/" class="text-white font-bold text-xl">{{ site.name }}</a></h1>
-            <p class="text-gray-300 text-sm">{{ site.description }}</p>
+            <h1>
+              <a href="{{ site.baseurl }}/"
+                 :class="{ 'text-white': scrolled || open, 'text-gray-900': !scrolled && !open }"
+                 class="font-bold text-xl transition-colors duration-300">
+                {{ site.name }}
+              </a>
+            </h1>
+            <p :class="{ 'text-gray-300': scrolled, 'text-gray-600': !scrolled }"
+               class="text-sm transition-colors duration-300">
+              {{ site.description }}
+            </p>
           </div>
         </div>
 
-        <!-- Right side: Navigation -->
-        <div class="hidden md:block">
-          <div class="flex items-center space-x-4">
-            <!-- Regular Nav Links -->
-            {% for item in site.data.navbar %}
-              <a href="{{ site.baseurl }}{{ item.link }}"
-                 class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-                {{ item.name }}
-              </a>
-            {% endfor %}
+        <!-- Center: Navigation -->
+        <div class="hidden md:flex items-center space-x-8">
+          <!-- Blog - Primary Link -->
+          <a href="{{ site.baseurl }}/blog"
+             :class="{ 'text-gray-300 hover:text-white': scrolled, 'text-gray-600 hover:text-gray-900': !scrolled }"
+             class="text-sm font-medium transition-colors duration-300">
+            Blog
+          </a>
 
-            <!-- Contents Dropdown -->
-            <div class="relative" x-data="{ open: false }">
-              <button @click="open = !open"
-                      class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium inline-flex items-center">
-                <span>Contents</span>
-                <svg class="ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                </svg>
-              </button>
-              <div x-show="open"
-                   @click.away="open = false"
-                   class="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-                <div class="py-1">
-                  <a href="{{ site.baseurl }}/japanese" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Japanese</a>
-                  <a href="{{ site.baseurl }}/web-application" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Web Application</a>
-                  <a href="{{ site.baseurl }}/android" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Android</a>
-                  <div class="border-t border-gray-100"></div>
-                  <a href="{{ site.baseurl }}/resource" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Resource</a>
-                </div>
+          <!-- Mobile Apps Dropdown -->
+          <div class="relative" x-data="{ dropdownOpen: false }">
+            <button @click="dropdownOpen = !dropdownOpen"
+                    :class="{ 'text-gray-300 hover:text-white': scrolled, 'text-gray-600 hover:text-gray-900': !scrolled }"
+                    class="text-sm font-medium inline-flex items-center transition-colors duration-300">
+              <span>Mobile Apps</span>
+              <svg class="ml-1 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+              </svg>
+            </button>
+            <div x-show="dropdownOpen"
+                 @click.away="dropdownOpen = false"
+                 x-transition:enter="transition ease-out duration-100"
+                 x-transition:enter-start="transform opacity-0 scale-95"
+                 x-transition:enter-end="transform opacity-100 scale-100"
+                 x-transition:leave="transition ease-in duration-75"
+                 x-transition:leave-start="transform opacity-100 scale-100"
+                 x-transition:leave-end="transform opacity-0 scale-95"
+                 class="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+              <div class="py-1">
+                <a href="{{ site.baseurl }}/mobile-apps" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">All Apps</a>
+                <a href="{{ site.baseurl }}/mobile-apps/android" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Android Apps</a>
+                <a href="{{ site.baseurl }}/mobile-apps/ios" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">iOS Apps</a>
+                <a href="{{ site.baseurl }}/mobile-apps/policies" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Privacy & Terms</a>
               </div>
             </div>
           </div>
+
+          <!-- Projects Dropdown -->
+          <div class="relative" x-data="{ dropdownOpen: false }">
+            <button @click="dropdownOpen = !dropdownOpen"
+                    :class="{ 'text-gray-300 hover:text-white': scrolled, 'text-gray-600 hover:text-gray-900': !scrolled }"
+                    class="text-sm font-medium inline-flex items-center transition-colors duration-300">
+              <span>Projects</span>
+              <svg class="ml-1 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+              </svg>
+            </button>
+            <div x-show="dropdownOpen"
+                 @click.away="dropdownOpen = false"
+                 class="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+              <div class="py-1">
+                <a href="{{ site.baseurl }}/projects" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">All Projects</a>
+                <a href="{{ site.baseurl }}/projects/open-source" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Open Source</a>
+                <a href="{{ site.baseurl }}/projects/tools" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Tools</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Study Dropdown -->
+          <div class="relative" x-data="{ dropdownOpen: false }">
+            <button @click="dropdownOpen = !dropdownOpen"
+                    :class="{ 'text-gray-300 hover:text-white': scrolled, 'text-gray-600 hover:text-gray-900': !scrolled }"
+                    class="text-sm font-medium inline-flex items-center transition-colors duration-300">
+              <span>Study</span>
+              <svg class="ml-1 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+              </svg>
+            </button>
+            <div x-show="dropdownOpen"
+                 @click.away="dropdownOpen = false"
+                 class="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+              <div class="py-1">
+                <a href="{{ site.baseurl }}/study" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">All Study Notes</a>
+                <a href="{{ site.baseurl }}/study/japanese" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Japanese</a>
+                <a href="{{ site.baseurl }}/study/mobile-dev" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Mobile Development</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact -->
+          <a href="mailto:{{ site.footer-links.email }}"
+             :class="{ 'text-gray-300 hover:text-white': scrolled, 'text-gray-600 hover:text-gray-900': !scrolled }"
+             class="text-sm font-medium transition-colors duration-300">
+            Contact Me
+          </a>
         </div>
 
-        <!-- Mobile menu button -->
+        <!-- Mobile menu button (keeping as is) -->
         <div class="md:hidden">
           <button type="button"
-                  class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
-                  x-data="{ open: false }"
-                  @click="open = !open">
+                  @click="open = !open"
+                  :class="{ 'text-white': scrolled || open, 'text-gray-600': !scrolled && !open }"
+                  class="inline-flex items-center justify-center p-2 rounded-md hover:bg-gray-700 focus:outline-none transition-colors duration-300">
             <span class="sr-only">Open main menu</span>
-            <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>
@@ -65,20 +131,37 @@
       </div>
 
       <!-- Mobile menu -->
-      <div class="md:hidden" x-show="open">
-        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-          {% for item in site.data.navbar %}
-            <a href="{{ site.baseurl }}{{ item.link }}"
-               class="block text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium">
-              {{ item.name }}
-            </a>
-          {% endfor %}
-          <!-- Mobile Contents Menu -->
-          <a href="{{ site.baseurl }}/japanese" class="block text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium">Japanese</a>
-          <a href="{{ site.baseurl }}/web-application" class="block text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium">Web Application</a>
-          <a href="{{ site.baseurl }}/android" class="block text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium">Android</a>
-          <a href="{{ site.baseurl }}/resource" class="block text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium">Resource</a>
+      <div x-show="open"
+           class="md:hidden bg-gray-800">
+        <div class="px-2 pt-2 pb-3 space-y-1">
+          <!-- Mobile: Blog -->
+          <a href="{{ site.baseurl }}/blog" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700">Blog</a>
+
+          <!-- Mobile: Mobile Apps Section -->
+          <div class="px-3 py-2 text-base font-medium text-gray-400">Mobile Apps</div>
+          <a href="{{ site.baseurl }}/mobile-apps" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700 pl-6">All Apps</a>
+          <a href="{{ site.baseurl }}/mobile-apps/android" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700 pl-6">Android Apps</a>
+          <a href="{{ site.baseurl }}/mobile-apps/ios" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700 pl-6">iOS Apps</a>
+          <a href="{{ site.baseurl }}/mobile-apps/policies" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700 pl-6">Privacy & Terms</a>
+
+          <!-- Mobile: Projects Section -->
+          <div class="px-3 py-2 text-base font-medium text-gray-400">Projects</div>
+          <a href="{{ site.baseurl }}/projects" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700 pl-6">All Projects</a>
+          <a href="{{ site.baseurl }}/projects/open-source" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700 pl-6">Open Source</a>
+          <a href="{{ site.baseurl }}/projects/tools" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700 pl-6">Tools</a>
+
+          <!-- Mobile: Study Section -->
+          <div class="px-3 py-2 text-base font-medium text-gray-400">Study</div>
+          <a href="{{ site.baseurl }}/study" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700 pl-6">All Study Notes</a>
+          <a href="{{ site.baseurl }}/study/japanese" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700 pl-6">Japanese</a>
+          <a href="{{ site.baseurl }}/study/mobile-dev" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700 pl-6">Mobile Development</a>
+
+          <!-- Mobile: Contact -->
+          <a href="mailto:{{ site.footer-links.email }}" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700">Contact Me</a>
         </div>
       </div>
     </div>
   </nav>
+
+<!-- Spacer to prevent content from being hidden under fixed navbar -->
+<div class="h-16"></div>
