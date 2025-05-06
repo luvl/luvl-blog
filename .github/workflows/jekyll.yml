@@ -27,6 +27,13 @@ jobs:
           ruby-version: '3.3'
           bundler-cache: true
 
+      # Add platform to bundle
+      - name: Update bundle platforms
+        run: |
+          bundle lock --add-platform x86_64-linux
+          bundle lock --add-platform ruby
+          bundle install
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
