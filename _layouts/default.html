@@ -5,16 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% if page.title %}{{ page.title }} – {% endif %}{{ site.name }} – {{ site.description }}</title>
 
-    <!-- Alpine.js -->
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-
     <!-- Tailwind CSS -->
     <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css">
+
+    <!-- Alpine.js -->
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     {% include meta.html %}
   </head>
 
-  <body class="h-full" x-data="{ mobileMenu: false }">
+  <body class="h-full">
     {% include navbar.html %}
 
     <main class="max-w-4xl mx-auto px-4 py-8">
