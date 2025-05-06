@@ -9,7 +9,6 @@ $fa-font-path:        "./fonts/font-awesome";
 
 @import "reset";
 @import "variables";
-@import "bootstrap/bootstrap";
 @import "font-awesome/font-awesome";
 
 // Syntax highlighting @import is at the bottom of this file
@@ -26,7 +25,7 @@ $fa-font-path:        "./fonts/font-awesome";
 // Navbar
 .navbar-mod {
     color: #fff;
-    float: none;    
+    float: none;
 }
 
 div#navbarSupportedContent {

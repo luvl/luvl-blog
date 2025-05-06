@@ -53,3 +53,9 @@ Personal blog of Nguyen Duc Linh, where I share my thoughts, experiences, and kn
 ## 📝 Writing Posts
 
 Create new posts in the `_posts` directory. Follow the naming convention:
+
+# Terminal 1 - Run Jekyll
+bundle exec jekyll serve --livereload
+
+# Terminal 2 - Watch Tailwind changes
+pnpm run watch:css

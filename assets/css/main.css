@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .site-header {
+    @apply bg-gray-900 text-white;
+  }
+
+  .site-nav {
+    @apply max-w-4xl mx-auto px-4;
+  }
+
+  .nav-link {
+    @apply px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700;
+  }
+
+  .site-title {
+    @apply text-xl font-bold text-white hover:text-gray-200;
+  }
+
+  .site-description {
+    @apply text-sm text-gray-300;
+  }
+}
