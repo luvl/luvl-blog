@@ -1,4 +1,4 @@
-prj-luvl-blog/
+luvl-blog/
 ├── _posts/
 │   ├── blog/                 # Regular blog posts
 │   │   └── YYYY-MM-DD-title.md
