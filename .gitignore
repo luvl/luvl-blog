@@ -12,3 +12,5 @@ node_modules
 !tailwind.config.js
 !postcss.config.js
 !assets/css/main.css
+!Gemfile
+!Gemfile.lock
