@@ -5,28 +5,48 @@ luvl-blog/
 │   │
 │   ├── mobile-apps/         # Mobile app updates, features
 │   │   ├── android/
-│   │   │   └── YYYY-MM-DD-app-update.md
+│   │   │   └── 2024-05-14-dockinhthanhapp-technical-overview.md
 │   │   └── ios/
-│   │       └── YYYY-MM-DD-app-update.md
+│   │       └── [future iOS app posts]
 │   │
 │   ├── projects/           # Project announcements, updates
 │   │   ├── open-source/
-│   │   │   └── YYYY-MM-DD-project-name.md
+│   │   │   └── [future open source project posts]
 │   │   └── tools/
-│   │       └── YYYY-MM-DD-tool-update.md
+│   │       └── [future tools posts]
 │   │
 │   └── study/             # Learning content
 │       ├── japanese/
-│       │   └── YYYY-MM-DD-lesson.md
+│       │   └── [future Japanese lessons]
 │       └── mobile-dev/
-│           └── YYYY-MM-DD-tutorial.md
+│           └── [future mobile dev tutorials]
 │
 ├── _pages/                # Static pages
 │   ├── mobile-apps/
-│   │   └── policies/     # Legal documents
-│   │       ├── privacy/
-│   │       └── terms/
+│   │   └── privacy/
+│   │       └── dockinhthanhapp.html
 │   └── about.md
+│
+├── _includes/            # Template parts
+│   ├── footer.html
+│   ├── navbar.html
+│   └── [other includes]
+│
+├── _layouts/             # Page layouts
+│   ├── default.html
+│   ├── post.html
+│   └── [other layouts]
+│
+├── assets/              # Static assets
+│   ├── css/
+│   │   └── main.css
+│   ├── js/
+│   └── images/
+│
+├── _config.yml          # Jekyll configuration
+├── index.html           # Homepage
+└── [other config files]
+
 
 context:
 please full file as answer
