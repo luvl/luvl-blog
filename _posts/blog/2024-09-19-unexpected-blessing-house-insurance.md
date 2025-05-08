@@ -19,7 +19,7 @@ I was at the office when a severe hailstorm hit Hachioji. Upon returning home, I
 - Damaged garden plants and herbs
 - Cracked 軒天 (eaves)
 
-My first instinct, shaped by my Vietnamese background, was to handle everything myself. I focused on:
+My first instinct, shaped by my Vietnamese background, was to handle everything myself. Since I was busy with work, I ignored completely:
 - Fixing the broken pipes
 - Salvaging what remained of my garden
 - Planning repairs for the 軒天
@@ -28,7 +28,7 @@ My first instinct, shaped by my Vietnamese background, was to handle everything 
 
 数週間後、保険の話が始まりました。
 
-For two months, I received numerous visits from insurance brokers who noticed the visible damage to my house. Being busy with work, I initially ignored them, especially since I had only changed insurance companies two months prior.
+For two months, I received numerous visits from insurance brokers who noticed the visible damage to my house. Being busy with work, I initially ignored them, especially since I had only changed working companies two months prior.
 
 ## The Turning Point
 
