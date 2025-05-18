@@ -14,7 +14,7 @@ Sitting here at Rinku Town near Kansai Airport, watching the sea stretch endless
 
 8年前の私へ
 
-In 2016, I first came to Osaka as a different person - young, heartbroken, seeking refuge in work. For one month, I built a routine like armor:
+In 2017, I first came to Osaka as a different person - young, heartbroken, seeking refuge in work. For one month, I built a routine like armor:
 - The same miso soup that warmed more than just my body
 - The same streets that witnessed my silent struggles
 - The same dedication to work that helped me forget, if only momentarily
@@ -30,7 +30,7 @@ In 2016, I first came to Osaka as a different person - young, heartbroken, seeki
 Before my friend joined me on this trip, I arrived a day early, drawn to the places of my past. Standing at Shin-Osaka Station, where Matsuya still stands opposite like a familiar friend, I realized that the young professional from eight years ago still lives within me:
 - Still working too hard
 - Still carrying the same gentle sadness
-- Still learning to love herself
+- Still learning to love myself
 
 変わった街並みの中で、
 変わらない心の痛みを

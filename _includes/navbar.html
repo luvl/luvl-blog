@@ -4,29 +4,29 @@
      class="fixed w-full top-0 z-50 transition-all duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-16">
-        <!-- Left side: Site Info with Avatar (keeping as is) -->
-        <div class="flex items-center space-x-4">
-          {% if site.avatar %}
-          <a href="{{ site.baseurl }}/" class="flex-shrink-0">
-            <img src="{{ site.avatar }}"
-                 alt="{{ site.name }}"
-                 class="h-10 w-10 rounded-full object-cover"
-                 :class="{ 'ring-white': scrolled, 'ring-gray-900': !scrolled }">
-          </a>
-          {% endif %}
-          <div>
-            <h1>
-              <a href="{{ site.baseurl }}/"
-                 :class="{ 'text-white': scrolled || open, 'text-gray-900': !scrolled && !open }"
-                 class="font-bold text-xl transition-colors duration-300">
-                {{ site.name }}
-              </a>
-            </h1>
-            <p :class="{ 'text-gray-300': scrolled, 'text-gray-600': !scrolled }"
-               class="text-sm transition-colors duration-300">
-              {{ site.description }}
-            </p>
-          </div>
+        <!-- Left side: Site Info with Avatar -->
+        <div class="flex items-center space-x-4 min-w-0"> <!-- Added min-w-0 to allow text truncation -->
+            {% if site.avatar %}
+            <a href="{{ site.baseurl }}/" class="flex-shrink-0">
+              <img src="{{ site.avatar }}"
+                   alt="{{ site.name }}"
+                   class="h-10 w-10 rounded-full object-cover"
+                   :class="{ 'ring-white': scrolled, 'ring-gray-900': !scrolled }">
+            </a>
+            {% endif %}
+            <div class="min-w-0"> <!-- Added min-w-0 to allow text truncation -->
+              <h1 class="truncate"> <!-- Added truncate to handle overflow -->
+                <a href="{{ site.baseurl }}/"
+                   :class="{ 'text-white': scrolled || open, 'text-gray-900': !scrolled && !open }"
+                   class="font-bold text-xl transition-colors duration-300">
+                  {{ site.name }}
+                </a>
+              </h1>
+              <p :class="{ 'text-gray-300': scrolled, 'text-gray-600': !scrolled }"
+                 class="text-sm transition-colors duration-300 truncate"> <!-- Added truncate -->
+                {{ site.description }}
+              </p>
+            </div>
         </div>
 
         <!-- Center: Navigation -->
@@ -39,8 +39,9 @@
           </a>
 
           <!-- Mobile Apps Dropdown -->
-          <div class="relative" x-data="{ dropdownOpen: false }">
-            <button @click="dropdownOpen = !dropdownOpen"
+          <div class="relative" x-data="{ mobileAppsOpen: false }">
+            <button @click="mobileAppsOpen = !mobileAppsOpen"
+                    @click.away="mobileAppsOpen = false"
                     :class="{ 'text-gray-300 hover:text-white': scrolled, 'text-gray-600 hover:text-gray-900': !scrolled }"
                     class="text-sm font-medium inline-flex items-center transition-colors duration-300">
               <span>Mobile Apps</span>
@@ -48,15 +49,14 @@
                 <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
               </svg>
             </button>
-            <div x-show="dropdownOpen"
-                 @click.away="dropdownOpen = false"
+            <div x-show="mobileAppsOpen"
                  x-transition:enter="transition ease-out duration-100"
                  x-transition:enter-start="transform opacity-0 scale-95"
                  x-transition:enter-end="transform opacity-100 scale-100"
                  x-transition:leave="transition ease-in duration-75"
                  x-transition:leave-start="transform opacity-100 scale-100"
                  x-transition:leave-end="transform opacity-0 scale-95"
-                 class="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                 class="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50">
               <div class="py-1">
                 <a href="{{ site.baseurl }}/mobile-apps" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">All Apps</a>
                 <a href="{{ site.baseurl }}/mobile-apps/android" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Android Apps</a>
@@ -67,8 +67,9 @@
           </div>
 
           <!-- Projects Dropdown -->
-          <div class="relative" x-data="{ dropdownOpen: false }">
-            <button @click="dropdownOpen = !dropdownOpen"
+          <div class="relative" x-data="{ projectsOpen: false }">
+            <button @click="projectsOpen = !projectsOpen"
+                    @click.away="projectsOpen = false"
                     :class="{ 'text-gray-300 hover:text-white': scrolled, 'text-gray-600 hover:text-gray-900': !scrolled }"
                     class="text-sm font-medium inline-flex items-center transition-colors duration-300">
               <span>Projects</span>
@@ -76,9 +77,14 @@
                 <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
               </svg>
             </button>
-            <div x-show="dropdownOpen"
-                 @click.away="dropdownOpen = false"
-                 class="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+            <div x-show="projectsOpen"
+                 x-transition:enter="transition ease-out duration-100"
+                 x-transition:enter-start="transform opacity-0 scale-95"
+                 x-transition:enter-end="transform opacity-100 scale-100"
+                 x-transition:leave="transition ease-in duration-75"
+                 x-transition:leave-start="transform opacity-100 scale-100"
+                 x-transition:leave-end="transform opacity-0 scale-95"
+                 class="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50">
               <div class="py-1">
                 <a href="{{ site.baseurl }}/projects" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">All Projects</a>
                 <a href="{{ site.baseurl }}/projects/open-source" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Open Source</a>
@@ -88,8 +94,9 @@
           </div>
 
           <!-- Study Dropdown -->
-          <div class="relative" x-data="{ dropdownOpen: false }">
-            <button @click="dropdownOpen = !dropdownOpen"
+          <div class="relative" x-data="{ studyOpen: false }">
+            <button @click="studyOpen = !studyOpen"
+                    @click.away="studyOpen = false"
                     :class="{ 'text-gray-300 hover:text-white': scrolled, 'text-gray-600 hover:text-gray-900': !scrolled }"
                     class="text-sm font-medium inline-flex items-center transition-colors duration-300">
               <span>Study</span>
@@ -97,9 +104,14 @@
                 <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
               </svg>
             </button>
-            <div x-show="dropdownOpen"
-                 @click.away="dropdownOpen = false"
-                 class="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+            <div x-show="studyOpen"
+                 x-transition:enter="transition ease-out duration-100"
+                 x-transition:enter-start="transform opacity-0 scale-95"
+                 x-transition:enter-end="transform opacity-100 scale-100"
+                 x-transition:leave="transition ease-in duration-75"
+                 x-transition:leave-start="transform opacity-100 scale-100"
+                 x-transition:leave-end="transform opacity-0 scale-95"
+                 class="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50">
               <div class="py-1">
                 <a href="{{ site.baseurl }}/study" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">All Study Notes</a>
                 <a href="{{ site.baseurl }}/study/japanese" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Japanese</a>
@@ -116,7 +128,7 @@
           </a>
         </div>
 
-        <!-- Mobile menu button (keeping as is) -->
+        <!-- Mobile menu button -->
         <div class="md:hidden">
           <button type="button"
                   @click="open = !open"
@@ -132,6 +144,12 @@
 
       <!-- Mobile menu -->
       <div x-show="open"
+           x-transition:enter="transition ease-out duration-100"
+           x-transition:enter-start="transform opacity-0 scale-95"
+           x-transition:enter-end="transform opacity-100 scale-100"
+           x-transition:leave="transition ease-in duration-75"
+           x-transition:leave-start="transform opacity-100 scale-100"
+           x-transition:leave-end="transform opacity-0 scale-95"
            class="md:hidden bg-gray-800">
         <div class="px-2 pt-2 pb-3 space-y-1">
           <!-- Mobile: Blog -->

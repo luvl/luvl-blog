@@ -1,14 +1,14 @@
 ---
 layout: none
-permalink: /blog/cv
+permalink: /blog/cv-jp
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nguyen Duc Linh - CV</title>
+    <title>グエンドゥクリン - 履歴書</title>
     <style>
         :root {
             --primary-color: #2d3748;
@@ -172,12 +172,10 @@ permalink: /blog/cv
             @page {
                 size: A4;
                 margin: 1.5cm;
-                /* Remove all headers and footers */
                 marks: none;
                 margin-header: 0;
                 margin-footer: 0;
             }
-            /* Remove URL and page numbers */
             @page :first {
                 margin-top: 0;
             }
@@ -194,13 +192,11 @@ permalink: /blog/cv
                 }
             }
 
-
-            /* Hide all browser-generated content */
             head, title, header, footer {
                 display: none !important;
             }
             .name {
-                font-size: 16pt;
+                font-size: 14pt;
             }
             .section-title {
                 font-size: 11pt;
@@ -208,8 +204,11 @@ permalink: /blog/cv
             .company, .position {
                 font-size: 10pt;
             }
-            .contact-info, .date, .skills-grid {
+            .date, .skills-grid {
                 font-size: 9pt;
+            }
+            .contact-info {
+                font-size: 7pt;
             }
             .sidebar {
                 background-color: var(--sidebar-color) !important;
@@ -220,10 +219,10 @@ permalink: /blog/cv
 <body>
     <div class="sidebar">
         <div class="header">
-            <div class="name">Nguyen Duc Linh</div>
+            <div class="name">グエン ドゥク リン</div>
             <div class="contact-info">
-                Tokyo, Japan<br>
-                +81 70-9022-7044<br>
+                東京都八王子市<br>
+                070-9022-7044<br>
                 linhnd34.jp@gmail.com<br>
                 <a href="https://github.com/luvl">GitHub</a> |
                 <a href="https://www.linkedin.com/in/linh-duc-nguyen-luvl/">LinkedIn</a> |
@@ -233,32 +232,32 @@ permalink: /blog/cv
         </div>
 
         <div class="section">
-            <div class="section-title">Languages</div>
+            <div class="section-title">言語</div>
             <ul class="soft-skills-list">
-                <li>Japanese (N1)</li>
-                <li>English (TOEIC 900)</li>
-                <li>German (A2)</li>
+                <li>日本語（JLPT N1）</li>
+                <li>英語（TOEIC 900）</li>
+                <li>ドイツ語（A2）</li>
             </ul>
         </div>
 
         <div class="section">
-            <div class="section-title">Soft Skills</div>
+            <div class="section-title">ソフトスキル</div>
             <ul class="soft-skills-list">
-                <li>Independent Problem Solving</li>
-                <li>Research & Analysis</li>
-                <li>Cross-cultural Communication</li>
-                <li>Knowledge Sharing & Teaching</li>
-                <li>Self-motivated & Hardworking</li>
-                <li>Team Collaboration</li>
+                <li>自主的な問題解決能力</li>
+                <li>研究・分析力</li>
+                <li>異文化コミュニケーション</li>
+                <li>知識共有・指導力</li>
+                <li>自己啓発・勤勉性</li>
+                <li>チーム協調性</li>
             </ul>
         </div>
 
         <div class="section">
-            <div class="section-title">Technical Skills</div>
+            <div class="section-title">技術スキル</div>
             <ul class="soft-skills-list">
-                <li>Python (6 years)</li>
-                <li>JavaScript (3 years)</li>
-                <li>SQL (4 years)</li>
+                <li>Python（6年）</li>
+                <li>JavaScript（3年）</li>
+                <li>SQL（4年）</li>
                 <li>TensorFlow, React</li>
                 <li>Vue.js, Django, FastAPI</li>
                 <li>AWS, Docker</li>
@@ -267,98 +266,98 @@ permalink: /blog/cv
         </div>
 
         <div class="section">
-            <div class="section-title">Certifications</div>
+            <div class="section-title">資格</div>
             <ul class="soft-skills-list">
-                <li>AWS ML Specialty (2024)</li>
-                <li>Prof. ML Engineer (2025)</li>
-                <li>TensorFlow Dev Cert (2021)</li>
-                <li>JLPT N1 (2022)</li>
-                <li>Driver's License (2024)</li>
+                <li>AWS ML スペシャリティ（2024）</li>
+                <li>Prof. ML エンジニア（2025）</li>
+                <li>TensorFlow 開発者認定（2021）</li>
+                <li>日本語能力試験 N1（2022）</li>
+                <li>普通自動車免許（2024）</li>
             </ul>
         </div>
     </div>
 
     <div class="main-content">
-        <button onclick="window.print()" class="download-btn">Download CV</button>
+        <button onclick="window.print()" class="download-btn">履歴書をダウンロード</button>
 
         <div class="section">
-            <div class="section-title">Professional Summary</div>
-            <p>Senior AI Engineer and Full-stack Software Engineer with 6+ years of experience in Python development and machine learning. Proficient in navigating the complete software development lifecycle from requirements analysis to deployment. Native-level fluency in both English and Japanese, enabling effective communication in diverse team environments.</p>
+            <div class="section-title">職務要約</div>
+            <p>Python開発と機械学習において6年以上の経験を持つシニアAIエンジニア兼フルスタックソフトウェアエンジニア。要件分析からデプロイメントまでの開発ライフサイクル全般に精通。日本語と英語のバイリンガルとして、多様なチーム環境での効果的なコミュニケーションが可能。</p>
         </div>
 
         <div class="section">
-            <div class="section-title">Professional Experience</div>
+            <div class="section-title">職務経歴</div>
 
             <div class="experience-item">
-                <div class="company">Japan AI</div>
-                <div class="position">Senior AI Engineer & Full-stack Software Engineer</div>
-                <div class="date">August 2024 - Present</div>
+                <div class="company">株式会社Japan AI</div>
+                <div class="position">シニアAIエンジニア・フルスタックソフトウェアエンジニア</div>
+                <div class="date">2024年8月 - 現在</div>
                 <ul>
-                    <li>Led development of customer-facing PoC projects valued over ¥20M, including:
+                    <li>顧客向けPoC開発プロジェクト（総額2000万円以上）をリード：
                         <ul>
-                            <li>LLM-powered PPT auto-generation system</li>
-                            <li>Product comparison verification using LLM</li>
-                            <li>AI-powered recruitment support agent</li>
-                            <li>Multi-agent LP analysis system</li>
+                            <li>LLMを活用したPPT自動生成システム</li>
+                            <li>LLMによる商品比較検証システム</li>
+                            <li>AI採用支援エージェント</li>
+                            <li>マルチエージェントLP分析システム</li>
                         </ul>
                     </li>
-                    <li>Collaborated directly with CTO to implement AI Agent from scratch</li>
-                    <li>Received company's Most Valuable Team Award</li>
+                    <li>CTOと直接協力してAIエージェントをゼロから実装</li>
+                    <li>最優秀チーム賞を受賞</li>
                 </ul>
             </div>
 
             <div class="experience-item">
-                <div class="company">Tokyo Techies</div>
-                <div class="position">AI Engineer & Full-stack Software Engineer</div>
-                <div class="date">February 2023 - August 2024</div>
+                <div class="company">株式会社Tokyo Techies</div>
+                <div class="position">AIエンジニア・フルスタックソフトウェアエンジニア</div>
+                <div class="date">2023年2月 - 2024年8月</div>
                 <ul>
-                    <li>Led development of Kotae.ai, achieving #1 daily and #2 weekly rankings on Product Hunt</li>
-                    <li>Successfully launched three chatbot applications on GPT Store</li>
-                    <li>Developed AI chatting features for Klever business efficiency tool (kleversuite.com)</li>
+                    <li>Kotae.aiの開発をリード（Product Huntでデイリー1位、ウィークリー2位を達成）</li>
+                    <li>GPTストアで3つのチャットボットアプリケーションを公開</li>
+                    <li>Kleverビジネス効率化ツールのAIチャット機能を開発（kleversuite.com）</li>
                 </ul>
             </div>
 
             <div class="experience-item">
-                <div class="company">FPT Software</div>
-                <div class="position">Senior AI Engineer</div>
-                <div class="date">April 2021 - January 2023</div>
+                <div class="company">FPTソフトウェア株式会社</div>
+                <div class="position">シニアAIエンジニア</div>
+                <div class="date">2021年4月 - 2023年1月</div>
                 <ul>
-                    <li>Independently developed and delivered AI solutions for healthcare systems</li>
-                    <li>Contributed to research that enabled customer's academic publication</li>
-                    <li>Supported team growth through knowledge sharing and technical guidance</li>
+                    <li>ヘルスケアシステム向けAIソリューションを独自に開発・提供</li>
+                    <li>顧客の学術論文発表に貢献する研究を実施</li>
+                    <li>知識共有と技術指導によるチーム成長を支援</li>
                 </ul>
             </div>
         </div>
 
         <div class="section">
-            <div class="section-title">Projects & Publications</div>
+            <div class="section-title">プロジェクト実績</div>
             <ul>
                 <li>
-                    <strong>LuvlToolGen</strong> - AI Function Calling Tool Generator (2025)
+                    <strong>LuvlToolGen</strong> - AI関数呼び出しツールジェネレーター（2025）
                     <ul>
-                        <li>Open-source tool for generating AI function calling interfaces</li>
-                        <li>Built with Python, leveraging modern LLM capabilities</li>
-                        <li><a href="https://luvl.github.io/luvl-blog/luvltoolgen-release/" target="_blank">Project Details →</a></li>
+                        <li>AI関数呼び出しインターフェース生成のオープンソースツール</li>
+                        <li>Python使用、最新のLLM機能を活用</li>
+                        <li><a href="https://luvl.github.io/luvl-blog/luvltoolgen-release/" target="_blank">プロジェクト詳細 →</a></li>
                     </ul>
                 </li>
                 <li>
-                    <strong>DocKinhThanh</strong> - Modern Bible Study Application
+                    <strong>DocKinhThanh</strong> - 現代的な聖書学習アプリケーション
                     <ul>
-                        <li>Android application built with React Native and Postgres</li>
-                        <li>Features offline reading, search, and study tools</li>
-                        <li><a href="https://luvl.github.io/luvl-blog/dockinhthanhapp-release/" target="_blank">Project Details →</a></li>
+                        <li>React NativeとPostgresを使用したAndroidアプリケーション</li>
+                        <li>オフライン読書、検索、学習ツール機能を実装</li>
+                        <li><a href="https://luvl.github.io/luvl-blog/dockinhthanhapp-release/" target="_blank">プロジェクト詳細 →</a></li>
                     </ul>
                 </li>
             </ul>
         </div>
 
         <div class="section">
-            <div class="section-title">Education</div>
+            <div class="section-title">学歴</div>
             <div class="experience-item">
-                <div class="company">Ho Chi Minh City University of Science</div>
-                <div class="position">Master of Science in Applied Mathematics</div>
-                <div class="date">2018 - 2021</div>
-                <p>GPA: 3.1/4.0 | Thesis: Unified Machine Learning/Deep Learning Framework for Security Trading (9.1/10)</p>
+                <div class="company">ホーチミン市科学大学</div>
+                <div class="position">応用数学修士</div>
+                <div class="date">2018年 - 2021年</div>
+                <p>GPA: 3.1/4.0 | 修士論文：証券取引のための統合機械学習/深層学習フレームワーク（9.1/10）</p>
             </div>
         </div>
     </div>
