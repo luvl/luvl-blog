@@ -42,6 +42,13 @@ Before my friend joined me on this trip, I arrived a day early, drawn to the pla
 
 My new adventure started in Osaka, just a peaceful 10-minute walk from Nakatsu Station. The city welcomed me with its characteristic warmth - so different from Tokyo's polished reserve. The day unfolded like a carefully written story:
 - Osaka Castle standing proud against the sky, its history echoing through stone walls
+
+<div align="center">
+  <img src="https://res.cloudinary.com/dlsjqhdse/image/upload/v1747666169/Messenger_creation_36971139-9F6A-452D-8C15-C589A9576F5E_x0z6ow.jpg" alt="Standing at Osaka Castle">
+  <em>A moment of reflection at Osaka Castle</em>
+</div>
+
+- A memorable unagi lunch that reminded me how food can tell stories
 - A memorable unagi lunch that reminded me how food can tell stories
 - Evening views from Abeno Harukas that made the city look like scattered stars
 - The vibrant energy of Dotonbori, leading to a soul-warming ramen dinner
@@ -89,7 +96,7 @@ But perhaps what hasn't changed is what needs to change the most - the habit of 
 
 この旅で気づいたこと：
 
-1. The importance of being "イッキ" (self-prioritizing) over self-sacrificing
+1. The importance of being "自分らしく" (self-prioritizing) over self-sacrificing
 2. Health should never be compromised for work
 3. Different regions of Japan hold different spirits - Kansai's warmth contrasts beautifully with Tokyo's efficiency
 4. Cultural preservation isn't just about buildings - it's about souls
