@@ -54,6 +54,9 @@ Personal blog of Nguyen Duc Linh, where I share my thoughts, experiences, and kn
 
 Create new posts in the `_posts` directory. Follow the naming convention:
 
+# Upload image
+https://console.cloudinary.com/app/c-794f04f06b6745229bde68b5f2cd8d/settings/upload/presets
+
 # Terminal 1 - Run Jekyll
 bundle exec jekyll serve --livereload
 

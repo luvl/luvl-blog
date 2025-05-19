@@ -14,3 +14,9 @@ node_modules
 !assets/css/main.css
 !Gemfile
 !Gemfile.lock
+
+# Never commit secrets
+_config/cloudinary.yml
+.env
+.env.local
+secrets.yml

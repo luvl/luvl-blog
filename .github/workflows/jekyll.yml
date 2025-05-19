@@ -17,9 +17,20 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      CLOUDINARY_CLOUD_NAME: ${{ vars.CLOUDINARY_CLOUD_NAME }}
+      CLOUDINARY_API_KEY: ${{ secrets.CLOUDINARY_API_KEY }}
+      CLOUDINARY_API_SECRET: ${{ secrets.CLOUDINARY_API_SECRET }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Test Cloudinary Config
+        run: |
+          echo "Testing Cloudinary configuration..."
+          echo "Cloud name is configured: ${{ vars.CLOUDINARY_CLOUD_NAME != '' }}"
+          echo "API key is configured: ${{ secrets.CLOUDINARY_API_KEY != '' }}"
+          echo "API secret is configured: ${{ secrets.CLOUDINARY_API_SECRET != '' }}"
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
