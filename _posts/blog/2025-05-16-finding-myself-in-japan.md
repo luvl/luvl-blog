@@ -49,7 +49,6 @@ My new adventure started in Osaka, just a peaceful 10-minute walk from Nakatsu S
 </div>
 
 - A memorable unagi lunch that reminded me how food can tell stories
-- A memorable unagi lunch that reminded me how food can tell stories
 - Evening views from Abeno Harukas that made the city look like scattered stars
 - The vibrant energy of Dotonbori, leading to a soul-warming ramen dinner
 

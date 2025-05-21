@@ -2,14 +2,130 @@
 layout: default
 ---
 
-<div class="text-center mb-12">
-  <h1 class="text-4xl font-bold mb-4">Latest Articles</h1>
-  <p class="text-gray-600">Stay up-to-date with the latest trends and insights in tech, project management, productivity, and more.</p>
+
+<!-- Add Swiper CSS and JS -->
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<!-- Latest Blog Posts Carousel -->
+<div class="py-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-8">
+      <h2 class="text-3xl font-bold text-gray-900">Latest Articles</h2>
+      <p class="mt-2 text-gray-600">Stay up-to-date with the latest insights and tutorials</p>
+    </div>
+
+    <!-- Swiper Container -->
+    <div class="relative">
+      <div class="swiper-container !overflow-hidden">
+        <div class="swiper-wrapper">
+          {% for post in site.posts limit:5 %}
+          <div class="swiper-slide w-full">
+            <div class="mx-2 h-[calc(100vh-400px)] min-h-[400px] max-h-[600px]">
+              <div class="bg-white rounded-lg border border-gray-100 h-full shadow-sm">
+                <div class="p-6 flex flex-col h-full">
+                  {% if post.categories %}
+                  <div class="flex flex-wrap gap-2 mb-4">
+                    {% for category in post.categories %}
+                    <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">
+                      {{ category }}
+                    </span>
+                    {% endfor %}
+                  </div>
+                  {% endif %}
+                  <h3 class="text-xl sm:text-2xl font-semibold text-gray-900 mb-4 line-clamp-2">{{ post.title }}</h3>
+                  <p class="text-gray-600 text-base flex-grow line-clamp-4 sm:line-clamp-6">{{ post.excerpt | strip_html }}</p>
+                  <div class="flex items-center justify-between pt-4 mt-auto border-t border-gray-100">
+                    <span class="text-sm text-gray-500">{{ post.date | date: "%B %e, %Y" }}</span>
+                    <a href="{{ site.baseurl }}{{ post.url }}"
+                       class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+                      Read more →
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+
+        <!-- Pagination Dots -->
+        <div class="swiper-pagination !relative !bottom-0 mt-4"></div>
+      </div>
+
+      <!-- Custom Navigation Buttons -->
+      <button class="swiper-button-prev-custom absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 rounded-full p-2 shadow-md hover:bg-white">
+        <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+      <button class="swiper-button-next-custom absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 rounded-full p-2 shadow-md hover:bg-white">
+        <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+    </div>
+  </div>
 </div>
 
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-  {% for post in site.posts %}
-    {% assign delay = forloop.index | minus: 1 | times: 100 %}
-    {% include post-preview.html post=post delay=delay %}
-  {% endfor %}
-</div>
+<style>
+  .swiper-button-next,
+  .swiper-button-prev {
+    display: none !important;
+  }
+
+  .swiper-pagination-bullet {
+    width: 6px;
+    height: 6px;
+    background: #D1D5DB;
+    opacity: 1;
+    margin: 0 4px !important;
+  }
+  .swiper-pagination-bullet-active {
+    background: #4B5563;
+  }
+
+  .swiper-container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .swiper-slide {
+    height: auto;
+  }
+</style>
+
+<script>
+  new Swiper('.swiper-container', {
+    slidesPerView: "auto",
+    spaceBetween: 0,
+    loop: true,
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    navigation: {
+      nextEl: '.swiper-button-next-custom',
+      prevEl: '.swiper-button-prev-custom',
+    },
+    breakpoints: {
+      320: {
+        slidesPerView: 1,
+        spaceBetween: 0
+      },
+      768: {
+        slidesPerView: 2,
+        spaceBetween: 0
+      },
+      1024: {
+        slidesPerView: 3,
+        spaceBetween: 0
+      }
+    }
+  });
+</script>
