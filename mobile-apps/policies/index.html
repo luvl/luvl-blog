@@ -9,9 +9,9 @@ permalink: /mobile-apps/policies/
   <p class="text-gray-600">Privacy policies and terms of service for our applications</p>
 </div>
 
-<div class="max-w-4xl mx-auto">
+<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; padding: 0 2rem;">
   <!-- DocKinhThanh Policies -->
-  <div class="bg-white rounded-lg shadow-lg overflow-hidden mb-8"
+  <div class="bg-white rounded-xl shadow-lg overflow-hidden"
        x-data="{ hover: false }"
        @mouseenter="hover = true"
        @mouseleave="hover = false">
@@ -28,6 +28,19 @@ permalink: /mobile-apps/policies/
           </a>
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- Placeholder for future policies -->
+  <div class="bg-white rounded-xl shadow-lg overflow-hidden opacity-50">
+    <div class="p-6 text-center">
+      <div class="mb-4">
+        <svg class="w-20 h-20 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+        </svg>
+      </div>
+      <h3 class="text-xl font-bold mb-2">More Policies Coming Soon</h3>
+      <p class="text-gray-600">As we add more apps</p>
     </div>
   </div>
 </div>

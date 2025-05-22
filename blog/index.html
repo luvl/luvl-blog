@@ -31,8 +31,8 @@ title: Blog
   </div>
 </div>
 
-<!-- Posts Grid -->
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
+<!-- Posts Grid - Simplified and Direct -->
+<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; padding: 0 2rem;">
   {% for post in site.posts %}
     {% assign delay = forloop.index | minus: 1 | times: 100 %}
     <div class="post-item" data-categories="{{ post.categories | join: ' ' }}">
@@ -41,7 +41,6 @@ title: Blog
   {% endfor %}
 </div>
 
-<!-- Category Filtering Script -->
 <script>
 window.filterPosts = function(category) {
   const posts = document.querySelectorAll('.post-item');
