@@ -3,7 +3,7 @@ layout: post
 title: From Paper to Practice - Day 1 of My Real Driving Journey
 tags: [life, japan, personal, driving, day1]
 category: life
-time: 2024-05-24
+time: 2025-05-24
 series: japan-driving-journey
 ---
 
