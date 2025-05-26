@@ -1,18 +1,44 @@
-    <meta charset="utf-8" />
-    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
+<meta charset="utf-8" />
+<meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
 
-    {% if page.excerpt %}
-    <meta name="description" content="{{ page.excerpt| strip_html }}" />
-    <meta property="og:description" content="{{ page.excerpt| strip_html }}" />
-    {% else %}
-    <meta name="description" content="{{ site.description }}">
-    <meta property="og:description" content="{{ site.description }}" />
-    {% endif %}
-    <meta name="author" content="{{ site.name }}" />
+<!-- Theme Color for browsers -->
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1a202c" media="(prefers-color-scheme: dark)">
 
-    {% if page.title %}
-    <meta property="og:title" content="{{ page.title }}" />
-    <meta property="twitter:title" content="{{ page.title }}" />
-    {% endif %}
+<!-- Color scheme -->
+<meta name="color-scheme" content="dark light">
+
+{% if page.excerpt %}
+<meta name="description" content="{{ page.excerpt| strip_html }}" />
+<meta property="og:description" content="{{ page.excerpt| strip_html }}" />
+{% else %}
+<meta name="description" content="{{ site.description }}">
+<meta property="og:description" content="{{ site.description }}" />
+{% endif %}
+<meta name="author" content="{{ site.name }}" />
+
+{% if page.title %}
+<meta property="og:title" content="{{ page.title }}" />
+<meta property="twitter:title" content="{{ page.title }}" />
+{% endif %}
+
+<!-- Open Graph -->
+<meta property="og:site_name" content="{{ site.name }}">
+<meta property="og:type" content="{% if page.title %}article{% else %}website{% endif %}">
+<meta property="og:url" content="{{ site.url }}{{ page.url }}">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@{{ site.footer-links.twitter }}">
+<meta name="twitter:creator" content="@{{ site.footer-links.twitter }}">
+
+{% if page.image %}
+<meta property="og:image" content="{{ site.url }}{{ page.image }}">
+<meta name="twitter:image" content="{{ site.url }}{{ page.image }}">
+{% endif %}
+
+<!-- PWA -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">

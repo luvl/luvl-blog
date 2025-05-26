@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: 'class',
   content: [
     './_includes/**/*.{html,md}',
     './_layouts/**/*.{html,md}',
@@ -8,6 +9,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      backgroundColor: {
+        'dark': '#1a202c',
+      },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in',
         'slide-up': 'slideUp 0.5s ease-out',
