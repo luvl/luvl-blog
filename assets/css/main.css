@@ -4,13 +4,13 @@
 
 @layer base {
   html, body {
-    @apply bg-gray-50;
+    @apply bg-gray-50 dark:bg-gray-900;
   }
 }
 
 @layer components {
   .post-preview {
-    @apply bg-white rounded-lg shadow-md;
+    @apply bg-white dark:bg-gray-800 rounded-lg shadow-md;
     opacity: 1;
     transition: opacity 0.3s ease-out;
   }
@@ -32,23 +32,6 @@
   }
 
   .content-card {
-    @apply bg-white rounded-lg shadow-md p-6;
+    @apply bg-white dark:bg-gray-800 rounded-lg shadow-md p-6;
   }
 }
-
-@layer components {
-    .aspect-w-16 {
-      position: relative;
-      padding-bottom: 56.25%;
-    }
-
-    .aspect-w-16 > * {
-      position: absolute;
-      height: 100%;
-      width: 100%;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-    }
-  }

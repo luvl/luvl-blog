@@ -10,21 +10,37 @@
     <link rel="apple-touch-icon" href="{{ site.baseurl }}/images/GuiltyCrown.png">
 
     <!-- Tailwind CSS -->
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css">
 
     <!-- Alpine.js -->
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script>
+        // Initialize dark mode from localStorage or system preference
+        const isDarkMode = localStorage.getItem('darkMode') === 'true' ||
+            (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+
+        // Set initial dark mode
+        if (isDarkMode) {
+            document.documentElement.classList.add('dark');
+            localStorage.setItem('darkMode', 'true');
+        } else {
+            document.documentElement.classList.remove('dark');
+            localStorage.setItem('darkMode', 'false');
+        }
+    </script>
 
     {% include meta.html %}
   </head>
 
-  <body class="h-full bg-gray-50">
+
+  <body class="min-h-full flex flex-col dark:bg-gray-900 transition-colors duration-300">
     {% include navbar.html %}
 
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
-      <div class="prose prose-lg max-w-none prose-img:mx-auto prose-img:rounded-lg">
-        {{ content }}
-      </div>
+    <main class="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 transition-colors duration-300">
+        <div class="prose prose-lg max-w-none prose-img:mx-auto prose-img:rounded-lg dark:prose-invert prose-headings:text-gray-900 dark:prose-headings:text-white prose-p:text-gray-700 dark:prose-p:text-gray-300">
+          {{ content }}
+        </div>
     </main>
 
     {% include footer.html %}

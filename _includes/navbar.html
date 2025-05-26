@@ -1,185 +1,147 @@
-<nav x-data="{ open: false, scrolled: false }"
+<nav x-data="{
+    open: false,
+    scrolled: false,
+    darkMode: localStorage.getItem('darkMode') === 'true' ||
+        (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches),
+    toggleDarkMode() {
+        this.darkMode = !this.darkMode;
+        localStorage.setItem('darkMode', this.darkMode.toString());
+        if (this.darkMode) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    }
+}"
      @scroll.window="scrolled = (window.pageYOffset > 0)"
-     :class="{ 'bg-gray-800 shadow': scrolled, 'bg-transparent': !scrolled }"
+     :class="{
+         'bg-gray-800 shadow': scrolled && !darkMode,
+         'bg-white shadow dark:bg-gray-900': scrolled && darkMode,
+         'bg-transparent': !scrolled
+     }"
      class="fixed w-full top-0 z-50 transition-all duration-300">
+
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between items-center h-16">
-        <!-- Left side: Site Info with Avatar -->
-        <div class="flex items-center space-x-4 min-w-0"> <!-- Added min-w-0 to allow text truncation -->
-            {% if site.avatar %}
-            <a href="{{ site.baseurl }}/" class="flex-shrink-0">
-              <img src="{{ site.avatar }}"
-                   alt="{{ site.name }}"
-                   class="h-10 w-10 rounded-full object-cover"
-                   :class="{ 'ring-white': scrolled, 'ring-gray-900': !scrolled }">
-            </a>
-            {% endif %}
-            <div class="min-w-0"> <!-- Added min-w-0 to allow text truncation -->
-              <h1 class="truncate"> <!-- Added truncate to handle overflow -->
-                <a href="{{ site.baseurl }}/"
-                   :class="{ 'text-white': scrolled || open, 'text-gray-900': !scrolled && !open }"
-                   class="font-bold text-xl transition-colors duration-300">
-                  {{ site.name }}
+        <div class="flex justify-between items-center h-16">
+            <!-- Left side: Site Info with Avatar -->
+            <div class="flex items-center space-x-4 min-w-0">
+                {% if site.avatar %}
+                <a href="{{ site.baseurl }}/" class="flex-shrink-0">
+                    <img src="{{ site.avatar }}"
+                        alt="{{ site.name }}"
+                        class="h-10 w-10 rounded-full object-cover">
                 </a>
-              </h1>
-              <p :class="{ 'text-gray-300': scrolled, 'text-gray-600': !scrolled }"
-                 class="text-sm transition-colors duration-300 truncate"> <!-- Added truncate -->
-                {{ site.description }}
-              </p>
+                {% endif %}
+                <div class="min-w-0">
+                    <h1 class="truncate">
+                        <a href="{{ site.baseurl }}/"
+                        :class="{
+                            'text-white': scrolled && !darkMode,
+                            'text-gray-900 dark:text-white': scrolled && darkMode,
+                            'text-gray-900 dark:text-white': !scrolled
+                        }"
+                        class="font-bold text-xl transition-colors duration-300">
+                            {{ site.name }}
+                        </a>
+                    </h1>
+                    <p :class="{
+                        'text-gray-300': scrolled && !darkMode,
+                        'text-gray-600 dark:text-gray-300': scrolled && darkMode,
+                        'text-gray-600 dark:text-gray-300': !scrolled
+                    }"
+                    class="text-sm transition-colors duration-300 truncate">
+                        {{ site.description }}
+                    </p>
+                </div>
+            </div>
+
+            <!-- Desktop Navigation -->
+            {% include navbar-menu.html %}
+
+            <!-- Mobile menu button -->
+            <div class="md:hidden">
+                <button type="button"
+                        @click="open = !open"
+                        :class="{
+                            'text-white': scrolled && !darkMode,
+                            'text-gray-900 dark:text-white': scrolled && darkMode,
+                            'text-gray-900 dark:text-white': !scrolled,
+                            'bg-gray-800': open && !darkMode,
+                            'bg-white dark:bg-gray-900': open && darkMode
+                        }"
+                        class="inline-flex items-center justify-center p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none transition-colors duration-300">
+                    <span class="sr-only">Open main menu</span>
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
             </div>
         </div>
 
-        <!-- Center: Navigation -->
-        <div class="hidden md:flex items-center space-x-8">
-          <!-- Blog - Primary Link -->
-          <a href="{{ site.baseurl }}/blog"
-             :class="{ 'text-gray-300 hover:text-white': scrolled, 'text-gray-600 hover:text-gray-900': !scrolled }"
-             class="text-sm font-medium transition-colors duration-300">
-            Blog
-          </a>
-
-          <!-- Mobile Apps Dropdown -->
-          <div class="relative" x-data="{ mobileAppsOpen: false }">
-            <button @click="mobileAppsOpen = !mobileAppsOpen"
-                    @click.away="mobileAppsOpen = false"
-                    :class="{ 'text-gray-300 hover:text-white': scrolled, 'text-gray-600 hover:text-gray-900': !scrolled }"
-                    class="text-sm font-medium inline-flex items-center transition-colors duration-300">
-              <span>Mobile Apps</span>
-              <svg class="ml-1 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-              </svg>
-            </button>
-            <div x-show="mobileAppsOpen"
-                 x-transition:enter="transition ease-out duration-100"
-                 x-transition:enter-start="transform opacity-0 scale-95"
-                 x-transition:enter-end="transform opacity-100 scale-100"
-                 x-transition:leave="transition ease-in duration-75"
-                 x-transition:leave-start="transform opacity-100 scale-100"
-                 x-transition:leave-end="transform opacity-0 scale-95"
-                 class="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50">
-              <div class="py-1">
-                <a href="{{ site.baseurl }}/mobile-apps" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">All Apps</a>
-                <a href="{{ site.baseurl }}/mobile-apps/android" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Android Apps</a>
-                <a href="{{ site.baseurl }}/mobile-apps/ios" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">iOS Apps</a>
-                <a href="{{ site.baseurl }}/mobile-apps/policies" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Privacy & Terms</a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Projects Dropdown -->
-          <div class="relative" x-data="{ projectsOpen: false }">
-            <button @click="projectsOpen = !projectsOpen"
-                    @click.away="projectsOpen = false"
-                    :class="{ 'text-gray-300 hover:text-white': scrolled, 'text-gray-600 hover:text-gray-900': !scrolled }"
-                    class="text-sm font-medium inline-flex items-center transition-colors duration-300">
-              <span>Projects</span>
-              <svg class="ml-1 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-              </svg>
-            </button>
-            <div x-show="projectsOpen"
-                 x-transition:enter="transition ease-out duration-100"
-                 x-transition:enter-start="transform opacity-0 scale-95"
-                 x-transition:enter-end="transform opacity-100 scale-100"
-                 x-transition:leave="transition ease-in duration-75"
-                 x-transition:leave-start="transform opacity-100 scale-100"
-                 x-transition:leave-end="transform opacity-0 scale-95"
-                 class="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50">
-              <div class="py-1">
-                <a href="{{ site.baseurl }}/projects" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">All Projects</a>
-                <a href="{{ site.baseurl }}/projects/open-source" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Open Source</a>
-                <a href="{{ site.baseurl }}/projects/tools" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Tools</a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Study Dropdown -->
-          <div class="relative" x-data="{ studyOpen: false }">
-            <button @click="studyOpen = !studyOpen"
-                    @click.away="studyOpen = false"
-                    :class="{ 'text-gray-300 hover:text-white': scrolled, 'text-gray-600 hover:text-gray-900': !scrolled }"
-                    class="text-sm font-medium inline-flex items-center transition-colors duration-300">
-              <span>Study</span>
-              <svg class="ml-1 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-              </svg>
-            </button>
-            <div x-show="studyOpen"
-                 x-transition:enter="transition ease-out duration-100"
-                 x-transition:enter-start="transform opacity-0 scale-95"
-                 x-transition:enter-end="transform opacity-100 scale-100"
-                 x-transition:leave="transition ease-in duration-75"
-                 x-transition:leave-start="transform opacity-100 scale-100"
-                 x-transition:leave-end="transform opacity-0 scale-95"
-                 class="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50">
-              <div class="py-1">
-                <a href="{{ site.baseurl }}/study" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">All Study Notes</a>
-                <a href="{{ site.baseurl }}/study/japanese" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Japanese</a>
-                <a href="{{ site.baseurl }}/study/mobile-dev" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Mobile Development</a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Contact -->
-          <a href="mailto:{{ site.footer-links.email }}"
-             :class="{ 'text-gray-300 hover:text-white': scrolled, 'text-gray-600 hover:text-gray-900': !scrolled }"
-             class="text-sm font-medium transition-colors duration-300">
-            Contact Me
-          </a>
-        </div>
-
-        <!-- Mobile menu button -->
-        <div class="md:hidden">
-          <button type="button"
-                  @click="open = !open"
-                  :class="{ 'text-white': scrolled || open, 'text-gray-600': !scrolled && !open }"
-                  class="inline-flex items-center justify-center p-2 rounded-md hover:bg-gray-700 focus:outline-none transition-colors duration-300">
-            <span class="sr-only">Open main menu</span>
-            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          </button>
-        </div>
-      </div>
-
-      <!-- Mobile menu -->
-      <div x-show="open"
-           x-transition:enter="transition ease-out duration-100"
-           x-transition:enter-start="transform opacity-0 scale-95"
-           x-transition:enter-end="transform opacity-100 scale-100"
-           x-transition:leave="transition ease-in duration-75"
-           x-transition:leave-start="transform opacity-100 scale-100"
-           x-transition:leave-end="transform opacity-0 scale-95"
-           class="md:hidden bg-gray-800">
-        <div class="px-2 pt-2 pb-3 space-y-1">
-          <!-- Mobile: Blog -->
-          <a href="{{ site.baseurl }}/blog" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700">Blog</a>
-
-          <!-- Mobile: Mobile Apps Section -->
-          <div class="px-3 py-2 text-base font-medium text-gray-400">Mobile Apps</div>
-          <a href="{{ site.baseurl }}/mobile-apps" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700 pl-6">All Apps</a>
-          <a href="{{ site.baseurl }}/mobile-apps/android" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700 pl-6">Android Apps</a>
-          <a href="{{ site.baseurl }}/mobile-apps/ios" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700 pl-6">iOS Apps</a>
-          <a href="{{ site.baseurl }}/mobile-apps/policies" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700 pl-6">Privacy & Terms</a>
-
-          <!-- Mobile: Projects Section -->
-          <div class="px-3 py-2 text-base font-medium text-gray-400">Projects</div>
-          <a href="{{ site.baseurl }}/projects" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700 pl-6">All Projects</a>
-          <a href="{{ site.baseurl }}/projects/open-source" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700 pl-6">Open Source</a>
-          <a href="{{ site.baseurl }}/projects/tools" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700 pl-6">Tools</a>
-
-          <!-- Mobile: Study Section -->
-          <div class="px-3 py-2 text-base font-medium text-gray-400">Study</div>
-          <a href="{{ site.baseurl }}/study" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700 pl-6">All Study Notes</a>
-          <a href="{{ site.baseurl }}/study/japanese" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700 pl-6">Japanese</a>
-          <a href="{{ site.baseurl }}/study/mobile-dev" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700 pl-6">Mobile Development</a>
-
-          <!-- Mobile: Contact -->
-          <a href="mailto:{{ site.footer-links.email }}" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700">Contact Me</a>
-        </div>
-      </div>
+        <!-- Mobile menu -->
+        <div x-show="open"
+            x-cloak
+            x-transition:enter="transition ease-out duration-100"
+            x-transition:enter-start="transform opacity-0 scale-95"
+            x-transition:enter-end="transform opacity-100 scale-100"
+            x-transition:leave="transition ease-in duration-75"
+            x-transition:leave-start="transform opacity-100 scale-100"
+            x-transition:leave-end="transform opacity-0 scale-95"
+            :class="{
+                'bg-gray-800': !darkMode,
+                'bg-white dark:bg-gray-900': darkMode
+            }"
+            class="md:hidden fixed left-0 right-0 top-16 shadow-lg rounded-b-lg">
+        <div class="px-2 pt-2 pb-3 space-y-1 max-h-[calc(100vh-4rem)] overflow-y-auto">
+            {% include navbar-menu.html %}
+       </div
     </div>
-  </nav>
+</nav>
 
 <!-- Spacer to prevent content from being hidden under fixed navbar -->
 <div class="h-16"></div>
+
+<style>
+    /* Smooth transitions */
+    .transition-all {
+        transition-property: all;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transition-duration: 300ms;
+    }
+
+    /* Dark mode styles */
+    .dark body {
+        background-color: rgb(17, 24, 39);
+        color: rgb(243, 244, 246);
+    }
+
+    /* Force immediate color changes */
+    .dark .bg-white {
+        background-color: rgb(17, 24, 39) !important;
+    }
+
+    .dark .text-gray-900 {
+        color: rgb(243, 244, 246) !important;
+    }
+
+    /* Ensure transparent backgrounds work with dark mode */
+    .dark .bg-transparent {
+        background-color: transparent !important;
+    }
+
+    /* Mobile menu styles */
+    @media (max-width: 768px) {
+        .mobile-menu-open {
+            overflow: hidden;
+        }
+    }
+
+    /* Smooth scrolling */
+    html {
+        scroll-behavior: smooth;
+    }
+
+    [x-cloak] {
+        display: none !important;
+    }
+</style>

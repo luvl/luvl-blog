@@ -1,0 +1,259 @@
+<!-- Desktop Navigation Menu -->
+<div class="hidden md:flex items-center space-x-8">
+    <!-- Blog Link -->
+    <a href="{{ site.baseurl }}/blog"
+       :class="{
+           'text-white hover:text-gray-300': scrolled && !darkMode,
+           'text-gray-900 hover:text-gray-600': !scrolled && !darkMode,
+           'text-gray-300 hover:text-white': scrolled && darkMode,
+           'text-white hover:text-gray-300': !scrolled && darkMode
+       }"
+       class="text-sm font-medium transition-colors duration-300">
+        Blog
+    </a>
+
+    <!-- Mobile Apps Dropdown -->
+    <div class="relative" x-data="{ mobileAppsOpen: false }">
+        <button @click="mobileAppsOpen = !mobileAppsOpen"
+                @click.away="mobileAppsOpen = false"
+                :class="{
+                    'text-white hover:text-gray-300': scrolled && !darkMode,
+                    'text-gray-900 hover:text-gray-600': !scrolled && !darkMode,
+                    'text-gray-300 hover:text-white': scrolled && darkMode,
+                    'text-white hover:text-gray-300': !scrolled && darkMode
+                }"
+                class="text-sm font-medium inline-flex items-center transition-colors duration-300">
+            <span>Mobile Apps</span>
+            <svg class="ml-1 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+        </button>
+        <div x-show="mobileAppsOpen"
+             x-transition:enter="transition ease-out duration-100"
+             x-transition:enter-start="transform opacity-0 scale-95"
+             x-transition:enter-end="transform opacity-100 scale-100"
+             x-transition:leave="transition ease-in duration-75"
+             x-transition:leave-start="transform opacity-100 scale-100"
+             x-transition:leave-end="transform opacity-0 scale-95"
+             :class="{
+                 'bg-gray-900': !darkMode && scrolled,
+                 'bg-white': darkMode && scrolled,
+                 'bg-white dark:bg-gray-900': !scrolled
+             }"
+             class="absolute right-0 mt-2 w-48 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 z-50">
+            <div class="py-1">
+                <a href="{{ site.baseurl }}/mobile-apps" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800">All Apps</a>
+                <a href="{{ site.baseurl }}/mobile-apps/android" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800">Android Apps</a>
+                <a href="{{ site.baseurl }}/mobile-apps/ios" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800">iOS Apps</a>
+                <a href="{{ site.baseurl }}/mobile-apps/policies" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800">Privacy & Terms</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Projects Dropdown -->
+    <div class="relative" x-data="{ projectsOpen: false }">
+        <button @click="projectsOpen = !projectsOpen"
+                @click.away="projectsOpen = false"
+                :class="{
+                    'text-white hover:text-gray-300': scrolled && !darkMode,
+                    'text-gray-900 hover:text-gray-600': !scrolled && !darkMode,
+                    'text-gray-300 hover:text-white': scrolled && darkMode,
+                    'text-white hover:text-gray-300': !scrolled && darkMode
+                }"
+                class="text-sm font-medium inline-flex items-center transition-colors duration-300">
+            <span>Projects</span>
+            <svg class="ml-1 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+        </button>
+        <div x-show="projectsOpen"
+             x-transition:enter="transition ease-out duration-100"
+             x-transition:enter-start="transform opacity-0 scale-95"
+             x-transition:enter-end="transform opacity-100 scale-100"
+             x-transition:leave="transition ease-in duration-75"
+             x-transition:leave-start="transform opacity-100 scale-100"
+             x-transition:leave-end="transform opacity-0 scale-95"
+             :class="{
+                 'bg-gray-900': !darkMode && scrolled,
+                 'bg-white': darkMode && scrolled,
+                 'bg-white dark:bg-gray-900': !scrolled
+             }"
+             class="absolute right-0 mt-2 w-48 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 z-50">
+            <div class="py-1">
+                <a href="{{ site.baseurl }}/projects" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800">All Projects</a>
+                <a href="{{ site.baseurl }}/projects/open-source" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800">Open Source</a>
+                <a href="{{ site.baseurl }}/projects/tools" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800">Tools</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Study Dropdown -->
+    <div class="relative" x-data="{ studyOpen: false }">
+        <button @click="studyOpen = !studyOpen"
+                @click.away="studyOpen = false"
+                :class="{
+                    'text-white hover:text-gray-300': scrolled && !darkMode,
+                    'text-gray-900 hover:text-gray-600': !scrolled && !darkMode,
+                    'text-gray-300 hover:text-white': scrolled && darkMode,
+                    'text-white hover:text-gray-300': !scrolled && darkMode
+                }"
+                class="text-sm font-medium inline-flex items-center transition-colors duration-300">
+            <span>Study</span>
+            <svg class="ml-1 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+        </button>
+        <div x-show="studyOpen"
+             x-transition:enter="transition ease-out duration-100"
+             x-transition:enter-start="transform opacity-0 scale-95"
+             x-transition:enter-end="transform opacity-100 scale-100"
+             x-transition:leave="transition ease-in duration-75"
+             x-transition:leave-start="transform opacity-100 scale-100"
+             x-transition:leave-end="transform opacity-0 scale-95"
+             :class="{
+                 'bg-gray-900': !darkMode && scrolled,
+                 'bg-white': darkMode && scrolled,
+                 'bg-white dark:bg-gray-900': !scrolled
+             }"
+             class="absolute right-0 mt-2 w-48 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 z-50">
+            <div class="py-1">
+                <a href="{{ site.baseurl }}/study" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800">All Study Notes</a>
+                <a href="{{ site.baseurl }}/study/japanese" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800">Japanese</a>
+                <a href="{{ site.baseurl }}/study/mobile-dev" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800">Mobile Development</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact -->
+    <a href="mailto:{{ site.footer-links.email }}"
+       :class="{
+           'text-white hover:text-gray-300': scrolled && !darkMode,
+           'text-gray-900 hover:text-gray-600': !scrolled && !darkMode,
+           'text-gray-300 hover:text-white': scrolled && darkMode,
+           'text-white hover:text-gray-300': !scrolled && darkMode
+       }"
+       class="text-sm font-medium transition-colors duration-300">
+        Contact Me
+    </a>
+
+    <!-- Theme Toggle Button -->
+    <button @click="toggleDarkMode()"
+            :class="{
+                'text-white hover:text-gray-300': scrolled && !darkMode,
+                'text-gray-900 hover:text-gray-600': !scrolled && !darkMode,
+                'text-gray-300 hover:text-white': scrolled && darkMode,
+                'text-white hover:text-gray-300': !scrolled && darkMode
+            }"
+            class="text-sm font-medium transition-colors duration-300 flex items-center">
+        <svg x-show="darkMode" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+        </svg>
+        <svg x-show="!darkMode" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+        </svg>
+    </button>
+</div>
+
+<!-- Mobile menu items -->
+<div x-show="open" x-cloak class="md:hidden divide-y divide-gray-200 dark:divide-gray-700">
+    <!-- Main Navigation Links -->
+    <div class="py-2">
+        <a href="{{ site.baseurl }}/blog"
+           :class="{
+               'text-white bg-gray-800': scrolled && !darkMode,
+               'text-gray-900 bg-gray-100': !scrolled && !darkMode,
+               'text-white bg-gray-700': scrolled && darkMode,
+               'text-white bg-gray-800': !scrolled && darkMode
+           }"
+           class="block px-4 py-2 rounded-md text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
+            Blog
+        </a>
+    </div>
+
+    <!-- Mobile Apps Section -->
+    <div class="py-2">
+        <div class="px-4 py-2 text-sm font-semibold text-gray-900 dark:text-white">Mobile Apps</div>
+        <div class="space-y-1">
+            <a href="{{ site.baseurl }}/mobile-apps"
+               class="block px-4 py-2 text-base text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
+                All Apps
+            </a>
+            <a href="{{ site.baseurl }}/mobile-apps/android"
+               class="block px-4 py-2 text-base text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
+                Android Apps
+            </a>
+            <a href="{{ site.baseurl }}/mobile-apps/ios"
+               class="block px-4 py-2 text-base text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
+                iOS Apps
+            </a>
+            <a href="{{ site.baseurl }}/mobile-apps/policies"
+               class="block px-4 py-2 text-base text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
+                Privacy & Terms
+            </a>
+        </div>
+    </div>
+
+    <!-- Projects Section -->
+    <div class="py-2">
+        <div class="px-4 py-2 text-sm font-semibold text-gray-900 dark:text-white">Projects</div>
+        <div class="space-y-1">
+            <a href="{{ site.baseurl }}/projects"
+               class="block px-4 py-2 text-base text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
+                All Projects
+            </a>
+            <a href="{{ site.baseurl }}/projects/open-source"
+               class="block px-4 py-2 text-base text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
+                Open Source
+            </a>
+            <a href="{{ site.baseurl }}/projects/tools"
+               class="block px-4 py-2 text-base text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
+                Tools
+            </a>
+        </div>
+    </div>
+
+    <!-- Study Section -->
+    <div class="py-2">
+        <div class="px-4 py-2 text-sm font-semibold text-gray-900 dark:text-white">Study</div>
+        <div class="space-y-1">
+            <a href="{{ site.baseurl }}/study"
+               class="block px-4 py-2 text-base text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
+                All Study Notes
+            </a>
+            <a href="{{ site.baseurl }}/study/japanese"
+               class="block px-4 py-2 text-base text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
+                Japanese
+            </a>
+            <a href="{{ site.baseurl }}/study/mobile-dev"
+               class="block px-4 py-2 text-base text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
+                Mobile Development
+            </a>
+        </div>
+    </div>
+
+    <!-- Contact -->
+    <div class="py-2">
+        <a href="mailto:{{ site.footer-links.email }}"
+           class="block px-4 py-2 text-base text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
+            Contact Me
+        </a>
+    </div>
+
+    <!-- Theme Toggle -->
+    <div class="py-2">
+        <button @click="toggleDarkMode()"
+                class="w-full flex items-center justify-between px-4 py-2 text-base text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
+            <span>Toggle Theme</span>
+            <svg x-show="darkMode" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+            <svg x-show="!darkMode" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+            </svg>
+        </button>
+    </div>
+</div>

@@ -1,17 +1,59 @@
 {% if site.disqus %}
-<div class="comments">
-	<div id="disqus_thread"></div>
-	<script type="text/javascript">
+<div class="comments bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mt-8">
+    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-6">Comments</h3>
+    <div id="disqus_thread" class="dark:text-gray-200"></div>
+    <script>
+        var disqus_config = function () {
+            this.page.url = '{{ site.url }}{{ page.url }}';
+            this.page.identifier = '{{ page.url }}';
+            this.page.title = '{{ page.title }}';
+        };
 
-	    var disqus_shortname = '{{ site.disqus }}';
+        var disqus_shortname = '{{ site.disqus }}';
 
-	    (function() {
-	        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-	        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-	        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-	    })();
+        // Dark mode detection for Disqus
+        var darkMode = document.documentElement.classList.contains('dark');
 
-	</script>
-	<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        (function() {
+            var d = document, s = d.createElement('script');
+            s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            s.async = true;
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>
+        <p class="text-gray-600 dark:text-gray-400 text-center">
+            Please enable JavaScript to view the
+            <a href="https://disqus.com/?ref_noscript"
+               class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors duration-200">
+                comments powered by Disqus.
+            </a>
+        </p>
+    </noscript>
 </div>
+
+<style>
+    /* Dark mode styles for Disqus iframe */
+    .dark #disqus_thread {
+        color-scheme: dark;
+    }
+
+    /* Improve Disqus container spacing */
+    #disqus_thread {
+        min-height: 300px;
+        padding: 1rem 0;
+    }
+
+    /* Loading state */
+    #disqus_thread:empty::before {
+        content: "Loading comments...";
+        color: #6B7280;
+        font-style: italic;
+    }
+
+    .dark #disqus_thread:empty::before {
+        color: #9CA3AF;
+    }
+</style>
 {% endif %}
