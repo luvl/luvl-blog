@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "A Unified Machine Learning Framework for Security Trading and Predicting Traders' Strategies"
-date: 2024-03-20
+date: 2020-06-13
 categories: [research, machine-learning, finance]
 description: "Research on developing a unified framework using Deep Learning and Reinforcement Learning to predict trading strategies in Vietnam's stock market"
 ---
