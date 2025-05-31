@@ -2,7 +2,7 @@
 layout: post
 title: "LuvlToolGen: AI Function Calling Tool Generator"
 date: 2025-05-01
-categories: [projects/open-source]
+categories: [open-source]
 tags: [python, pyside6, openai, tools, ai]
 description: "Introducing LuvlToolGen, a delightful tool generator that turns simple schemas into production-ready AI function calling tools"
 ---
