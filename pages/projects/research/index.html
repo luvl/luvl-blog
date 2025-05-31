@@ -1,0 +1,30 @@
+---
+layout: default
+title: Research
+permalink: /projects/research/
+---
+
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+  <div class="text-center mb-12">
+    <h1 class="text-4xl font-bold text-gray-900 dark:text-white">Research</h1>
+    <p class="mt-4 text-xl text-gray-600 dark:text-gray-400">My Research and Findings</p>
+  </div>
+
+  <!-- Research Posts Grid -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    {% for post in site.posts %}
+      {% if post.categories contains 'research' %}
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
+          <div class="p-6">
+            <div class="text-sm text-gray-500 dark:text-gray-400 mb-2">
+              {{ post.date | date: "%B %d, %Y" }}
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white">{{ post.title }}</h3>
+            <p class="mt-2 text-gray-600 dark:text-gray-400">{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
+            <a href="/luvl-blog{{ post.url }}"  class="mt-4 inline-block text-blue-600 dark:text-blue-400 hover:underline">Read More →</a>
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
