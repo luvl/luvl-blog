@@ -1,6 +1,6 @@
 ---
 layout: post
-title: From Paper to Practice - Day 2: Highway Adventure to Narita
+title: From Paper to Practice - Day 2 Highway Adventure to Narita
 tags: [life, japan, personal, driving, day2]
 category: life
 time: 2025-06-08
