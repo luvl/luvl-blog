@@ -11,7 +11,7 @@ permalink: /projects/open-source/
 
 <!-- Projects Grid -->
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4 md:px-8">
-  <!-- LuvlToolGen Project -->
+  {% for project in site.data.open_source_projects %}
   <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden"
        x-data="{ hover: false }"
        @mouseenter="hover = true"
@@ -21,59 +21,59 @@ permalink: /projects/open-source/
     <div class="p-6">
       <!-- Project Icon -->
       <div class="mb-4 flex justify-center">
+        {% if project.icon == 'puzzle' %}
         <svg class="w-20 h-20 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z"/>
         </svg>
+        {% elsif project.icon == 'bolt' %}
+        <svg class="w-20 h-20 text-orange-600 dark:text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+        </svg>
+        {% endif %}
       </div>
 
       <!-- Project Title -->
-      <h3 class="text-xl font-bold text-center mb-2 text-gray-900 dark:text-white">LuvlToolGen</h3>
-      <p class="text-gray-600 dark:text-gray-300 text-center mb-4">AI Function Calling Tool Generator</p>
+      <h3 class="text-xl font-bold text-center mb-2 text-gray-900 dark:text-white">{{ project.name }}</h3>
+      <p class="text-gray-600 dark:text-gray-300 text-center mb-4">{{ project.description }}</p>
 
       <!-- Tech Stack -->
       <div class="mb-4">
         <h4 class="font-semibold mb-2 text-sm text-gray-500 dark:text-gray-400 uppercase">Tech Stack</h4>
         <div class="flex flex-wrap gap-2">
-          <span class="px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-sm rounded-full">Python</span>
-          <span class="px-2 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-sm rounded-full">PySide6</span>
-          <span class="px-2 py-1 bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 text-sm rounded-full">OpenAI</span>
+          {% for tech in project.tech_stack %}
+          <span class="px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-sm rounded-full">{{ tech }}</span>
+          {% endfor %}
         </div>
       </div>
 
       <!-- Features List -->
       <ul class="mb-6 space-y-2">
+        {% for feature in project.features %}
         <li class="flex items-center text-gray-700 dark:text-gray-300">
           <svg class="h-5 w-5 text-green-500 dark:text-green-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
           </svg>
-          Natural Language to JSON Schema
+          {{ feature }}
         </li>
-        <li class="flex items-center text-gray-700 dark:text-gray-300">
-          <svg class="h-5 w-5 text-green-500 dark:text-green-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-          </svg>
-          Interactive Testing Interface
-        </li>
-        <li class="flex items-center text-gray-700 dark:text-gray-300">
-          <svg class="h-5 w-5 text-green-500 dark:text-green-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-          </svg>
-          Modern Qt6-based UI
-        </li>
+        {% endfor %}
       </ul>
 
       <!-- Action Buttons -->
-      <div class="flex flex-col sm:flex-row gap-3">
-        <a href="{{ site.baseurl }}/luvltoolgen-release/"
-           class="flex-1 text-center bg-gray-800 dark:bg-gray-700 text-white px-4 py-2 rounded-full hover:bg-gray-700 dark:hover:bg-gray-600 transition-colors duration-200">
+      <div class="flex flex-row w-full gap-3 mb-2">
+        <a href="{{ site.baseurl }}{{ project.learn_more_url }}"
+           class="w-1/2 text-center bg-gray-800 dark:bg-gray-700 text-white px-4 py-2 rounded-full hover:bg-gray-700 dark:hover:bg-gray-600 transition-colors duration-200 font-bold">
           Learn More
         </a>
-        <a href="https://github.com/luvl/luvltoolgen"
+        {% if project.source_url %}
+        <a href="{{ project.source_url }}"
            target="_blank"
            rel="noopener noreferrer"
-           class="flex-1 text-center bg-blue-600 dark:bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors duration-200">
+           class="w-1/2 text-center bg-blue-600 dark:bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors duration-200 font-bold">
           View Source
         </a>
+        {% else %}
+        <span class="w-1/2 invisible">View Source</span>
+        {% endif %}
       </div>
 
       <!-- Release Info -->
@@ -82,24 +82,12 @@ permalink: /projects/open-source/
           <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
           </svg>
-          Released: May 1, 2025
+          Released: {{ project.release_date }}
         </span>
       </div>
     </div>
   </div>
-
-  <!-- More Projects Coming Soon -->
-  <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden opacity-50">
-    <div class="p-6 text-center">
-      <div class="mb-4">
-        <svg class="w-20 h-20 mx-auto text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
-        </svg>
-      </div>
-      <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">More Projects Coming Soon</h3>
-      <p class="text-gray-600 dark:text-gray-300">Stay tuned for future open source contributions</p>
-    </div>
-  </div>
+  {% endfor %}
 </div>
 
 <!-- GitHub Activity Section -->
