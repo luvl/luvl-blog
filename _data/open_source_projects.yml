@@ -1,0 +1,25 @@
+- name: LuvlToolGen
+  description: AI Function Calling Tool Generator
+  tech_stack: [Python, PySide6, OpenAI]
+  features:
+    - Natural Language to JSON Schema
+    - Interactive Testing Interface
+    - Modern Qt6-based UI
+  learn_more_url: /luvltoolgen-release/
+  source_url: https://github.com/luvl/luvltoolgen
+  release_date: May 1, 2025
+  icon: puzzle
+  color: blue
+
+- name: MCP Salesforce Lite
+  description: Lightweight AI-Salesforce Integration
+  tech_stack: [Python, FastMCP, Salesforce, Claude]
+  features:
+    - SOQL Query Execution
+    - CRUD Operations
+    - OAuth 2.0 Security
+  learn_more_url: /mcp-salesforce-lite-release/
+  source_url: https://github.com/luvl/mcp-salesforce-lite
+  release_date: June 25, 2025
+  icon: bolt
+  color: orange
