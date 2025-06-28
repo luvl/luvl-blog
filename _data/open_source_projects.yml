@@ -23,3 +23,16 @@
   release_date: June 25, 2025
   icon: bolt
   color: orange
+
+- name: MCP Kintone Lite
+  description: Lightweight AI-Kintone Integration
+  tech_stack: [Python, FastMCP, Kintone, Claude]
+  features:
+    - Workflow Automation
+    - Business Process Integration
+    - App Metadata Access
+  learn_more_url: /mcp-kintone-lite-release/
+  source_url: https://github.com/luvl/mcp-kintone-lite
+  release_date: June 28, 2025
+  icon: cog
+  color: green
