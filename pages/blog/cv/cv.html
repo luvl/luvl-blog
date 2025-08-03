@@ -165,40 +165,63 @@ permalink: /blog/cv
                 font-size: 9pt;
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
+                display: flex;
+                width: 100%;
+                margin: 0;
             }
+
+            .sidebar {
+                width: var(--sidebar-width);
+                min-width: var(--sidebar-width);
+                background-color: var(--sidebar-color) !important;
+                padding: 1.5cm 1cm;
+                height: 100%;
+                position: fixed;
+                left: 0;
+                top: 0;
+            }
+
+            .main-content {
+                margin-left: var(--sidebar-width);
+                padding: 1.5cm 1cm;
+                flex: 1;
+                width: calc(100% - var(--sidebar-width));
+            }
+
+            @page {
+                size: A4;
+                margin: 0;
+            }
+
+            /* Ensure content sections don't break across pages */
+            .section {
+                break-inside: avoid;
+                page-break-inside: avoid;
+                margin-bottom: 1.5rem;
+            }
+
+            .experience-item {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+
+            /* Keep lists together */
+            ul, li {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+
+            /* Ensure headers stay with content */
+            h1, h2, h3, .section-title {
+                break-after: avoid;
+                page-break-after: avoid;
+            }
+
             .download-btn {
                 display: none;
             }
-            @page {
-                size: A4;
-                margin: 1.5cm;
-                /* Remove all headers and footers */
-                marks: none;
-                margin-header: 0;
-                margin-footer: 0;
-            }
-            /* Remove URL and page numbers */
-            @page :first {
-                margin-top: 0;
-            }
-            @page :left {
-                margin-left: 0;
-                @bottom-left {
-                    content: "";
-                }
-            }
-            @page :right {
-                margin-right: 12;
-                @bottom-right {
-                    content: "";
-                }
-            }
 
-
-            /* Hide all browser-generated content */
-            head, title, header, footer {
-                display: none !important;
-            }
+            /* Adjust font sizes for print */
             .name {
                 font-size: 16pt;
             }
@@ -208,11 +231,8 @@ permalink: /blog/cv
             .company, .position {
                 font-size: 10pt;
             }
-            .contact-info, .date, .skills-grid {
+            .date, .contact-info {
                 font-size: 9pt;
-            }
-            .sidebar {
-                background-color: var(--sidebar-color) !important;
             }
         }
     </style>
@@ -228,62 +248,103 @@ permalink: /blog/cv
                 <a href="https://github.com/luvl">GitHub</a> |
                 <a href="https://www.linkedin.com/in/linh-duc-nguyen-luvl/">LinkedIn</a> |
                 <a href="https://leetcode.com/luvl">LeetCode</a> |
-                <a href="https://www.kaggle.com/starforce1996">Kaggle</a>
+                <a href="https://www.kaggle.com/starforce1996">Kaggle</a> |
+                <a href="https://luvl.github.io/luvl-blog/blog/" target="_blank">Blog</a>
             </div>
         </div>
 
         <div class="section">
-            <div class="section-title">Languages</div>
+            <div class="section-title">Technical Expertise</div>
+            <div class="skill-group">Languages & Frameworks</div>
             <ul class="soft-skills-list">
-                <li>Japanese (N1)</li>
-                <li>English (TOEIC 900)</li>
-                <li>German (A2)</li>
+                <li>Backend: Python (6 years), FastAPI, Django, GraphQL, tRPC</li>
+                <li>Frontend: JavaScript/TypeScript (3 years), React, Next.js</li>
+            </ul>
+
+            <div class="skill-group">Cloud & Infrastructure</div>
+            <ul class="soft-skills-list">
+                <li>GCP: Cloud Run, Cloud Functions, BigQuery</li>
+                <li>AWS: Lambda, API Gateway, Infrastructure as Code</li>
+                <li>Databases: PostgreSQL (4 years), MongoDB</li>
+            </ul>
+
+            <div class="skill-group">AI & Machine Learning</div>
+            <ul class="soft-skills-list">
+                <li>LLM Integration & Multi-agent Systems</li>
+                <li>TensorFlow & Computer Vision</li>
+                <li>ML Pipeline Optimization</li>
             </ul>
         </div>
 
         <div class="section">
-            <div class="section-title">Soft Skills</div>
+            <div class="section-title">Architecture & System Design</div>
+            <ul>
+                <li>Distributed Systems & Cloud
+                    <ul>
+                        <li>Microservices on GCP Cloud Run with auto-scaling</li>
+                        <li>Infrastructure as Code with Terraform on AWS</li>
+                        <li>High-availability and fault-tolerant design</li>
+                    </ul>
+                </li>
+                <li>AI/ML Architecture
+                    <ul>
+                        <li>Custom AI agent orchestration with GPT integration</li>
+                        <li>Batch processing optimization for ML inference</li>
+                        <li>Attention-based neural networks for signal processing</li>
+                    </ul>
+                </li>
+                <li>Enterprise Integration
+                    <ul>
+                        <li>Real-time CRM synchronization (Salesforce, GenieSFA)</li>
+                        <li>HIPAA-compliant healthcare systems</li>
+                        <li>Automated workflow systems with bilingual support</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Professional Certifications</div>
+            <div class="skill-group">Cloud & ML Certifications</div>
             <ul class="soft-skills-list">
-                <li>Independent Problem Solving</li>
+                <li><a href="https://www.credly.com/badges/99883ebc-6d2f-4414-947f-7b238a63b9ac/public_url" target="_blank">AWS Machine Learning Specialty</a> (2024)</li>
+                <li><a href="https://www.credly.com/badges/e7f588a0-223d-47a4-8f5e-f1ab7ce6a840/public_url" target="_blank">Google Cloud Professional ML Engineer</a> (2024)</li>
+                <li><a href="https://www.credential.net/23d56993-4040-402a-b1a4-94b1d6d14a9f" target="_blank">TensorFlow Developer Certificate</a> (2021)</li>
+            </ul>
+
+            <div class="skill-group">Specializations</div>
+            <ul class="soft-skills-list">
+                <li><a href="https://www.coursera.org/account/accomplishments/specialization/REJ8KCB77SHL" target="_blank">Machine Learning Engineering for Production (MLOps)</a></li>
+                <li><a href="https://www.coursera.org/account/accomplishments/specialization/certificate/76HWYU88AA9F" target="_blank">Deep Learning Specialization</a></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Languages & Communication</div>
+            <ul class="soft-skills-list">
+                <li>Japanese: JLPT N1 (2022)</li>
+                <li>English: TOEIC 900</li>
+                <li>German: A2 Certificate</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Professional Skills</div>
+            <ul class="soft-skills-list">
+                <li>Technical Leadership & Problem Solving</li>
+                <li>Cross-cultural Team Collaboration</li>
                 <li>Research & Analysis</li>
-                <li>Cross-cultural Communication</li>
-                <li>Knowledge Sharing & Teaching</li>
-                <li>Self-motivated & Hardworking</li>
-                <li>Team Collaboration</li>
-            </ul>
-        </div>
-
-        <div class="section">
-            <div class="section-title">Technical Skills</div>
-            <ul class="soft-skills-list">
-                <li>Python (6 years)</li>
-                <li>JavaScript (3 years)</li>
-                <li>SQL (4 years)</li>
-                <li>TensorFlow, React</li>
-                <li>Vue.js, Django, FastAPI</li>
-                <li>AWS, Docker</li>
-                <li>MongoDB, PostgreSQL</li>
-            </ul>
-        </div>
-
-        <div class="section">
-            <div class="section-title">Certifications</div>
-            <ul class="soft-skills-list">
-                <li>AWS ML Specialty (2024)</li>
-                <li>Prof. ML Engineer (2025)</li>
-                <li>TensorFlow Dev Cert (2021)</li>
-                <li>JLPT N1 (2022)</li>
-                <li>Driver's License (2024)</li>
+                <li>Knowledge Sharing & Mentoring</li>
             </ul>
         </div>
     </div>
 
     <div class="main-content">
-        <button onclick="window.print()" class="download-btn">Download CV</button>
+        <button onclick="window.open('cv.pdf', '_blank')" class="download-btn">Download CV</button>
 
         <div class="section">
             <div class="section-title">Professional Summary</div>
-            <p>Senior AI Engineer and Full-stack Software Engineer with 6+ years of experience in Python development and machine learning. Proficient in navigating the complete software development lifecycle from requirements analysis to deployment. Native-level fluency in both English and Japanese, enabling effective communication in diverse team environments.</p>
+            <p>Senior Software Engineer with 6+ years of experience in backend development and AI systems. Architect and deliver complex enterprise solutions with proven rapid time-to-market. Specialize in distributed systems, cloud architecture, and AI integration. Operating at lead level with focus on technical excellence and sustainable high performance. Native-level fluency in both English and Japanese, enabling effective communication in diverse environments.</p>
         </div>
 
         <div class="section">
@@ -291,62 +352,138 @@ permalink: /blog/cv
 
             <div class="experience-item">
                 <div class="company">Japan AI</div>
-                <div class="position">Senior AI Engineer & Full-stack Software Engineer</div>
+                <div class="position">Senior Software Engineer (Lead-level)</div>
                 <div class="date">August 2024 - Present</div>
                 <ul>
-                    <li>Led development of customer-facing PoC projects valued over ¥20M, including:
+                    <li>Architect and deliver high-impact enterprise AI solutions with rapid time-to-market</li>
+                    <li>Focus on technical excellence and hands-on development while mentoring team members</li>
+                    <li>Chosen to handle complex technical implementations due to strong problem-solving skills</li>
+                    <li>Prefer collaborative approach and knowledge sharing over direct management</li>
+                    <li>Successfully launched two major platforms within 3 months each:
                         <ul>
-                            <li>LLM-powered PPT auto-generation system</li>
-                            <li>Product comparison verification using LLM</li>
-                            <li>AI-powered recruitment support agent</li>
-                            <li>Multi-agent LP analysis system</li>
+                            <li>Sales automation platform with 5-7 enterprise customers in pipeline</li>
+                            <li>AI agent platform scaled to 100+ active agents</li>
                         </ul>
                     </li>
-                    <li>Collaborated directly with CTO to implement AI Agent from scratch</li>
-                    <li>Received company's Most Valuable Team Award</li>
                 </ul>
             </div>
 
             <div class="experience-item">
                 <div class="company">Tokyo Techies</div>
-                <div class="position">AI Engineer & Full-stack Software Engineer</div>
+                <div class="position">Senior Software Engineer</div>
                 <div class="date">February 2023 - August 2024</div>
                 <ul>
-                    <li>Led development of Kotae.ai, achieving #1 daily and #2 weekly rankings on Product Hunt</li>
-                    <li>Successfully launched three chatbot applications on GPT Store</li>
-                    <li>Developed AI chatting features for Klever business efficiency tool (kleversuite.com)</li>
+                    <li>Led development of AI-powered SaaS products from concept to production</li>
+                    <li>Built and launched Kotae.ai in 4 months, achieving #1 daily ranking on Product Hunt</li>
+                    <li>Implemented enterprise chatbot solutions for multiple industries</li>
+                    <li>Designed and deployed cloud infrastructure using AWS and Terraform</li>
                 </ul>
             </div>
 
             <div class="experience-item">
                 <div class="company">FPT Software</div>
-                <div class="position">Senior AI Engineer</div>
-                <div class="date">April 2021 - January 2023</div>
+                <div class="position">Senior Software Engineer</div>
+                <div class="date">May 2020 - August 2022 (28 months)</div>
                 <ul>
-                    <li>Independently developed and delivered AI solutions for healthcare systems</li>
-                    <li>Contributed to research that enabled customer's academic publication</li>
-                    <li>Supported team growth through knowledge sharing and technical guidance</li>
+                    <li>Developed AI/ML solutions for healthcare systems</li>
+                    <li>Built real-time anomaly detection and medical imaging systems</li>
+                    <li>Implemented distributed ML pipelines and model optimization</li>
+                    <li>Contributed to research publications in healthcare AI</li>
                 </ul>
             </div>
         </div>
 
         <div class="section">
-            <div class="section-title">Projects & Publications</div>
+            <div class="section-title">Notable Projects</div>
             <ul>
                 <li>
-                    <strong>LuvlToolGen</strong> - AI Function Calling Tool Generator (2025)
+                    <strong>Enterprise AI Platforms (Japan AI)</strong>
                     <ul>
-                        <li>Open-source tool for generating AI function calling interfaces</li>
-                        <li>Built with Python, leveraging modern LLM capabilities</li>
-                        <li><a href="https://luvl.github.io/luvl-blog/luvltoolgen-release/" target="_blank">Project Details →</a></li>
+                        <li><a href="https://japan-ai.co.jp/sales/" target="_blank">Sales Automation Platform</a>
+                            <ul>
+                                <li>Built real-time CRM integration system handling multiple platforms (Salesforce, GenieSFA)</li>
+                                <li>Developed intelligent system to automatically capture and process sales activities from meetings and emails</li>
+                                <li>Implemented AI-powered change suggestion system for CRM updates</li>
+                                <li>Launched in 3 months with 5-7 enterprise customers in pipeline</li>
+                                <li>Tech: GraphQL, tRPC, FastAPI, Next.js, GCP</li>
+                            </ul>
+                        </li>
+                        <li><a href="https://japan-ai.co.jp/agent/" target="_blank">AI Agent Platform</a>
+                            <ul>
+                                <li>Architected distributed system handling 100+ concurrent AI agents with GPT integration</li>
+                                <li>Developed comprehensive AI tool suite:
+                                    <ul>
+                                        <li>Code interpreter for automated programming and debugging</li>
+                                        <li>Data visualization and chart generation system</li>
+                                        <li>Automated PowerPoint presentation generator</li>
+                                        <li>RAG (Retrieval Augmented Generation) for domain-specific knowledge</li>
+                                        <li>UI/UX wireframe generation tool</li>
+                                    </ul>
+                                </li>
+                                <li>Built fault-tolerant workflow engine with automatic recovery</li>
+                                <li>Implemented real-time monitoring and auto-scaling system</li>
+                                <li>Achieved 99.9% system reliability with zero data loss</li>
+                                <li>Tech: Python, FastAPI, GCP Cloud Run, Pydantic, LiteLLM, OpenAI</li>
+                            </ul>
+                        </li>
                     </ul>
                 </li>
+
                 <li>
-                    <strong>DocKinhThanh</strong> - Modern Bible Study Application
+                    <strong>AI SaaS Products (Tokyo Techies)</strong>
                     <ul>
-                        <li>Android application built with React Native and Postgres</li>
-                        <li>Features offline reading, search, and study tools</li>
-                        <li><a href="https://luvl.github.io/luvl-blog/dockinhthanhapp-release/" target="_blank">Project Details →</a></li>
+                        <li><a href="https://kotae.ai/ja" target="_blank">Kotae.ai</a> - Document AI Platform
+                            <ul>
+                                <li>Built versatile document processing system supporting multiple formats (PDF, DOC, TXT)</li>
+                                <li>Implemented custom training system allowing businesses to define domain-specific knowledge</li>
+                                <li>Built scalable infrastructure handling 1M+ monthly requests</li>
+                                <li>Achieved #1 Daily ranking on Product Hunt with 4-month development cycle</li>
+                                <li>Tech: React, NestJS, MongoDB, AWS, Terraform</li>
+                            </ul>
+                        </li>
+                        <li><a href="https://kleversuite.com/" target="_blank">Klever Suite</a> - Team Collaboration
+                            <ul>
+                                <li>Created context-aware chatbot system with deep integration into business workflows</li>
+                                <li>Implemented robust bilingual system supporting both English and Japanese interactions</li>
+                                <li>Developed comprehensive testing framework ensuring system stability and reliability</li>
+                                <li>Designed scalable architecture supporting multiple industry verticals</li>
+                                <li>Tech: VueJS, Django, PostgreSQL</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <strong>Healthcare AI Systems (FPT Software)</strong>
+                    <ul>
+                        <li>Medical Device Monitoring
+                            <ul>
+                                <li>Implemented BiLSTM-CRF model with attention layer for signal anomaly detection:
+                                    <ul>
+                                        <li>95% classification accuracy across 21 signal categories (1 normal, 20 anomaly types)</li>
+                                        <li>85% accuracy in fault localization using custom attention mechanism</li>
+                                        <li>Added visualization layer for attention-based fault region identification</li>
+                                    </ul>
+                                </li>
+                                <li>Reimplemented and optimized architecture based on NVIDIA research paper</li>
+                                <li>Optimized memory usage and inference performance:
+                                    <ul>
+                                        <li>Implemented batch processing for binary signal collection</li>
+                                        <li>Used Celery for efficient task queue management</li>
+                                        <li>Controlled GPU memory consumption for stable production deployment</li>
+                                    </ul>
+                                </li>
+                                <li>Tech: Python, TensorFlow, BiLSTM-CRF, Attention Networks, Celery</li>
+                            </ul>
+                        </li>
+                        <li>Dental Imaging Analysis
+                            <ul>
+                                <li>Developed dental condition detection system achieving 85% accuracy using YOLO after customer data training</li>
+                                <li>Optimized ML models reducing inference time by 75% through batch processing implementation</li>
+                                <li>Integrated with existing healthcare systems maintaining HIPAA compliance</li>
+                                <li>Tech: Python, TensorFlow, YOLO, Computer Vision</li>
+                            </ul>
+                        </li>
                     </ul>
                 </li>
             </ul>
@@ -358,8 +495,33 @@ permalink: /blog/cv
                 <div class="company">Ho Chi Minh City University of Science</div>
                 <div class="position">Master of Science in Applied Mathematics</div>
                 <div class="date">2018 - 2021</div>
-                <p>GPA: 3.1/4.0 | Thesis: Unified Machine Learning/Deep Learning Framework for Security Trading (9.1/10)</p>
+                <p>GPA: 3.1/4.0 | Specialization: Quantitative and Computational Finance</p>
+                <ul>
+                    <li>Master's Thesis: Developed distributed ML system for financial data processing (9.1/10)</li>
+                    <li>Implemented high-performance data pipeline handling real-time market data</li>
+                    <li>Built scalable architecture using Python, TensorFlow, and distributed computing</li>
+                    <li><a href="https://luvl.github.io/luvl-blog/unified-ml-framework-for-security-trading/" target="_blank">Project Details</a></li>
+                </ul>
             </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Open Source Contributions</div>
+            <ul>
+                <li>
+                    <strong>MCP Integration Tools (2025)</strong>
+                    <ul>
+                        <li>Salesforce & Kintone MCP Servers
+                            <ul>
+                                <li>Built lightweight Model Context Protocol servers for AI-CRM integration</li>
+                                <li>Enables AI assistants to interact with enterprise platforms</li>
+                                <li>Tech: FastMCP, Python, OAuth 2.0</li>
+                                <li>Published packages on PyPI with comprehensive documentation</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
         </div>
     </div>
 </body>
