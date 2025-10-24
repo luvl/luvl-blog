@@ -23,5 +23,13 @@ visits:
       - kagenobu
       - jinba
 
+  - date: "2025-07-12"
+    date_display: "Jul 12, 2025"
+    from_mountain: takao
+    duration: "1 hour"
+    notes: "Extended hike from Takao, returned via Sagami Lake road"
+    connected_to:
+      - takao
+
 latest_visit: "2025-08-02"
 description: "Part of the Takao-Jinba ridge traverse. Great views and rest facilities."

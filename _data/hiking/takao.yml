@@ -35,6 +35,20 @@ visits:
     #     images:
     #       - "strawberry.jpg"
 
+  - date: "2025-07-12"
+    date_display: "Jul 12, 2025"
+    trail: "Course 6"
+    duration: "2 hours"
+    difficulty: Beginner
+    notes: "Extended hike to Shiroyama, returned via Sagami Lake road"
+    images:
+      - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761320304/1000005417_q1dpki.jpg"
+      - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761320300/1000005439_gpna22.jpg"
+      - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761320285/1000005446_omfib4.jpg"
+      - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761320270/1000005413_piuz1h.jpg"
+    connected_to:
+      - shiroyama
+
   - date: "2025-06-15"
     date_display: "Jun 15, 2025"
     trail: "Course 6"
