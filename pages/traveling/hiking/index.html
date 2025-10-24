@@ -173,6 +173,61 @@ permalink: /traveling/hiking/
   .nav-button:last-child:hover:not(:disabled) {
     transform: translateX(2px);
   }
+
+  /* Lightbox styles */
+  .lightbox-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 9999;
+    cursor: pointer;
+    animation: fadeIn 0.3s ease;
+  }
+
+  .lightbox-overlay.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .lightbox-image {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    animation: zoomIn 0.3s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes zoomIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10000;
+    transition: transform 0.2s;
+  }
+
+  .lightbox-close:hover {
+    transform: scale(1.2);
+  }
 </style>
 
 {% comment %}
@@ -180,7 +235,7 @@ permalink: /traveling/hiking/
 {% endcomment %}
 {% assign total_peaks = 0 %}
 {% assign highest_elevation = 0 %}
-{% assign total_distance = 0 %}
+{% assign total_hikes = 0 %}
 
 {% for mountain_data in site.data.hiking %}
   {% assign mountain = mountain_data[1] %}
@@ -189,8 +244,8 @@ permalink: /traveling/hiking/
     {% if mountain.elevation > highest_elevation %}
       {% assign highest_elevation = mountain.elevation %}
     {% endif %}
-    {% if mountain.distance_from_previous %}
-      {% assign total_distance = total_distance | plus: mountain.distance_from_previous %}
+    {% if mountain.visits %}
+      {% assign total_hikes = total_hikes | plus: mountain.visits.size %}
     {% endif %}
   {% endunless %}
 {% endfor %}
@@ -205,8 +260,8 @@ permalink: /traveling/hiking/
     <div class="text-sm sm:text-base text-gray-600 dark:text-gray-400">Peaks Conquered</div>
   </div>
   <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 text-center transform transition-transform hover:scale-105">
-    <div class="text-3xl sm:text-4xl font-bold text-green-600 dark:text-green-400 mb-2">{{ total_distance | round: 1 }}km</div>
-    <div class="text-sm sm:text-base text-gray-600 dark:text-gray-400">Total Distance</div>
+    <div class="text-3xl sm:text-4xl font-bold text-green-600 dark:text-green-400 mb-2">{{ total_hikes }}</div>
+    <div class="text-sm sm:text-base text-gray-600 dark:text-gray-400">Total Hikes</div>
   </div>
   <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 text-center transform transition-transform hover:scale-105">
     <div class="text-3xl sm:text-4xl font-bold text-purple-600 dark:text-purple-400 mb-2">7.5h</div>
@@ -231,6 +286,12 @@ permalink: /traveling/hiking/
 <!-- Map -->
 <div id="hiking-map"></div>
 
+<!-- Lightbox Modal -->
+<div id="lightbox" class="lightbox-overlay" onclick="closeLightbox()">
+  <span class="lightbox-close">&times;</span>
+  <img id="lightbox-img" class="lightbox-image" src="" alt="Enlarged view">
+</div>
+
 <!-- Leaflet CSS -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
@@ -239,6 +300,48 @@ let map;
 let markers = [];
 let currentMountainIndex = 0;
 
+// Lightbox functions
+function openLightbox(imageSrc) {
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  lightboxImg.src = imageSrc;
+  lightbox.classList.add('active');
+  document.body.style.overflow = 'hidden'; // Prevent background scrolling
+}
+
+function closeLightbox() {
+  const lightbox = document.getElementById('lightbox');
+  lightbox.classList.remove('active');
+  document.body.style.overflow = 'auto'; // Restore scrolling
+}
+
+// Close lightbox on Escape key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    closeLightbox();
+  }
+});
+
+// Weather icons and labels
+const weatherInfo = {
+  sunny: { icon: '☀️', label: 'Sunny' },
+  cloudy: { icon: '☁️', label: 'Cloudy' },
+  rainy: { icon: '🌧️', label: 'Rainy' },
+  foggy: { icon: '🌫️', label: 'Foggy' },
+  snowy: { icon: '❄️', label: 'Snowy' },
+  clear: { icon: '🌤️', label: 'Clear' },
+  partly_cloudy: { icon: '⛅', label: 'Partly Cloudy' }
+};
+
+// Observation type icons
+const observationIcons = {
+  flower: '🌸',
+  fruit: '🍓',
+  wildlife: '🦌',
+  scenery: '🏞️',
+  other: '✨'
+};
+
 // Load hiking data from Jekyll data files
 const hikingData = [
 {% assign first_item = true %}
@@ -246,6 +349,7 @@ const hikingData = [
   {% assign mountain_name = mountain_hash[0] %}
   {% assign mountain = mountain_hash[1] %}
   {% if mountain.name and mountain.latitude and mountain.longitude %}
+    {% assign latest_visit = mountain.visits.first %}
     {% if first_item == false %},{% endif %}
   {
     name: "{{ mountain.name | escape }}",
@@ -253,11 +357,36 @@ const hikingData = [
     elevation: "{{ mountain.elevation }}{{ mountain.elevation_unit }}",
     type: "{{ mountain.type }}",
     description: "{{ mountain.description | escape }}",
-    blogPost: "{{ site.baseurl }}/{{ mountain.blog_post }}/",
-    date: "{{ mountain.date_display }}",
+    blogPost: "{{ site.baseurl }}/{{ latest_visit.blog_post }}/",
+    date: "{{ latest_visit.date_display }}",
     difficulty: "{{ mountain.difficulty }}",
-    notes: "{{ mountain.notes | escape }}",
-    images: [{% if mountain.images %}{% for img in mountain.images %}"{{ img }}"{% unless forloop.last %},{% endunless %}{% endfor %}{% endif %}]
+    notes: "{{ latest_visit.notes | escape }}",
+    totalVisits: {{ mountain.visits.size | default: 1 }},
+    visits: [
+      {% for visit in mountain.visits %}
+      {
+        date: "{{ visit.date_display }}",
+        trail: "{{ visit.trail }}",
+        duration: "{{ visit.duration }}",
+        weather: {% if visit.weather[0] %}[{% for w in visit.weather %}"{{ w }}"{% unless forloop.last %},{% endunless %}{% endfor %}]{% else %}"{{ visit.weather }}"{% endif %},
+        notes: "{{ visit.notes | escape }}",
+        images: [{% if visit.images %}{% for img in visit.images %}"{{ img }}"{% unless forloop.last %},{% endunless %}{% endfor %}{% endif %}],
+        connectedTo: [{% if visit.connected_to %}{% for conn in visit.connected_to %}"{{ conn }}"{% unless forloop.last %},{% endunless %}{% endfor %}{% endif %}],
+        observations: [
+          {% if visit.observations %}
+          {% for obs in visit.observations %}
+          {
+            type: "{{ obs.type }}",
+            name: "{{ obs.name | escape }}",
+            notes: "{{ obs.notes | escape }}",
+            images: [{% if obs.images %}{% for img in obs.images %}"{{ img }}"{% unless forloop.last %},{% endunless %}{% endfor %}{% endif %}]
+          }{% unless forloop.last %},{% endunless %}
+          {% endfor %}
+          {% endif %}
+        ]
+      }{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+    ]
   }
     {% assign first_item = false %}
   {% endif %}
@@ -338,36 +467,168 @@ function initMap() {
 
     markers.push({ marker, mountain, index });
 
-    // Create popup content
-    let imagesHtml = '';
-    if (mountain.images && mountain.images.length > 0) {
-      if (mountain.images.length === 1) {
-        imagesHtml = `<img src="${mountain.images[0]}" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin: 10px 0;" alt="${mountain.name}">`;
-      } else {
-        imagesHtml = '<div style="display: flex; gap: 5px; overflow-x: auto; margin: 10px 0;">';
-        mountain.images.forEach(img => {
-          imagesHtml += `<img src="${img}" style="width: 150px; height: 150px; object-fit: cover; border-radius: 8px; flex-shrink: 0;" alt="${mountain.name}">`;
-        });
-        imagesHtml += '</div>';
+    // Function to build visit card HTML
+    function buildVisitCard(visit, visitNum, totalVisits) {
+      let imagesHtml = '';
+      if (visit.images && visit.images.length > 0) {
+        if (visit.images.length === 1) {
+          imagesHtml = `<img src="${visit.images[0]}" style="width: 100%; height: 150px; object-fit: cover; border-radius: 6px; margin: 8px 0; cursor: pointer;" alt="Visit photo" onclick="event.stopPropagation(); openLightbox('${visit.images[0]}')">`;
+        } else {
+          imagesHtml = '<div style="display: flex; gap: 4px; overflow-x: auto; margin: 8px 0;">';
+          visit.images.forEach(img => {
+            imagesHtml += `<img src="${img}" style="width: 120px; height: 120px; object-fit: cover; border-radius: 6px; flex-shrink: 0; cursor: pointer;" alt="Visit photo" onclick="event.stopPropagation(); openLightbox('${img}')">`;
+          });
+          imagesHtml += '</div>';
+        }
       }
+
+      // Connected mountains
+      let connectionsHtml = '';
+      if (visit.connectedTo && visit.connectedTo.length > 0) {
+        connectionsHtml = `
+          <div style="margin-top: 8px; padding: 6px; background: #f0f9ff; border-radius: 4px;">
+            <div style="font-size: 11px; color: #0369a1; font-weight: 600; margin-bottom: 2px;">🗺️ Connected Trail</div>
+            <div style="font-size: 10px; color: #0c4a6e;">Part of ridge with: ${visit.connectedTo.map(m => m.charAt(0).toUpperCase() + m.slice(1)).join(' → ')}</div>
+          </div>
+        `;
+      }
+
+      // Special observations
+      let observationsHtml = '';
+      if (visit.observations && visit.observations.length > 0) {
+        observationsHtml = '<div style="margin-top: 8px; padding: 8px; background: #f0fdf4; border-radius: 4px; border-left: 3px solid #22c55e;">';
+        observationsHtml += '<div style="font-size: 11px; color: #166534; font-weight: 600; margin-bottom: 4px;">🌿 Special Observations</div>';
+
+        visit.observations.forEach(obs => {
+          const icon = observationIcons[obs.type] || '✨';
+          observationsHtml += `<div style="margin-bottom: 6px;">`;
+          observationsHtml += `<div style="font-size: 11px; font-weight: 600; color: #15803d;">${icon} ${obs.name}</div>`;
+          if (obs.notes) {
+            observationsHtml += `<div style="font-size: 10px; color: #166534; margin: 2px 0;">${obs.notes}</div>`;
+          }
+        if (obs.images && obs.images.length > 0) {
+          observationsHtml += '<div style="display: flex; gap: 5px; margin-top: 5px; overflow-x: auto;">';
+          obs.images.forEach(img => {
+            observationsHtml += `<img src="${img}" style="width: 120px; height: 120px; object-fit: cover; border-radius: 6px; flex-shrink: 0; cursor: pointer;" alt="${obs.name}" onclick="event.stopPropagation(); openLightbox('${img}')">`;
+          });
+          observationsHtml += '</div>';
+        }
+          observationsHtml += '</div>';
+        });
+
+        observationsHtml += '</div>';
+      }
+
+      // Visit details
+      let visitDetails = '';
+      if (visit.trail) {
+        visitDetails += `<div style="font-size: 11px; color: #64748b; margin: 3px 0;"><strong>Trail:</strong> ${visit.trail}</div>`;
+      }
+      if (visit.duration) {
+        visitDetails += `<div style="font-size: 11px; color: #64748b; margin: 3px 0;"><strong>Duration:</strong> ${visit.duration}</div>`;
+      }
+      if (visit.weather) {
+        const weatherArray = Array.isArray(visit.weather) ? visit.weather : [visit.weather];
+        const weatherDisplay = weatherArray
+          .filter(w => weatherInfo[w])
+          .map(w => `${weatherInfo[w].icon} ${weatherInfo[w].label}`)
+          .join(' & ');
+        if (weatherDisplay) {
+          visitDetails += `<div style="font-size: 11px; color: #64748b; margin: 3px 0;"><strong>Weather:</strong> ${weatherDisplay}</div>`;
+        }
+      }
+      if (visit.notes) {
+        visitDetails += `<div style="margin-top: 6px; font-size: 11px; font-style: italic; color: #666;">"${visit.notes}"</div>`;
+      }
+
+      const isLatest = visitNum === 1;
+      const badgeColor = isLatest ? '#10b981' : '#6b7280';
+      const badgeText = isLatest ? '📍 Latest Visit' : `Visit #${totalVisits - visitNum + 1}`;
+
+      return `
+        <div style="border: 1px solid #e5e7eb; border-radius: 6px; padding: 10px; margin-bottom: 10px; background: ${isLatest ? '#f0fdf4' : '#f9fafb'};">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+            <div style="font-size: 13px; font-weight: 600; color: #1f2937;">📅 ${visit.date}</div>
+            <div style="background: ${badgeColor}; color: white; padding: 2px 6px; border-radius: 3px; font-size: 10px; font-weight: 600;">${badgeText}</div>
+          </div>
+          ${visitDetails}
+          ${imagesHtml}
+          ${observationsHtml}
+          ${connectionsHtml}
+        </div>
+      `;
+    }
+
+    // Create popup content with all visits
+    const latestVisit = mountain.visits[0];
+
+    // Generate a unique ID for this popup
+    const popupId = `popup-${index}`;
+
+    // Build all visits HTML with collapsible section
+    let allVisitsHtml = '';
+    if (mountain.totalVisits > 1) {
+      // Show latest visit
+      allVisitsHtml = `
+        <div style="margin-top: 10px;">
+          <div style="font-size: 14px; font-weight: 600; color: #1f2937; margin-bottom: 8px;">
+            📍 Latest Visit (${mountain.totalVisits} total)
+          </div>
+          ${buildVisitCard(latestVisit, 1, mountain.totalVisits)}
+        </div>
+      `;
+
+      // Add collapsible section for previous visits
+      const previousVisits = mountain.visits.slice(1);
+      allVisitsHtml += `
+        <div style="margin-top: 10px;">
+          <button
+            id="toggle-${popupId}"
+            onclick="
+              const content = document.getElementById('previous-${popupId}');
+              const btn = document.getElementById('toggle-${popupId}');
+              if (content.style.display === 'none') {
+                content.style.display = 'block';
+                btn.innerHTML = '▼ Hide ${previousVisits.length} previous visit${previousVisits.length > 1 ? 's' : ''}';
+              } else {
+                content.style.display = 'none';
+                btn.innerHTML = '▶ Show ${previousVisits.length} previous visit${previousVisits.length > 1 ? 's' : ''}';
+              }
+            "
+            style="width: 100%; padding: 8px; background: #f3f4f6; border: 1px solid #d1d5db; border-radius: 6px; cursor: pointer; font-size: 12px; font-weight: 600; color: #374151; transition: all 0.2s;"
+            onmouseover="this.style.background='#e5e7eb'"
+            onmouseout="this.style.background='#f3f4f6'"
+          >
+            ▶ Show ${previousVisits.length} previous visit${previousVisits.length > 1 ? 's' : ''}
+          </button>
+          <div id="previous-${popupId}" style="display: none; margin-top: 10px; max-height: 300px; overflow-y: auto; padding-right: 5px;">
+            ${previousVisits.map((visit, idx) => buildVisitCard(visit, idx + 2, mountain.totalVisits)).join('')}
+          </div>
+        </div>
+      `;
+    } else {
+      // Single visit - show it in a card
+      allVisitsHtml = `
+        <div style="margin-top: 10px;">
+          ${buildVisitCard(latestVisit, 1, 1)}
+        </div>
+      `;
     }
 
     const popupContent = `
-      <div style="max-width: 350px; font-family: system-ui, -apple-system, sans-serif;">
+      <div style="max-width: 420px; font-family: system-ui, -apple-system, sans-serif;">
         <h3 style="color: #333; margin: 0 0 10px 0; font-size: 18px;">${mountain.name}</h3>
-        ${imagesHtml}
-        <p style="margin: 5px 0; font-size: 14px;"><strong>⛰️ Elevation:</strong> ${mountain.elevation}</p>
-        <p style="margin: 5px 0; font-size: 14px;"><strong>📅 Date:</strong> ${mountain.date}</p>
-        <p style="margin: 5px 0; font-size: 14px;"><strong>🎯 Difficulty:</strong> ${mountain.difficulty}</p>
-        <p style="margin: 10px 0; font-size: 14px;">${mountain.description}</p>
-        <p style="margin: 10px 0; font-style: italic; color: #666; font-size: 13px;">${mountain.notes}</p>
-        <a href="${mountain.blogPost}" style="color: #007bff; text-decoration: none; font-size: 14px; font-weight: 500;">
+        <p style="margin: 5px 0; font-size: 13px;"><strong>⛰️ Elevation:</strong> ${mountain.elevation}</p>
+        <p style="margin: 5px 0; font-size: 13px;"><strong>🎯 Difficulty:</strong> ${mountain.difficulty}</p>
+        <p style="margin: 10px 0; font-size: 13px; color: #666;">${mountain.description}</p>
+        ${allVisitsHtml}
+        <a href="${mountain.blogPost}" style="color: #007bff; text-decoration: none; font-size: 13px; font-weight: 500; display: inline-block; margin-top: 10px;">
           📖 Read Full Adventure Story →
         </a>
       </div>
     `;
 
-    marker.bindPopup(popupContent, { maxWidth: 400 });
+    marker.bindPopup(popupContent, { maxWidth: 420 });
   });
 
   // Draw the ridge traverse path
@@ -393,11 +654,17 @@ function buildMountainList() {
   hikingData.forEach((mountain, index) => {
     const item = document.createElement('div');
     item.className = `mountain-item ${mountain.type}`;
+
+    // Add visit badge for mountains with multiple visits
+    const visitBadge = mountain.totalVisits > 1
+      ? `<div style="display: inline-block; background: #f59e0b; color: white; padding: 2px 6px; border-radius: 3px; font-size: 10px; font-weight: 600; margin-left: 4px;">📍 ${mountain.totalVisits}x</div>`
+      : '';
+
     item.innerHTML = `
-      <div class="mountain-name">${mountain.name}</div>
+      <div class="mountain-name">${mountain.name}${visitBadge}</div>
       <div class="mountain-meta">
         ${mountain.elevation} • ${mountain.difficulty}<br>
-        ${mountain.date}
+        Latest: ${mountain.date}
       </div>
     `;
 

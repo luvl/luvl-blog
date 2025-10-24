@@ -1,21 +1,29 @@
 name: "Mt. Kagenobu (景信山)"
-latitude: 35.6089
-longitude: 139.2156
+latitude: 35.6460086
+longitude: 139.2158930
 elevation: 727
 elevation_unit: m
 type: ridge-traverse
 difficulty: Intermediate
-date: "2025-08-02"
-date_display: "Aug 2, 2025"
-blog_post: takao-to-jinba-ridge-challenge
-description: "The point of no return - decided to continue to Jinba from here."
-notes: "2.5km from Shiroyama. Trail markers start getting less clear after here."
 
-# Optional fields
-distance_from_previous: 2.5
-distance_unit: km
-trail_condition: "Markers less clear"
+visits:
+  - date: "2025-08-02"
+    date_display: "Aug 2, 2025"
+    from_mountain: shiroyama
+    to_mountain: jinba
+    distance_from_previous: 2.5
+    distance_unit: km
+    duration: "50 minutes"
+    weather: sunny
+    trail_condition: "Markers less clear"
+    notes: "The point of no return - decided to continue to Jinba from here."
+    blog_post: takao-to-jinba-ridge-challenge
+    images:
+      - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1754221238/1000005586_bshmfq.jpg"
+    connected_to:
+      - takao
+      - shiroyama
+      - jinba
 
-# Images
-images:
-  - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1754221238/1000005586_bshmfq.jpg"
+latest_visit: "2025-08-02"
+description: "Middle point of the ridge traverse. Trail becomes more challenging here."
