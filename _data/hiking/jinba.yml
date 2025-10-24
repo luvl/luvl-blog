@@ -1,0 +1,22 @@
+name: "Mt. Jinba (陣馬山)"
+latitude: 35.5956
+longitude: 139.1944
+elevation: 855
+elevation_unit: m
+type: challenging-route
+difficulty: Advanced
+date: "2025-08-02"
+date_display: "Aug 2, 2025"
+blog_post: takao-to-jinba-ridge-challenge
+description: "The ultimate challenge! 5.4km grueling final stretch with water crisis."
+notes: "Most challenging section. Ran out of water. Never tasted water as delicious as at this summit!"
+
+# Optional fields
+distance_from_previous: 5.4
+distance_unit: km
+water_crisis: true
+duration: "2.5-3 hours"
+
+# Images
+images:
+  - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1754221133/1000005590_lqwoly.jpg"

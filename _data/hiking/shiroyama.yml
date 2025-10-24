@@ -1,0 +1,20 @@
+name: "Mt. Shiroyama (城山)"
+latitude: 35.6178
+longitude: 139.2281
+elevation: 670
+elevation_unit: m
+type: ridge-traverse
+difficulty: Beginner-Intermediate
+date: "2025-08-02"
+date_display: "Aug 2, 2025"
+blog_post: takao-to-jinba-ridge-challenge
+description: "First unplanned extension from Mt. Takao. Still feeling energetic here!"
+notes: "50-minute hike from Takao. Great views and rest facilities."
+
+# Optional fields
+duration_from_previous: "50 minutes"
+water_sources: true
+
+# Images
+images:
+  - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1754221224/1000005578_slrx50.jpg"

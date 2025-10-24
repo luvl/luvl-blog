@@ -1,0 +1,358 @@
+---
+layout: page
+title: Hiking Adventures
+permalink: /traveling/hiking/
+---
+
+<style>
+  .hiking-container {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    .hiking-container {
+      grid-template-columns: 1fr;
+    }
+    .mountain-list {
+      order: 2;
+    }
+  }
+
+  .mountain-list {
+    background: white;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-height: 600px;
+    overflow-y: auto;
+  }
+
+  .dark .mountain-list {
+    background: #1f2937;
+  }
+
+  .mountain-item {
+    padding: 0.75rem;
+    margin-bottom: 0.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-left: 4px solid transparent;
+  }
+
+  .mountain-item:hover {
+    background: #f3f4f6;
+  }
+
+  .dark .mountain-item:hover {
+    background: #374151;
+  }
+
+  .mountain-item.active {
+    background: #dbeafe;
+    border-left-color: #3b82f6;
+  }
+
+  .dark .mountain-item.active {
+    background: #1e3a5f;
+  }
+
+  .mountain-item.peak-completed {
+    border-left-color: #28a745;
+  }
+
+  .mountain-item.ridge-traverse {
+    border-left-color: #007bff;
+  }
+
+  .mountain-item.challenging-route {
+    border-left-color: #dc3545;
+  }
+
+  .mountain-name {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #1f2937;
+    margin-bottom: 0.25rem;
+  }
+
+  .dark .mountain-name {
+    color: #f3f4f6;
+  }
+
+  .mountain-meta {
+    font-size: 0.75rem;
+    color: #6b7280;
+  }
+
+  .dark .mountain-meta {
+    color: #9ca3af;
+  }
+
+  #hiking-map {
+    height: 600px;
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* Ensure Leaflet map controls stay below navbar */
+  .leaflet-top,
+  .leaflet-bottom,
+  .leaflet-control,
+  .leaflet-pane,
+  .leaflet-map-pane {
+    z-index: 1 !important;
+  }
+  
+  .leaflet-tile-pane {
+    z-index: 1 !important;
+  }
+
+  .nav-buttons {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .nav-button {
+    flex: 1;
+    padding: 0.5rem;
+    background: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.875rem;
+    transition: background 0.2s;
+  }
+
+  .nav-button:hover:not(:disabled) {
+    background: #2563eb;
+  }
+
+  .nav-button:disabled {
+    background: #9ca3af;
+    cursor: not-allowed;
+  }
+</style>
+
+{% comment %}
+  Calculate statistics from hiking data
+{% endcomment %}
+{% assign total_peaks = 0 %}
+{% assign highest_elevation = 0 %}
+{% assign total_distance = 0 %}
+
+{% for mountain_data in site.data.hiking %}
+  {% assign mountain = mountain_data[1] %}
+  {% unless mountain.name contains "Template" or mountain.name == nil %}
+    {% assign total_peaks = total_peaks | plus: 1 %}
+    {% if mountain.elevation > highest_elevation %}
+      {% assign highest_elevation = mountain.elevation %}
+    {% endif %}
+    {% if mountain.distance_from_previous %}
+      {% assign total_distance = total_distance | plus: mountain.distance_from_previous %}
+    {% endif %}
+  {% endunless %}
+{% endfor %}
+
+<div class="text-center mb-8 sm:mb-12">
+  <h1 class="text-3xl sm:text-4xl font-bold mb-2 sm:mb-4 text-gray-900 dark:text-white">🏔️ Hiking Adventures</h1>
+  <p class="text-gray-600 dark:text-gray-400 text-sm sm:text-base">Explore the mountains I've climbed across Japan. Click on any marker to see details about each adventure.</p>
+</div>
+
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8">
+  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 text-center transform transition-transform hover:scale-105">
+    <div class="text-3xl sm:text-4xl font-bold text-blue-600 dark:text-blue-400 mb-2">{{ total_peaks }}</div>
+    <div class="text-sm sm:text-base text-gray-600 dark:text-gray-400">Peaks Conquered</div>
+  </div>
+  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 text-center transform transition-transform hover:scale-105">
+    <div class="text-3xl sm:text-4xl font-bold text-green-600 dark:text-green-400 mb-2">{{ total_distance | round: 1 }}km</div>
+    <div class="text-sm sm:text-base text-gray-600 dark:text-gray-400">Total Distance</div>
+  </div>
+  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 text-center transform transition-transform hover:scale-105">
+    <div class="text-3xl sm:text-4xl font-bold text-purple-600 dark:text-purple-400 mb-2">7.5h</div>
+    <div class="text-sm sm:text-base text-gray-600 dark:text-gray-400">Longest Hiking Day</div>
+  </div>
+  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 text-center transform transition-transform hover:scale-105">
+    <div class="text-3xl sm:text-4xl font-bold text-red-600 dark:text-red-400 mb-2">{{ highest_elevation }}m</div>
+    <div class="text-sm sm:text-base text-gray-600 dark:text-gray-400">Highest Peak</div>
+  </div>
+</div>
+
+<div class="hiking-container">
+  <!-- Mountain List Sidebar -->
+  <div class="mountain-list">
+    <h3 class="text-lg font-bold mb-3 text-gray-900 dark:text-white">My Mountains</h3>
+    <div id="mountain-list-items"></div>
+    <div class="nav-buttons">
+      <button id="prev-mountain" class="nav-button">← Previous</button>
+      <button id="next-mountain" class="nav-button">Next →</button>
+    </div>
+  </div>
+
+  <!-- Map -->
+  <div id="hiking-map"></div>
+</div>
+
+<!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+<script>
+let map;
+
+// Load hiking data from Jekyll data files
+const hikingData = [
+{% assign first_item = true %}
+{% for mountain_hash in site.data.hiking %}
+  {% assign mountain_name = mountain_hash[0] %}
+  {% assign mountain = mountain_hash[1] %}
+  {% if mountain.name and mountain.latitude and mountain.longitude %}
+    {% if first_item == false %},{% endif %}
+  {
+    name: "{{ mountain.name | escape }}",
+    position: [{{ mountain.latitude }}, {{ mountain.longitude }}],
+    elevation: "{{ mountain.elevation }}{{ mountain.elevation_unit }}",
+    type: "{{ mountain.type }}",
+    description: "{{ mountain.description | escape }}",
+    blogPost: "{{ site.baseurl }}/{{ mountain.blog_post }}/",
+    date: "{{ mountain.date_display }}",
+    difficulty: "{{ mountain.difficulty }}",
+    notes: "{{ mountain.notes | escape }}",
+    images: [{% if mountain.images %}{% for img in mountain.images %}"{{ img }}"{% unless forloop.last %},{% endunless %}{% endfor %}{% endif %}]
+  }
+    {% assign first_item = false %}
+  {% endif %}
+{% endfor %}
+];
+
+// Calculate map center (average of all coordinates)
+let centerLat = 35.6106, centerLng = 139.2193; // Default to Tokyo area
+if (hikingData.length > 0) {
+  centerLat = 0;
+  centerLng = 0;
+  hikingData.forEach(mountain => {
+    centerLat += mountain.position[0];
+    centerLng += mountain.position[1];
+  });
+  centerLat /= hikingData.length;
+  centerLng /= hikingData.length;
+}
+
+function initMap() {
+  // Initialize the map centered on the average of all peaks
+  map = L.map('hiking-map').setView([centerLat, centerLng], 12);
+
+  // Add OpenStreetMap tiles with multiple layer options
+  const osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  });
+
+  // Add topographic layer for better mountain visualization
+  const topoLayer = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+    attribution: 'Map data: © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: © <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
+  });
+
+  // Add satellite imagery layer
+  const satelliteLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+    attribution: 'Tiles © Esri — Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+  });
+
+  // Add default layer
+  osmLayer.addTo(map);
+
+  // Layer control
+  const baseMaps = {
+    "Standard": osmLayer,
+    "Topographic": topoLayer,
+    "Satellite": satelliteLayer
+  };
+
+  L.control.layers(baseMaps).addTo(map);
+
+  // Custom icons for different mountain types
+  const icons = {
+    'peak-completed': L.divIcon({
+      className: 'custom-marker peak-completed-marker',
+      html: '<div style="background: #28a745; color: white; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; border: 2px solid white; box-shadow: 0 2px 4px rgba(0,0,0,0.3); font-size: 16px;">⛰️</div>',
+      iconSize: [30, 30],
+      iconAnchor: [15, 15]
+    }),
+    'ridge-traverse': L.divIcon({
+      className: 'custom-marker ridge-traverse-marker',
+      html: '<div style="background: #007bff; color: white; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; border: 2px solid white; box-shadow: 0 2px 4px rgba(0,0,0,0.3); font-size: 16px;">🏔️</div>',
+      iconSize: [30, 30],
+      iconAnchor: [15, 15]
+    }),
+    'challenging-route': L.divIcon({
+      className: 'custom-marker challenging-route-marker',
+      html: '<div style="background: #dc3545; color: white; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; border: 2px solid white; box-shadow: 0 2px 4px rgba(0,0,0,0.3); font-size: 16px;">🎯</div>',
+      iconSize: [30, 30],
+      iconAnchor: [15, 15]
+    })
+  };
+
+  // Add markers for each mountain
+  hikingData.forEach((mountain) => {
+    const marker = L.marker(mountain.position, {
+      icon: icons[mountain.type]
+    }).addTo(map);
+
+    // Create popup content
+    let imagesHtml = '';
+    if (mountain.images && mountain.images.length > 0) {
+      if (mountain.images.length === 1) {
+        imagesHtml = `<img src="${mountain.images[0]}" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin: 10px 0;" alt="${mountain.name}">`;
+      } else {
+        imagesHtml = '<div style="display: flex; gap: 5px; overflow-x: auto; margin: 10px 0;">';
+        mountain.images.forEach(img => {
+          imagesHtml += `<img src="${img}" style="width: 150px; height: 150px; object-fit: cover; border-radius: 8px; flex-shrink: 0;" alt="${mountain.name}">`;
+        });
+        imagesHtml += '</div>';
+      }
+    }
+
+    const popupContent = `
+      <div style="max-width: 350px; font-family: system-ui, -apple-system, sans-serif;">
+        <h3 style="color: #333; margin: 0 0 10px 0; font-size: 18px;">${mountain.name}</h3>
+        ${imagesHtml}
+        <p style="margin: 5px 0; font-size: 14px;"><strong>⛰️ Elevation:</strong> ${mountain.elevation}</p>
+        <p style="margin: 5px 0; font-size: 14px;"><strong>📅 Date:</strong> ${mountain.date}</p>
+        <p style="margin: 5px 0; font-size: 14px;"><strong>🎯 Difficulty:</strong> ${mountain.difficulty}</p>
+        <p style="margin: 10px 0; font-size: 14px;">${mountain.description}</p>
+        <p style="margin: 10px 0; font-style: italic; color: #666; font-size: 13px;">${mountain.notes}</p>
+        <a href="${mountain.blogPost}" style="color: #007bff; text-decoration: none; font-size: 14px; font-weight: 500;">
+          📖 Read Full Adventure Story →
+        </a>
+      </div>
+    `;
+
+    marker.bindPopup(popupContent, { maxWidth: 400 });
+  });
+
+  // Draw the ridge traverse path
+  const ridgePath = L.polyline(hikingData.map(mountain => mountain.position), {
+    color: '#FF6B6B',
+    weight: 4,
+    opacity: 0.8,
+    dashArray: '10, 5'
+  }).addTo(map);
+
+  // Add a scale control
+  L.control.scale().addTo(map);
+}
+
+// Initialize map when page loads
+document.addEventListener('DOMContentLoaded', function() {
+  initMap();
+});
+</script>
+
+<!-- Leaflet JavaScript -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>

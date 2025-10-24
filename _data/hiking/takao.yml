@@ -1,0 +1,21 @@
+name: "Mt. Takao (高尾山)"
+latitude: 35.6256
+longitude: 139.2441
+elevation: 599
+elevation_unit: m
+type: peak-completed  # Options: peak-completed, ridge-traverse, challenging-route
+difficulty: Beginner  # Options: Beginner, Intermediate, Advanced
+date: "2025-08-02"
+date_display: "Multiple visits, latest: Aug 2, 2025"
+blog_post: takao-to-jinba-ridge-challenge
+description: "My most climbed mountain - 10+ times! Starting point of my epic ridge traverse."
+notes: "Course 6 is my favorite route. Personal record: under 1 hour to summit!"
+
+# Optional fields
+total_visits: 10
+favorite_route: "Course 6"
+best_time: "Under 1 hour"
+
+# Images (add multiple image URLs)
+images:
+  - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1754221199/1000005574_molktp.jpg"
