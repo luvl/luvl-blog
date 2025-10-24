@@ -1,50 +1,66 @@
 ---
 layout: page
-title: Hiking Adventures
+title: 🏔️ Hiking Adventures
 permalink: /traveling/hiking/
 ---
 
 <style>
-  .hiking-container {
-    display: grid;
-    grid-template-columns: 300px 1fr;
-    gap: 1.5rem;
-    margin-top: 2rem;
-  }
-
-  @media (max-width: 768px) {
-    .hiking-container {
-      grid-template-columns: 1fr;
-    }
-    .mountain-list {
-      order: 2;
-    }
-  }
-
   .mountain-list {
     background: white;
     border-radius: 8px;
     padding: 1rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    max-height: 600px;
-    overflow-y: auto;
+    margin-bottom: 1.5rem;
   }
 
   .dark .mountain-list {
     background: #1f2937;
   }
 
+  .mountains-scroll {
+    display: flex;
+    gap: 0.75rem;
+    overflow-x: auto;
+    padding: 0.5rem 0;
+    scroll-behavior: smooth;
+  }
+
+  .mountains-scroll::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .mountains-scroll::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+  }
+
+  .dark .mountains-scroll::-webkit-scrollbar-track {
+    background: #374151;
+  }
+
+  .mountains-scroll::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+  }
+
+  .mountains-scroll::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
   .mountain-item {
-    padding: 0.75rem;
-    margin-bottom: 0.5rem;
-    border-radius: 6px;
+    padding: 1rem;
+    border-radius: 8px;
     cursor: pointer;
     transition: all 0.2s;
-    border-left: 4px solid transparent;
+    border: 2px solid transparent;
+    min-width: 200px;
+    flex-shrink: 0;
   }
 
   .mountain-item:hover {
     background: #f3f4f6;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
   .dark .mountain-item:hover {
@@ -53,23 +69,28 @@ permalink: /traveling/hiking/
 
   .mountain-item.active {
     background: #dbeafe;
-    border-left-color: #3b82f6;
+    border-color: #3b82f6;
+    box-shadow: 0 4px 6px rgba(59, 130, 246, 0.3);
   }
 
   .dark .mountain-item.active {
     background: #1e3a5f;
+    border-color: #3b82f6;
   }
 
-  .mountain-item.peak-completed {
-    border-left-color: #28a745;
+  .mountain-item.peak-completed::before {
+    content: '🟢';
+    margin-right: 8px;
   }
 
-  .mountain-item.ridge-traverse {
-    border-left-color: #007bff;
+  .mountain-item.ridge-traverse::before {
+    content: '🔵';
+    margin-right: 8px;
   }
 
-  .mountain-item.challenging-route {
-    border-left-color: #dc3545;
+  .mountain-item.challenging-route::before {
+    content: '🔴';
+    margin-right: 8px;
   }
 
   .mountain-name {
@@ -100,7 +121,7 @@ permalink: /traveling/hiking/
     position: relative;
     z-index: 1;
   }
-  
+
   /* Ensure Leaflet map controls stay below navbar */
   .leaflet-top,
   .leaflet-bottom,
@@ -109,36 +130,48 @@ permalink: /traveling/hiking/
   .leaflet-map-pane {
     z-index: 1 !important;
   }
-  
+
   .leaflet-tile-pane {
     z-index: 1 !important;
   }
 
   .nav-buttons {
     display: flex;
-    gap: 0.5rem;
-    margin-top: 1rem;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+    gap: 1rem;
   }
 
   .nav-button {
-    flex: 1;
-    padding: 0.5rem;
+    padding: 0.5rem 1rem;
     background: #3b82f6;
     color: white;
     border: none;
     border-radius: 6px;
     cursor: pointer;
     font-size: 0.875rem;
-    transition: background 0.2s;
+    transition: all 0.2s;
+    font-weight: 500;
   }
 
   .nav-button:hover:not(:disabled) {
     background: #2563eb;
+    transform: translateX(0);
   }
 
   .nav-button:disabled {
     background: #9ca3af;
     cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  .nav-button:first-child:hover:not(:disabled) {
+    transform: translateX(-2px);
+  }
+
+  .nav-button:last-child:hover:not(:disabled) {
+    transform: translateX(2px);
   }
 </style>
 
@@ -163,7 +196,6 @@ permalink: /traveling/hiking/
 {% endfor %}
 
 <div class="text-center mb-8 sm:mb-12">
-  <h1 class="text-3xl sm:text-4xl font-bold mb-2 sm:mb-4 text-gray-900 dark:text-white">🏔️ Hiking Adventures</h1>
   <p class="text-gray-600 dark:text-gray-400 text-sm sm:text-base">Explore the mountains I've climbed across Japan. Click on any marker to see details about each adventure.</p>
 </div>
 
@@ -186,26 +218,26 @@ permalink: /traveling/hiking/
   </div>
 </div>
 
-<div class="hiking-container">
-  <!-- Mountain List Sidebar -->
-  <div class="mountain-list">
-    <h3 class="text-lg font-bold mb-3 text-gray-900 dark:text-white">My Mountains</h3>
-    <div id="mountain-list-items"></div>
-    <div class="nav-buttons">
-      <button id="prev-mountain" class="nav-button">← Previous</button>
-      <button id="next-mountain" class="nav-button">Next →</button>
-    </div>
+<!-- Mountain Navigation -->
+<div class="mountain-list">
+  <div class="nav-buttons">
+    <button id="prev-mountain" class="nav-button">← Previous</button>
+    <h3 class="text-lg font-bold text-gray-900 dark:text-white">My Mountains</h3>
+    <button id="next-mountain" class="nav-button">Next →</button>
   </div>
-
-  <!-- Map -->
-  <div id="hiking-map"></div>
+  <div class="mountains-scroll" id="mountain-list-items"></div>
 </div>
+
+<!-- Map -->
+<div id="hiking-map"></div>
 
 <!-- Leaflet CSS -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
 <script>
 let map;
+let markers = [];
+let currentMountainIndex = 0;
 
 // Load hiking data from Jekyll data files
 const hikingData = [
@@ -299,10 +331,12 @@ function initMap() {
   };
 
   // Add markers for each mountain
-  hikingData.forEach((mountain) => {
+  hikingData.forEach((mountain, index) => {
     const marker = L.marker(mountain.position, {
       icon: icons[mountain.type]
     }).addTo(map);
+
+    markers.push({ marker, mountain, index });
 
     // Create popup content
     let imagesHtml = '';
@@ -346,11 +380,88 @@ function initMap() {
 
   // Add a scale control
   L.control.scale().addTo(map);
+
+  // Build mountain list
+  buildMountainList();
+  updateNavButtons();
+}
+
+function buildMountainList() {
+  const listContainer = document.getElementById('mountain-list-items');
+  listContainer.innerHTML = '';
+
+  hikingData.forEach((mountain, index) => {
+    const item = document.createElement('div');
+    item.className = `mountain-item ${mountain.type}`;
+    item.innerHTML = `
+      <div class="mountain-name">${mountain.name}</div>
+      <div class="mountain-meta">
+        ${mountain.elevation} • ${mountain.difficulty}<br>
+        ${mountain.date}
+      </div>
+    `;
+
+    item.addEventListener('click', () => {
+      selectMountain(index);
+    });
+
+    listContainer.appendChild(item);
+  });
+}
+
+function selectMountain(index) {
+  currentMountainIndex = index;
+  const { marker, mountain } = markers[index];
+
+  // Pan to mountain and open popup
+  map.setView(mountain.position, 14, { animate: true });
+  marker.openPopup();
+
+  // Update active state in list
+  const scrollContainer = document.getElementById('mountain-list-items');
+  document.querySelectorAll('.mountain-item').forEach((item, i) => {
+    if (i === index) {
+      item.classList.add('active');
+      // Scroll the horizontal list to center the active item
+      const itemLeft = item.offsetLeft;
+      const itemWidth = item.offsetWidth;
+      const containerWidth = scrollContainer.offsetWidth;
+      scrollContainer.scrollTo({
+        left: itemLeft - (containerWidth / 2) + (itemWidth / 2),
+        behavior: 'smooth'
+      });
+    } else {
+      item.classList.remove('active');
+    }
+  });
+
+  updateNavButtons();
+}
+
+function updateNavButtons() {
+  const prevButton = document.getElementById('prev-mountain');
+  const nextButton = document.getElementById('next-mountain');
+
+  prevButton.disabled = currentMountainIndex === 0;
+  nextButton.disabled = currentMountainIndex === hikingData.length - 1;
 }
 
 // Initialize map when page loads
 document.addEventListener('DOMContentLoaded', function() {
   initMap();
+
+  // Navigation buttons
+  document.getElementById('prev-mountain').addEventListener('click', () => {
+    if (currentMountainIndex > 0) {
+      selectMountain(currentMountainIndex - 1);
+    }
+  });
+
+  document.getElementById('next-mountain').addEventListener('click', () => {
+    if (currentMountainIndex < hikingData.length - 1) {
+      selectMountain(currentMountainIndex + 1);
+    }
+  });
 });
 </script>
 
