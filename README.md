@@ -58,6 +58,9 @@ Create new posts in the `_posts` directory. Follow the naming convention:
 https://console.cloudinary.com/app/c-794f04f06b6745229bde68b5f2cd8d/settings/upload/presets
 https://console.cloudinary.com/app/c-794f04f06b6745229bde68b5f2cd8d/assets/media_library/folders/home?view_mode=mosaic
 
+# Map coordinate
+https://www.openstreetmap.org/node/1727671797
+
 # Terminal 1 - Run Jekyll
 bundle exec jekyll serve --livereload
 

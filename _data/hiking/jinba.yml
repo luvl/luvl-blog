@@ -1,0 +1,28 @@
+name: "Mt. Jinba (陣馬山)"
+latitude: 35.6521695
+longitude: 139.1665125
+elevation: 855
+elevation_unit: m
+type: challenging-route
+difficulty: Advanced
+
+visits:
+  - date: "2025-08-02"
+    date_display: "Aug 2, 2025"
+    from_mountain: kagenobu
+    distance_from_previous: 5.4
+    distance_unit: km
+    duration: "2.5-3 hours"
+    weather: clear
+    water_crisis: true
+    notes: "The ultimate challenge! 5.4km grueling final stretch with water crisis. Never tasted water as delicious as at this summit!"
+    blog_post: takao-to-jinba-ridge-challenge
+    images:
+      - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1754221133/1000005590_lqwoly.jpg"
+    connected_to:
+      - takao
+      - shiroyama
+      - kagenobu
+
+latest_visit: "2025-08-02"
+description: "Final peak of the epic Takao-Jinba ridge traverse. The highest and most challenging."

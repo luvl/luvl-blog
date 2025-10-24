@@ -87,10 +87,11 @@
         </div>
     </div>
 
-    <!-- Study Dropdown -->
-    <div class="relative" x-data="{ studyOpen: false }">
-        <button @click="studyOpen = !studyOpen"
-                @click.away="studyOpen = false"
+
+    <!-- Traveling Dropdown -->
+    <div class="relative" x-data="{ travelingOpen: false }">
+        <button @click="travelingOpen = !travelingOpen"
+                @click.away="travelingOpen = false"
                 :class="{
                     'text-white hover:text-gray-300': scrolled && !darkMode,
                     'text-gray-900 hover:text-gray-600': !scrolled && !darkMode,
@@ -98,12 +99,12 @@
                     'text-white hover:text-gray-300': !scrolled && darkMode
                 }"
                 class="text-sm font-medium inline-flex items-center transition-colors duration-300">
-            <span>Study</span>
+            <span>Traveling</span>
             <svg class="ml-1 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
             </svg>
         </button>
-        <div x-show="studyOpen"
+        <div x-show="travelingOpen"
              x-transition:enter="transition ease-out duration-100"
              x-transition:enter-start="transform opacity-0 scale-95"
              x-transition:enter-end="transform opacity-100 scale-100"
@@ -117,9 +118,7 @@
              }"
              class="absolute right-0 mt-2 w-48 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 z-50">
             <div class="py-1">
-                <a href="{{ site.baseurl }}/study" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800">All Study Notes</a>
-                <a href="{{ site.baseurl }}/study/japanese" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800">Japanese</a>
-                <a href="{{ site.baseurl }}/study/mobile-dev" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800">Mobile Development</a>
+                <a href="{{ site.baseurl }}/traveling/hiking/" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800">Hiking</a>
             </div>
         </div>
     </div>
@@ -229,6 +228,17 @@
             <a href="{{ site.baseurl }}/study/mobile-dev"
                class="block px-4 py-2 text-base text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
                 Mobile Development
+            </a>
+        </div>
+    </div>
+
+    <!-- Traveling Section -->
+    <div class="py-2">
+        <div class="px-4 py-2 text-sm font-semibold text-gray-900 dark:text-white">Traveling</div>
+        <div class="space-y-1">
+            <a href="{{ site.baseurl }}/traveling/hiking/"
+               class="block px-4 py-2 text-base text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
+                Hiking
             </a>
         </div>
     </div>

@@ -1,0 +1,101 @@
+name: "Mt. Takao (高尾山)"
+latitude: 35.6256
+longitude: 139.2441
+elevation: 599
+elevation_unit: m
+type: peak-completed
+difficulty: Beginner
+
+# All visits to this mountain (total visits calculated automatically)
+visits:
+  - date: "2025-08-02"
+    date_display: "Aug 2, 2025"
+    trail: "Course 6"
+    duration: "55 minutes"
+    difficulty: Beginner
+    weather: sunny  # Options: sunny, cloudy, rainy, foggy, snowy, clear
+    notes: "Started epic ridge traverse to Jinba. Personal record time!"
+    blog_post: takao-to-jinba-ridge-challenge
+    images:
+      - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1754221199/1000005574_molktp.jpg"
+    # Connect to other mountains on this hike
+    connected_to:
+      - shiroyama
+      - kagenobu
+      - jinba
+    # Optional: Special observations (flowers, fruits, wildlife, etc.)
+    # observations:
+    #   - type: flower  # Options: flower, fruit, wildlife,景色 (scenery), other
+    #     name: "Cherry Blossoms"
+    #     notes: "Full bloom along the trail"
+    #     images:
+    #       - "cherry_blossom.jpg"
+    #   - type: fruit
+    #     name: "Wild Strawberries"
+    #     images:
+    #       - "strawberry.jpg"
+
+  - date: "2025-07-12"
+    date_display: "Jul 12, 2025"
+    trail: "Course 6"
+    duration: "2 hours"
+    difficulty: Beginner
+    notes: "Extended hike to Shiroyama, returned via Sagami Lake road"
+    images:
+      - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761320304/1000005417_q1dpki.jpg"
+      - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761320300/1000005439_gpna22.jpg"
+      - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761320285/1000005446_omfib4.jpg"
+      - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761320270/1000005413_piuz1h.jpg"
+    connected_to:
+      - shiroyama
+
+  - date: "2025-06-15"
+    date_display: "Jun 15, 2025"
+    trail: "Course 6"
+    duration: "1 hour"
+    difficulty: Beginner
+    weather: [rainy, foggy]
+    images:
+      - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761319886/1000005318_crevmk.jpg"
+      - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761319852/1000005321_cwozoj.jpg"
+    observations:
+      - type: flower
+        name: "Ajisai (紫陽花 - Hydrangea)"
+        images:
+          - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761319876/1000005324_ntmqra.jpg"
+      - type: fruit
+        name: "Wild Strawberry"
+        images:
+          - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761319896/1000005328_gzj5wm.jpg"
+
+  - date: "2025-06-08"
+    date_display: "Jun 8, 2025"
+    trail: "Course 6"
+    duration: "1 hour"
+    difficulty: Beginner
+    weather: cloudy
+    images:
+      - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761317850/1000005291_xdw2aj.jpg"
+      - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761317833/1000005286_cjem0a.jpg"
+    observations:
+      - type: fruit
+        name: "Wild Cherries (さくらんぼ)"
+        notes: "Cherry trees with ripe red berries along the trail"
+        images:
+          - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761317831/1000005289_vrcj5t.jpg"
+
+  - date: "2025-05-25"
+    date_display: "May 25, 2025"
+    trail: "Course 1"
+    duration: "1 hour"
+    difficulty: Beginner
+    weather: [rainy, foggy]
+    images:
+      - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761317704/1000005228_btz0vz.jpg"
+      - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761317716/1000005234_bgsm1k.jpg"
+
+# Summary (shown in main list - uses latest/best visit)
+latest_visit: "2025-08-02"
+favorite_route: "Course 6"
+best_time: "Under 1 hour"
+description: "My most climbed mountain - 10+ times! Starting point of my epic ridge traverse."
