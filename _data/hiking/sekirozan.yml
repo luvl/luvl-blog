@@ -1,0 +1,36 @@
+name: "Mt. Sekiro (石老山)"
+latitude: 35.5850709
+longitude: 139.1907780
+elevation: 702
+elevation_unit: m
+type: peak-completed
+difficulty: Intermediate-Advanced
+
+visits:
+  - date: "2025-10-20"
+    date_display: "Oct 20, 2025"
+    trail: "Sagami Lake Station → Sekirozan → Shinonome → Daimyojinyama"
+    trail_id: 2025-10-20-sekirozan-ridge
+    duration: "3.5 hours"
+    difficulty: Intermediate-Advanced
+    weather: [rainy, foggy]
+    notes: "Solo hike in challenging conditions. Used ropes 2x up, 3x down. Slippery clay trail. Encountered leeches but felt surprisingly calm."
+    blog_post: sekirozan-solo-adventure-in-the-rain
+    images:
+      - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761381307/image_67239169_oohpon.jpg"
+    observations:
+      - type: fruit
+        name: "Wild Unknown Fruit"
+        images:
+          - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761381324/image_50759169_gdgujc.jpg"
+      - type: other
+        name: "Mushrooms"
+        notes: "Many varieties encountered throughout the rainy trail"
+        images:
+          - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761381332/image_67581953_ymac9g.jpg"
+          - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761381331/image_67563521_lmaa2f.jpg"
+          - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761381332/image_67526145_ljda1o.jpg"
+          - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761381309/image_67543809_uwzlif.jpg"
+
+latest_visit: "2025-10-20"
+description: "Technical mountain requiring rope sections. Clay and soft sand trails become very slippery in rain. Best hiked with gloves for rope work."

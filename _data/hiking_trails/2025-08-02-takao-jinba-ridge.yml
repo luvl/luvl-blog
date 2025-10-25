@@ -1,0 +1,56 @@
+id: 2025-08-02-takao-jinba-ridge
+name: "Takao to Jinba Ridge Trail (高尾〜陣馬縦走路)"
+description: "Epic ridge traverse connecting four peaks north of Sagami Lake"
+date: "2025-08-02"
+
+# Define the connected mountains in order
+mountains_in_order:
+  - takao
+  - shiroyama
+  - kagenobu
+  - jinba
+
+# Trail segments (each segment is a connection between two mountains)
+segments:
+  - from: takao
+    to: shiroyama
+    distance: 2.0
+    distance_unit: km
+    duration_estimate: "50 minutes"
+
+  - from: shiroyama
+    to: kagenobu
+    distance: 2.5
+    distance_unit: km
+    duration_estimate: "50 minutes"
+
+  - from: kagenobu
+    to: jinba
+    distance: 5.4
+    distance_unit: km
+    duration_estimate: "2.5 hours"
+
+# Trail metadata
+total_distance: 15
+distance_unit: km
+difficulty: Intermediate-Advanced
+elevation_gain: 800
+elevation_unit: m
+
+# Visual properties for map display
+map_display:
+  color: "#FF6B6B"
+  weight: 4
+  opacity: 0.8
+  dashArray: "10, 5"
+
+# Trail information
+trailhead:
+  start: "Takaosanguchi Station (高尾山口駅)"
+  end: "Jinbakogen-shita Bus Stop (陣馬高原下)"
+
+best_season: "Spring, Autumn"
+estimated_time: "6-8 hours"
+water_sources:
+  - location: shiroyama
+    type: "Vending machines and rest facilities"

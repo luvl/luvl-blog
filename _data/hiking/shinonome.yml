@@ -1,0 +1,23 @@
+name: "Mt. Shinonome (東雲山)"
+latitude: 35.587877
+longitude: 139.187086
+elevation: 620
+elevation_unit: m
+type: ridge-traverse
+difficulty: Intermediate
+
+visits:
+  - date: "2025-10-20"
+    date_display: "Oct 20, 2025"
+    from_mountain: sekirozan
+    to_mountain: daimyojinyama
+    trail_id: 2025-10-20-sekirozan-ridge
+    duration: "30 minutes"
+    weather: [rainy, foggy]
+    notes: "Part of Sekirozan ridge traverse in challenging conditions"
+    blog_post: sekirozan-solo-adventure-in-the-rain
+    images:
+      - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761381325/image_67540737_yqmmco.jpg"
+
+latest_visit: "2025-10-20"
+description: "Middle peak in the Sekirozan ridge traverse. Part of a technical trail system."

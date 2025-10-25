@@ -11,6 +11,7 @@ visits:
     date_display: "Aug 2, 2025"
     from_mountain: takao
     to_mountain: kagenobu
+    trail_id: 2025-08-02-takao-jinba-ridge
     duration: "50 minutes"
     weather: sunny
     notes: "First unplanned extension from Mt. Takao. Still feeling energetic here!"
@@ -18,18 +19,13 @@ visits:
     water_sources: true
     images:
       - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1754221224/1000005578_slrx50.jpg"
-    connected_to:
-      - takao
-      - kagenobu
-      - jinba
 
   - date: "2025-07-12"
     date_display: "Jul 12, 2025"
     from_mountain: takao
+    trail_id: 2025-07-12-takao-shiroyama-loop
     duration: "1 hour"
     notes: "Extended hike from Takao, returned via Sagami Lake road"
-    connected_to:
-      - takao
 
 latest_visit: "2025-08-02"
 description: "Part of the Takao-Jinba ridge traverse. Great views and rest facilities."

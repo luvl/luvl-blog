@@ -11,6 +11,7 @@ visits:
     date_display: "Aug 2, 2025"
     from_mountain: shiroyama
     to_mountain: jinba
+    trail_id: 2025-08-02-takao-jinba-ridge
     distance_from_previous: 2.5
     distance_unit: km
     duration: "50 minutes"
@@ -20,10 +21,6 @@ visits:
     blog_post: takao-to-jinba-ridge-challenge
     images:
       - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1754221238/1000005586_bshmfq.jpg"
-    connected_to:
-      - takao
-      - shiroyama
-      - jinba
 
 latest_visit: "2025-08-02"
 description: "Middle point of the ridge traverse. Trail becomes more challenging here."

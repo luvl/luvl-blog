@@ -1,0 +1,55 @@
+id: 2025-10-20-sekirozan-ridge
+name: "Sekirozan Ridge Trail (石老山周回路)"
+description: "Technical ridge traverse with rope sections south of Sagami Lake"
+date: "2025-10-20"
+
+# Define the connected mountains in order
+mountains_in_order:
+  - sekirozan
+  - shinonome
+  - daimyojinyama
+
+# Trail segments
+segments:
+  - from: sekirozan
+    to: shinonome
+    distance: 1.5
+    distance_unit: km
+    duration_estimate: "30 minutes"
+    technical: true
+
+  - from: shinonome
+    to: daimyojinyama
+    distance: 1.8
+    distance_unit: km
+    duration_estimate: "45 minutes"
+
+# Trail metadata
+total_distance: 3.3
+distance_unit: km
+difficulty: Intermediate-Advanced
+elevation_gain: 500
+elevation_unit: m
+
+# Visual properties for map display
+map_display:
+  color: "#9333EA"  # Purple to distinguish from Takao-Jinba
+  weight: 4
+  opacity: 0.8
+  dashArray: "10, 5"
+
+# Trail information
+trailhead:
+  start: "Sagami Lake Station (相模湖駅) + Bus"
+  end: "Pleasure Forest Morimori area"
+
+best_season: "Spring, Summer, Autumn"
+estimated_time: "3.5 hours"
+technical_requirements:
+  - "Gloves essential for rope sections"
+  - "2 rope climbs up"
+  - "3 rope climbs down"
+warnings:
+  - "Clay trails extremely slippery in rain"
+  - "Leeches common in wet conditions"
+  - "Limited water sources"

@@ -8,21 +8,27 @@ difficulty: Beginner
 
 # All visits to this mountain (total visits calculated automatically)
 visits:
+  - date: "2025-10-14"
+    date_display: "Oct 14, 2025"
+    trail: "Course 6"
+    duration: "1 hour"
+    difficulty: Beginner
+    weather: [cloudy, sunny]
+    notes: "Early morning hike starting at 5 AM. Weather transitioned from cloudy to sunny."
+    images:
+      - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761384864/image_67185153_ousfv7.jpg"
+
   - date: "2025-08-02"
     date_display: "Aug 2, 2025"
     trail: "Course 6"
+    trail_id: 2025-08-02-takao-jinba-ridge
     duration: "55 minutes"
     difficulty: Beginner
-    weather: sunny  # Options: sunny, cloudy, rainy, foggy, snowy, clear
+    weather: sunny
     notes: "Started epic ridge traverse to Jinba. Personal record time!"
     blog_post: takao-to-jinba-ridge-challenge
     images:
       - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1754221199/1000005574_molktp.jpg"
-    # Connect to other mountains on this hike
-    connected_to:
-      - shiroyama
-      - kagenobu
-      - jinba
     # Optional: Special observations (flowers, fruits, wildlife, etc.)
     # observations:
     #   - type: flower  # Options: flower, fruit, wildlife,景色 (scenery), other
@@ -38,6 +44,7 @@ visits:
   - date: "2025-07-12"
     date_display: "Jul 12, 2025"
     trail: "Course 6"
+    trail_id: 2025-07-12-takao-shiroyama-loop
     duration: "2 hours"
     difficulty: Beginner
     notes: "Extended hike to Shiroyama, returned via Sagami Lake road"
@@ -46,8 +53,6 @@ visits:
       - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761320300/1000005439_gpna22.jpg"
       - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761320285/1000005446_omfib4.jpg"
       - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761320270/1000005413_piuz1h.jpg"
-    connected_to:
-      - shiroyama
 
   - date: "2025-06-15"
     date_display: "Jun 15, 2025"
@@ -95,7 +100,7 @@ visits:
       - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761317716/1000005234_bgsm1k.jpg"
 
 # Summary (shown in main list - uses latest/best visit)
-latest_visit: "2025-08-02"
+latest_visit: "2025-10-14"
 favorite_route: "Course 6"
 best_time: "Under 1 hour"
 description: "My most climbed mountain - 10+ times! Starting point of my epic ridge traverse."
