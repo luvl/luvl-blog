@@ -1,0 +1,42 @@
+id: 2025-08-11-takao-shiroyama-loop
+name: "Takao to Shiroyama Loop (高尾〜城山往復)"
+description: "Extended hike from Takao Course 1 to Shiroyama with a friend"
+date: "2025-08-11"
+
+# Define the connected mountains in order (loop)
+mountains_in_order:
+  - takao
+  - shiroyama
+
+# Trail segments
+segments:
+  - from: takao
+    to: shiroyama
+    distance: 2.0
+    distance_unit: km
+    duration_estimate: "50 minutes - 1 hour"
+
+# Trail metadata
+total_distance: 4.0
+distance_unit: km
+difficulty: Beginner-Intermediate
+elevation_gain: 300
+elevation_unit: m
+
+# Visual properties for map display
+map_display:
+  color: "#10B981"  # Green for easier trail
+  weight: 3
+  opacity: 0.7
+  dashArray: "5, 5"
+
+# Trail information
+trailhead:
+  start: "Takaosanguchi Station (高尾山口駅) - Course 1"
+  end: "Return same route or Sagami Lake road"
+
+best_season: "Year-round"
+estimated_time: "2-3 hours round trip"
+water_sources:
+  - location: shiroyama
+    type: "Vending machines and rest facilities"

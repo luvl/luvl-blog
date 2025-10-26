@@ -1,0 +1,22 @@
+name: "Mt. Oyama (大山)"
+latitude: 35.440761
+longitude: 139.231016
+elevation: 1252
+elevation_unit: m
+type: peak-completed
+difficulty: Intermediate
+
+visits:
+  - date: "2025-10-18"
+    date_display: "Oct 18, 2025"
+    duration: "4 hours"
+    difficulty: Intermediate
+    notes: "Hiked with one of my best friends at workplace. Visited Afuri Shrine at the summit."
+    images:
+      - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761385064/image_50398209_ms3npo.jpg"
+      - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761385057/image_50390529_fmmhzx.jpg"
+      - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761385068/image_50396417_neusxm.jpg"
+      - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761385069/image_67238401_sa80lf.jpg"
+
+latest_visit: "2025-10-18"
+description: "Sacred mountain in Kanagawa with Afuri Shrine (大山阿夫利神社本社) at the summit. Historic mountain worship site."

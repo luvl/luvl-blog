@@ -1,0 +1,22 @@
+name: "Mt. Daimyojin (大明神山)"
+latitude: 35.593499
+longitude: 139.181815
+elevation: 511
+elevation_unit: m
+type: ridge-traverse
+difficulty: Intermediate
+
+visits:
+  - date: "2025-10-20"
+    date_display: "Oct 20, 2025"
+    from_mountain: shinonome
+    trail_id: 2025-10-20-sekirozan-ridge
+    duration: "45 minutes"
+    weather: [rainy, foggy]
+    notes: "Observatory point. Met only 1 other hiker on the way back here."
+    blog_post: sekirozan-solo-adventure-in-the-rain
+    images:
+      - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761381333/image_67537409_hsemqy.jpg"
+
+latest_visit: "2025-10-20"
+description: "Observatory peak on the Sekirozan ridge. Offers views when weather permits."

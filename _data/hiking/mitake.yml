@@ -1,0 +1,22 @@
+name: "Mt. Mitake (御岳山)"
+latitude: 35.7828135
+longitude: 139.1494853
+elevation: 929
+elevation_unit: m
+type: peak-completed
+difficulty: Beginner-Intermediate
+
+visits:
+  - date: "2025-10-12"
+    date_display: "Oct 12, 2025"
+    duration: "3 hours"
+    difficulty: Beginner-Intermediate
+    weather: [rainy, foggy]
+    images:
+      - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761488778/image_67546113_v68xjw.jpg"
+      - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761488773/image_123650291_txzwtx.jpg"
+      - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761488740/image_67508993_isnzw2.jpg"
+      - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761488732/image_67231745_kctkpo.jpg"
+
+latest_visit: "2025-10-12"
+description: "Sacred mountain in Okutama region with historic Musashi Mitake Shrine. Popular for its spiritual atmosphere and cable car access."

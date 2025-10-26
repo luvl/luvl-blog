@@ -8,36 +8,130 @@ difficulty: Beginner
 
 # All visits to this mountain (total visits calculated automatically)
 visits:
+  - date: "2025-10-14"
+    date_display: "Oct 14, 2025"
+    trail: "Course 6"
+    duration: "1 hour"
+    difficulty: Beginner
+    weather: [cloudy, sunny]
+    notes: "Early morning hike starting at 5 AM. Weather transitioned from cloudy to sunny."
+    images:
+      - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761384864/image_67185153_ousfv7.jpg"
+
+  - date: "2025-10-02"
+    date_display: "Oct 2, 2025"
+    trail: "Course 6 + Iroha-no-mori Trail (いろはの森)"
+    duration: "1.5 hours"
+    difficulty: Beginner
+    weather: sunny
+    notes: "Course 6 ascent followed by Iroha-no-mori trail exploration"
+    images:
+      - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761488939/IMG_1980_zyo3ee.jpg"
+      - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761488938/IMG_1981_kegty9.jpg"
+      - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761488938/IMG_1984_vhoxdb.jpg"
+      - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761488912/image_67216385_cj2ywj.jpg"
+
+  - date: "2025-09-21"
+    date_display: "Sep 21, 2025"
+    trail: "Course 6"
+    duration: "1.5 hours"
+    difficulty: Beginner
+    weather: clear
+    notes: "Night hike starting around 7 PM. Very dark trail - unique experience!"
+    images:
+      - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761489461/image_50443777_vjptqd.jpg"
+      - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761489456/image_50345985_wgsba4.jpg"
+      - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761489463/image_67206657_dqjwqw.jpg"
+
+  - date: "2025-09-14"
+    date_display: "Sep 14, 2025"
+    trail: "Course 6"
+    duration: "1 hour"
+    difficulty: Beginner
+    weather: sunny
+    images:
+      - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761490485/1000005686_ppr7nw.jpg"
+
+  - date: "2025-08-31"
+    date_display: "Aug 31, 2025"
+    trail: "Course 6 (up) → Course 4 (down)"
+    duration: "1.5 hours"
+    difficulty: Beginner
+    weather: sunny
+    notes: "Loop route using different trails for descent"
+    images:
+      - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761490392/1000005646_ruwl14.jpg"
+
+  - date: "2025-08-23"
+    date_display: "Aug 23, 2025"
+    trail: "Course 6 (up) → Course 5 (down)"
+    duration: "1.5 hours"
+    difficulty: Beginner
+    weather: sunny
+    notes: "Loop route using different trails for descent"
+    images:
+      - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761490220/1000005630_cfu4zo.jpg"
+
+  - date: "2025-08-11"
+    date_display: "Aug 11, 2025"
+    trail: "Course 1"
+    trail_id: 2025-08-11-takao-shiroyama-loop
+    duration: "1 hour"
+    difficulty: Beginner
+    weather: [cloudy, rainy]
+    notes: "Hiked with a good friend. Extended to Shiroyama in cloudy/rainy conditions."
+    images:
+      - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761490132/1000005613_mkpbep.jpg"
+
   - date: "2025-08-02"
     date_display: "Aug 2, 2025"
     trail: "Course 6"
+    trail_id: 2025-08-02-takao-jinba-ridge
     duration: "55 minutes"
     difficulty: Beginner
-    weather: sunny  # Options: sunny, cloudy, rainy, foggy, snowy, clear
+    weather: sunny
     notes: "Started epic ridge traverse to Jinba. Personal record time!"
     blog_post: takao-to-jinba-ridge-challenge
     images:
       - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1754221199/1000005574_molktp.jpg"
-    # Connect to other mountains on this hike
-    connected_to:
-      - shiroyama
-      - kagenobu
-      - jinba
-    # Optional: Special observations (flowers, fruits, wildlife, etc.)
-    # observations:
-    #   - type: flower  # Options: flower, fruit, wildlife,景色 (scenery), other
-    #     name: "Cherry Blossoms"
-    #     notes: "Full bloom along the trail"
-    #     images:
-    #       - "cherry_blossom.jpg"
-    #   - type: fruit
-    #     name: "Wild Strawberries"
-    #     images:
-    #       - "strawberry.jpg"
+
+  - date: "2025-07-27"
+    date_display: "Jul 27, 2025"
+    trail: "Course 6"
+    duration: "1 hour"
+    difficulty: Beginner
+    weather: sunny
+    notes: "Early morning hike. Spotted a bird drinking water at the summit faucet."
+    images:
+      - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761490031/1000005539_dx2b8o.jpg"
+    observations:
+      - type: wildlife
+        name: "Bird at Summit"
+        notes: "Bird drinking water from faucet near the summit"
+        images:
+          - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761490027/1000005538_ry3q7e.jpg"
+
+  - date: "2025-07-16"
+    date_display: "Jul 16, 2025"
+    trail: "Course 6 (up) → Course 5 (down)"
+    duration: "1.5 hours"
+    difficulty: Beginner
+    weather: sunny
+    notes: "Loop route using different trails. Beautiful Yamayuri lilies in bloom along the trail."
+    images:
+      - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761489747/1000005467_dbn5ej.jpg"
+      - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761489923/1000005480_x0f5kj.jpg"
+    observations:
+      - type: flower
+        name: "Yamayuri (ヤマユリ - Mountain Lily)"
+        notes: "Large white lilies in full bloom along the trail"
+        images:
+          - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761489751/1000005470_tpkxj7.jpg"
 
   - date: "2025-07-12"
     date_display: "Jul 12, 2025"
     trail: "Course 6"
+    trail_id: 2025-07-12-takao-shiroyama-loop
     duration: "2 hours"
     difficulty: Beginner
     notes: "Extended hike to Shiroyama, returned via Sagami Lake road"
@@ -46,8 +140,6 @@ visits:
       - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761320300/1000005439_gpna22.jpg"
       - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761320285/1000005446_omfib4.jpg"
       - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761320270/1000005413_piuz1h.jpg"
-    connected_to:
-      - shiroyama
 
   - date: "2025-06-15"
     date_display: "Jun 15, 2025"
@@ -94,8 +186,28 @@ visits:
       - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761317704/1000005228_btz0vz.jpg"
       - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761317716/1000005234_bgsm1k.jpg"
 
+  - date: "2024-12-02"
+    date_display: "Dec 2, 2024"
+    trail: "Course 1"
+    duration: "1 hour"
+    difficulty: Beginner
+    weather: sunny
+    notes: "Hiked with Vietnamese colleagues from workplace. Beautiful momiji (autumn leaves), bit cold."
+    images:
+      - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761490591/1000004529_onnmhm.jpg"
+
+  - date: "2024-05-02"
+    date_display: "May 2, 2024"
+    trail: "Course 1"
+    duration: "1 hour"
+    difficulty: Beginner
+    weather: sunny
+    notes: "My first mountain hike! First challenge before I started hiking this year (after 7 years of gym/swimming, and running last year)."
+    images:
+      - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761490710/1000003028_c4ueyf.jpg"
+
 # Summary (shown in main list - uses latest/best visit)
-latest_visit: "2025-08-02"
+latest_visit: "2025-10-14"
 favorite_route: "Course 6"
 best_time: "Under 1 hour"
 description: "My most climbed mountain - 10+ times! Starting point of my epic ridge traverse."

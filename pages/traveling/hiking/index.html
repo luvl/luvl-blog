@@ -311,7 +311,7 @@ function openLightbox(imageSrc) {
 
 function closeLightbox() {
   const lightbox = document.getElementById('lightbox');
-  lightbox.classList.remove('active');
+  lightbox.classList.remove('active');_data/hiking/jinba.yml
   document.body.style.overflow = 'auto'; // Restore scrolling
 }
 
@@ -342,6 +342,40 @@ const observationIcons = {
   other: '✨'
 };
 
+// Load trail definitions
+const trailData = [
+{% assign first_trail = true %}
+{% for trail_hash in site.data.hiking_trails %}
+  {% assign trail = trail_hash[1] %}
+  {% if trail.id %}
+    {% if first_trail == false %},{% endif %}
+  {
+    id: "{{ trail.id }}",
+    name: "{{ trail.name | escape }}",
+    description: "{{ trail.description | escape }}",
+    mountains: [{% for m in trail.mountains_in_order %}"{{ m }}"{% unless forloop.last %},{% endunless %}{% endfor %}],
+    segments: [
+      {% for seg in trail.segments %}
+      {
+        from: "{{ seg.from }}",
+        to: "{{ seg.to }}",
+        distance: {{ seg.distance }},
+        duration: "{{ seg.duration_estimate }}"
+      }{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+    ],
+    mapDisplay: {
+      color: "{{ trail.map_display.color }}",
+      weight: {{ trail.map_display.weight }},
+      opacity: {{ trail.map_display.opacity }},
+      dashArray: "{{ trail.map_display.dashArray }}"
+    }
+  }
+    {% assign first_trail = false %}
+  {% endif %}
+{% endfor %}
+];
+
 // Load hiking data from Jekyll data files
 const hikingData = [
 {% assign first_item = true %}
@@ -352,6 +386,7 @@ const hikingData = [
     {% assign latest_visit = mountain.visits.first %}
     {% if first_item == false %},{% endif %}
   {
+    id: "{{ mountain_name }}",
     name: "{{ mountain.name | escape }}",
     position: [{{ mountain.latitude }}, {{ mountain.longitude }}],
     elevation: "{{ mountain.elevation }}{{ mountain.elevation_unit }}",
@@ -367,11 +402,11 @@ const hikingData = [
       {
         date: "{{ visit.date_display }}",
         trail: "{{ visit.trail }}",
+        trailId: "{{ visit.trail_id }}",
         duration: "{{ visit.duration }}",
         weather: {% if visit.weather[0] %}[{% for w in visit.weather %}"{{ w }}"{% unless forloop.last %},{% endunless %}{% endfor %}]{% else %}"{{ visit.weather }}"{% endif %},
         notes: "{{ visit.notes | escape }}",
         images: [{% if visit.images %}{% for img in visit.images %}"{{ img }}"{% unless forloop.last %},{% endunless %}{% endfor %}{% endif %}],
-        connectedTo: [{% if visit.connected_to %}{% for conn in visit.connected_to %}"{{ conn }}"{% unless forloop.last %},{% endunless %}{% endfor %}{% endif %}],
         observations: [
           {% if visit.observations %}
           {% for obs in visit.observations %}
@@ -482,15 +517,19 @@ function initMap() {
         }
       }
 
-      // Connected mountains
-      let connectionsHtml = '';
-      if (visit.connectedTo && visit.connectedTo.length > 0) {
-        connectionsHtml = `
-          <div style="margin-top: 8px; padding: 6px; background: #f0f9ff; border-radius: 4px;">
-            <div style="font-size: 11px; color: #0369a1; font-weight: 600; margin-bottom: 2px;">🗺️ Connected Trail</div>
-            <div style="font-size: 10px; color: #0c4a6e;">Part of ridge with: ${visit.connectedTo.map(m => m.charAt(0).toUpperCase() + m.slice(1)).join(' → ')}</div>
-          </div>
-        `;
+      // Trail information
+      let trailInfoHtml = '';
+      if (visit.trailId) {
+        const trail = trailData.find(t => t.id === visit.trailId);
+        if (trail) {
+          trailInfoHtml = `
+            <div style="margin-top: 8px; padding: 6px; background: #f0f9ff; border-radius: 4px; border-left: 3px solid ${trail.mapDisplay.color};">
+              <div style="font-size: 11px; color: #0369a1; font-weight: 600; margin-bottom: 2px;">🗺️ ${trail.name}</div>
+              <div style="font-size: 10px; color: #0c4a6e;">${trail.description}</div>
+              <div style="font-size: 10px; color: #0c4a6e; margin-top: 2px;">Route: ${trail.mountains.map(m => m.charAt(0).toUpperCase() + m.slice(1)).join(' → ')}</div>
+            </div>
+          `;
+        }
       }
 
       // Special observations
@@ -554,7 +593,7 @@ function initMap() {
           ${visitDetails}
           ${imagesHtml}
           ${observationsHtml}
-          ${connectionsHtml}
+          ${trailInfoHtml}
         </div>
       `;
     }
@@ -631,13 +670,39 @@ function initMap() {
     marker.bindPopup(popupContent, { maxWidth: 420 });
   });
 
-  // Draw the ridge traverse path
-  const ridgePath = L.polyline(hikingData.map(mountain => mountain.position), {
-    color: '#FF6B6B',
-    weight: 4,
-    opacity: 0.8,
-    dashArray: '10, 5'
-  }).addTo(map);
+  // Draw trails based on trail definitions
+  trailData.forEach(trail => {
+    // For each segment in the trail, draw a line between mountains
+    trail.segments.forEach(segment => {
+      // Find the "from" mountain
+      const fromMountain = hikingData.find(m =>
+        m.id === segment.from || m.name.toLowerCase().includes(segment.from.toLowerCase())
+      );
+
+      // Find the "to" mountain
+      const toMountain = hikingData.find(m =>
+        m.id === segment.to || m.name.toLowerCase().includes(segment.to.toLowerCase())
+      );
+
+      // If both mountains exist, draw the connection
+      if (fromMountain && toMountain) {
+        const polyline = L.polyline([fromMountain.position, toMountain.position], {
+          color: trail.mapDisplay.color,
+          weight: trail.mapDisplay.weight,
+          opacity: trail.mapDisplay.opacity,
+          dashArray: trail.mapDisplay.dashArray
+        }).addTo(map);
+
+        // Add tooltip showing trail segment info
+        polyline.bindTooltip(
+          `<strong>${trail.name}</strong><br>` +
+          `${segment.from} → ${segment.to}<br>` +
+          `Distance: ${segment.distance}km • ${segment.duration}`,
+          { sticky: true }
+        );
+      }
+    });
+  });
 
   // Add a scale control
   L.control.scale().addTo(map);
