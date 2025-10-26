@@ -1,0 +1,24 @@
+name: "Mt. Mihara (三原山)"
+latitude: 34.7242083
+longitude: 139.3953222
+elevation: 764
+elevation_unit: m
+type: peak-completed
+difficulty: Intermediate
+
+visits:
+  - date: "2025-09-27"
+    date_display: "Sep 27, 2025"
+    duration: "3 hours"
+    difficulty: Intermediate
+    weather: [sunny, windy]
+    notes: "Active volcano on Oshima Island. Windy conditions at the crater rim. Last eruption: 1990."
+    images:
+      - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761489218/image_123650291_ovjhse.jpg"
+      - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761489206/image_67168257_lxdz5t.jpg"
+      - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761489206/image_67148289_bd88nd.jpg"
+      - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761489202/image_50429185_rxdmuy.jpg"
+      - "https://res.cloudinary.com/dlsjqhdse/image/upload/v1761489195/image_50359041_xm7fcg.jpg"
+
+latest_visit: "2025-09-27"
+description: "Active volcanic mountain on Oshima Island. Famous for its dramatic crater and black lava fields. Last erupted in 1990."
