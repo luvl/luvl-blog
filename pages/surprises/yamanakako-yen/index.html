@@ -1,0 +1,534 @@
+---
+layout: null
+permalink: /surprises/yamanakako-yen/
+---
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moi Yen Di Choi</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            font-family: 'Segoe UI', sans-serif;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .nav-btn {
+            position: fixed;
+            top: 12px; right: 12px;
+            z-index: 100;
+            background: rgba(0,0,0,0.35);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: none;
+            border-radius: 50%;
+            width: 40px; height: 40px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.2s;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .nav-btn:hover {
+            transform: scale(1.1);
+            background: rgba(0,0,0,0.55);
+        }
+
+        .lanterns-bg {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .floating-lantern {
+            position: absolute;
+            animation: floatUp linear infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) translateX(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.7; }
+            50% { transform: translateY(50vh) translateX(20px) rotate(5deg); }
+            90% { opacity: 0.5; }
+            100% { transform: translateY(-10vh) translateX(-10px) rotate(-3deg); opacity: 0; }
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 3px; height: 3px;
+            background: #ffd54f;
+            border-radius: 50%;
+            animation: twinkle ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.5); }
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 24px;
+            padding: 36px 28px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(255, 152, 0, 0.3), 0 0 80px rgba(255, 152, 0, 0.1);
+            z-index: 10;
+            max-width: 480px;
+            width: 92%;
+            position: relative;
+        }
+
+        .header-emoji {
+            font-size: 48px;
+            margin-bottom: 8px;
+        }
+
+        h1 {
+            color: #e65100;
+            font-size: 24px;
+            margin: 8px 0 4px;
+        }
+
+        .subtitle {
+            color: #bf360c;
+            font-size: 16px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .schedule {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            border-radius: 16px;
+            padding: 20px 16px;
+            margin: 16px 0;
+            text-align: left;
+        }
+
+        .schedule-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #e65100;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .schedule-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #4e342e;
+            line-height: 1.4;
+        }
+
+        .schedule-time {
+            font-weight: bold;
+            color: #bf360c;
+            min-width: 70px;
+            flex-shrink: 0;
+        }
+
+        .schedule-desc {
+            flex: 1;
+        }
+
+        .cost-info {
+            background: #fce4ec;
+            border-radius: 12px;
+            padding: 12px;
+            margin: 16px 0;
+            font-size: 14px;
+            color: #c62828;
+            font-weight: 500;
+        }
+
+        .question {
+            color: #555;
+            font-size: 18px;
+            margin: 20px 0 24px;
+            line-height: 1.5;
+            font-weight: 500;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            align-items: center;
+            min-height: 56px;
+        }
+
+        .btn-yes {
+            background: linear-gradient(135deg, #ff6f00, #e65100);
+            color: white;
+            border: none;
+            padding: 14px 44px;
+            font-size: 18px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            font-weight: bold;
+        }
+
+        .btn-yes:hover {
+            transform: scale(1.08);
+            box-shadow: 0 8px 25px rgba(230, 81, 0, 0.5);
+        }
+
+        .btn-no {
+            background: #bdbdbd;
+            color: #666;
+            border: none;
+            padding: 14px 32px;
+            font-size: 16px;
+            border-radius: 50px;
+            cursor: pointer;
+            position: absolute;
+            transition: none;
+            font-weight: bold;
+            z-index: 20;
+            user-select: none;
+        }
+
+        .btn-no.slowing {
+            transition: left 0.3s ease-out, top 0.3s ease-out;
+        }
+
+        .btn-no.stopped {
+            transition: left 0.5s ease-out, top 0.5s ease-out;
+            background: #e0e0e0;
+        }
+
+        .success {
+            display: none;
+            z-index: 10;
+        }
+
+        .success h1 {
+            font-size: 28px;
+            color: #e65100;
+        }
+
+        .success .header-emoji {
+            font-size: 80px;
+        }
+
+        .success p {
+            font-size: 18px;
+            color: #bf360c;
+            font-weight: 500;
+            line-height: 1.6;
+        }
+
+        .trap-card {
+            display: none;
+            z-index: 10;
+        }
+
+        .trap-card h1 {
+            font-size: 26px;
+            color: #c62828;
+        }
+
+        .trap-card p {
+            font-size: 17px;
+            color: #e65100;
+            font-weight: 500;
+            line-height: 1.6;
+        }
+
+        .trap-card .btn-yes {
+            margin-top: 20px;
+        }
+
+        .confetti {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .confetti-piece {
+            position: absolute;
+            top: -10px;
+            animation: confettiFall linear forwards;
+        }
+
+        @keyframes confettiFall {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+
+        .firework {
+            position: fixed;
+            pointer-events: none;
+            z-index: 4;
+        }
+
+        .firework-particle {
+            position: absolute;
+            width: 4px; height: 4px;
+            border-radius: 50%;
+            animation: fireworkBurst 1.2s ease-out forwards;
+        }
+
+        @keyframes fireworkBurst {
+            0% { transform: translate(0, 0) scale(1); opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        @media (max-width: 480px) {
+            .card { padding: 28px 20px; }
+            h1 { font-size: 20px; }
+            .header-emoji { font-size: 40px; }
+            .question { font-size: 16px; }
+            .btn-yes { padding: 12px 36px; font-size: 16px; }
+            .btn-no { padding: 12px 28px; font-size: 14px; }
+            .schedule-item { font-size: 13px; }
+            .schedule-time { min-width: 60px; }
+            .success h1 { font-size: 24px; }
+            .success .header-emoji { font-size: 64px; }
+        }
+    </style>
+</head>
+<body>
+    <a class="nav-btn" href="../yamanakako-hin/" title="Next">👉</a>
+
+    <div class="lanterns-bg" id="lanternsBg"></div>
+
+    <div class="card" id="mainCard">
+        <div class="header-emoji">🌸🏮🗻</div>
+        <h1>Yen oi!</h1>
+        <div class="subtitle">Ck co ke hoach cho cuoi tuan nay nhe!</div>
+
+        <div class="schedule">
+            <div class="schedule-title">🎇 Le Hoi Den Long & Phao Hoa 🎇</div>
+            <div class="schedule-title" style="font-size:13px; margin-top:-8px; margin-bottom:14px;">Chu Nhat, 22/02 — Yamanakako, Yamanashi</div>
+            <div class="schedule-item">
+                <span class="schedule-time">2:00 PM</span>
+                <span class="schedule-desc">🚗 Tap trung tai Seven Eleven phia Bac ga JR Hachioji</span>
+            </div>
+            <div class="schedule-item">
+                <span class="schedule-time">4:00 PM</span>
+                <span class="schedule-desc">🗻 Den Yamanakako</span>
+            </div>
+            <div class="schedule-item">
+                <span class="schedule-time">4:30 PM</span>
+                <span class="schedule-desc">🕯️ Thap nen</span>
+            </div>
+            <div class="schedule-item">
+                <span class="schedule-time">6:00 PM</span>
+                <span class="schedule-desc">🏮 Tha den long</span>
+            </div>
+            <div class="schedule-item">
+                <span class="schedule-time">6:30 PM</span>
+                <span class="schedule-desc">🎆 Phao hoa</span>
+            </div>
+            <div class="schedule-item">
+                <span class="schedule-time">7:20 PM</span>
+                <span class="schedule-desc">🍲 An Houtou (mi nong truyen thong)</span>
+            </div>
+            <div class="schedule-item">
+                <span class="schedule-time">9:30 PM</span>
+                <span class="schedule-desc">🏠 Ve lai Hachioji</span>
+            </div>
+        </div>
+
+        <div class="cost-info">
+            ☆ Chi phi: Khoang 5,000 ~ 6,000 yen (bao gom xe) ※ Le hoi mien phi
+        </div>
+
+        <p class="question">Vk iu co muon di voi ck khong? 🥰</p>
+
+        <div class="buttons">
+            <button class="btn-yes" onclick="sayYes()">Co chuu! 🎉</button>
+            <button class="btn-no" id="noBtn">Khong 😤</button>
+        </div>
+    </div>
+
+    <div class="card success" id="successCard">
+        <div class="header-emoji">🎇🏮✨</div>
+        <h1>Yayy! Anh yeu Yen! 💕</h1>
+        <p>Anh biet ma! Hen Yen Chu Nhat 22/02 nhe!<br>Mac am vao, troi se lanh lam 🧣❄️<br><br>🏮 Se rat lang man 🏮</p>
+        <div style="font-size: 48px; margin-top: 16px;">🌸🎆💑🎆🌸</div>
+    </div>
+
+    <div class="card trap-card" id="trapCard">
+        <div class="header-emoji">😜🪤</div>
+        <h1>Hehe! Bay roi! 🎉</h1>
+        <p>Tuong la bam duoc "Khong" ha?<br><br>Khong co dau nhe! <strong>Van phai di voi ck!</strong> 😎<br><br>Dap an dung luon la <strong>"Co"</strong> thoi! 💕</p>
+        <button class="btn-yes" onclick="trapToSuccess()">Okay di thoi! 🏮</button>
+    </div>
+
+    <div class="confetti" id="confetti"></div>
+
+    <script>
+        const noBtn = document.getElementById('noBtn');
+        const mainCard = document.getElementById('mainCard');
+        const successCard = document.getElementById('successCard');
+        const trapCard = document.getElementById('trapCard');
+        const confettiContainer = document.getElementById('confetti');
+
+        let dodgeCount = 0;
+        const maxDodges = 8;
+        const startScale = 1;
+        const minScale = 0.45;
+
+        // Floating lanterns and sparkles
+        function createBackground() {
+            const bg = document.getElementById('lanternsBg');
+            const lanterns = ['🏮', '🌸', '✨', '🎆', '⭐'];
+            for (let i = 0; i < 15; i++) {
+                const el = document.createElement('div');
+                el.className = 'floating-lantern';
+                el.textContent = lanterns[Math.floor(Math.random() * lanterns.length)];
+                el.style.left = Math.random() * 100 + '%';
+                el.style.fontSize = (18 + Math.random() * 24) + 'px';
+                el.style.animationDuration = (8 + Math.random() * 10) + 's';
+                el.style.animationDelay = Math.random() * 12 + 's';
+                bg.appendChild(el);
+            }
+            for (let i = 0; i < 30; i++) {
+                const star = document.createElement('div');
+                star.className = 'sparkle';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDuration = (1.5 + Math.random() * 2) + 's';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                bg.appendChild(star);
+            }
+        }
+        createBackground();
+
+        // Run-away No button - shrinks then stops
+        function moveNoButton() {
+            if (dodgeCount >= maxDodges) return;
+            dodgeCount++;
+
+            // Shrink
+            const progress = dodgeCount / maxDodges;
+            const scale = startScale - (startScale - minScale) * progress;
+            noBtn.style.transform = 'scale(' + scale + ')';
+
+            const texts = ['Khong 😤', 'Chay ne! 🏃', 'Hehe! 😝', 'Thu di! 😜', '🤪', '😝', '😜', '🏃'];
+            noBtn.textContent = texts[Math.min(dodgeCount, texts.length - 1)];
+
+            // Jump within visible area
+            const vw = document.documentElement.clientWidth;
+            const vh = document.documentElement.clientHeight;
+            const margin = 30;
+            const btnW = 120 * scale;
+            const btnH = 50 * scale;
+            const maxX = vw - btnW - margin;
+            const maxY = vh - btnH - margin;
+            noBtn.style.left = (margin + Math.random() * Math.max(maxX - margin, 0)) + 'px';
+            noBtn.style.top = (margin + Math.random() * Math.max(maxY - margin, 0)) + 'px';
+
+            // Stop when small enough
+            if (dodgeCount >= maxDodges) {
+                noBtn.textContent = 'Okay fine... 😔';
+            }
+        }
+
+        // Clicking No -> TRAP! Still going!
+        noBtn.addEventListener('click', function() {
+            mainCard.style.display = 'none';
+            noBtn.style.display = 'none';
+            trapCard.style.display = 'block';
+            launchConfetti();
+        });
+
+        noBtn.addEventListener('mouseenter', function() {
+            if (dodgeCount < maxDodges) moveNoButton();
+        });
+
+        noBtn.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            if (dodgeCount < maxDodges) moveNoButton();
+        });
+
+        function initNoButton() {
+            const rect = mainCard.getBoundingClientRect();
+            noBtn.style.left = (rect.left + rect.width / 2 + 60) + 'px';
+            noBtn.style.top = (rect.top + rect.height - 80) + 'px';
+        }
+
+        window.addEventListener('load', initNoButton);
+        window.addEventListener('resize', initNoButton);
+
+        function sayYes() {
+            mainCard.style.display = 'none';
+            noBtn.style.display = 'none';
+            successCard.style.display = 'block';
+            launchConfetti();
+            launchFireworks();
+        }
+
+        function trapToSuccess() {
+            trapCard.style.display = 'none';
+            successCard.style.display = 'block';
+            launchFireworks();
+        }
+
+        function launchConfetti() {
+            const colors = ['#ff6f00', '#e65100', '#ff8f00', '#ffab00', '#ff5252', '#ffd54f', '#ff4081', '#aa00ff'];
+            for (let i = 0; i < 80; i++) {
+                const piece = document.createElement('div');
+                piece.className = 'confetti-piece';
+                piece.style.left = Math.random() * 100 + '%';
+                piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+                piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+                piece.style.width = (6 + Math.random() * 10) + 'px';
+                piece.style.height = (6 + Math.random() * 10) + 'px';
+                piece.style.animationDuration = (1.5 + Math.random() * 2.5) + 's';
+                piece.style.animationDelay = Math.random() * 1.5 + 's';
+                confettiContainer.appendChild(piece);
+            }
+            setTimeout(() => { confettiContainer.innerHTML = ''; }, 5000);
+        }
+
+        function launchFireworks() {
+            const colors = ['#ff6f00', '#ffd54f', '#ff4081', '#aa00ff', '#00e5ff', '#ff5252'];
+            for (let f = 0; f < 5; f++) {
+                setTimeout(() => {
+                    const fw = document.createElement('div');
+                    fw.className = 'firework';
+                    fw.style.left = (10 + Math.random() * 80) + '%';
+                    fw.style.top = (10 + Math.random() * 40) + '%';
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+                    for (let i = 0; i < 20; i++) {
+                        const p = document.createElement('div');
+                        p.className = 'firework-particle';
+                        p.style.background = color;
+                        const angle = (Math.PI * 2 * i) / 20;
+                        const dist = 40 + Math.random() * 60;
+                        const tx = Math.cos(angle) * dist;
+                        const ty = Math.sin(angle) * dist;
+                        p.style.animation = `fireworkBurst 1.2s ease-out forwards`;
+                        p.style.transform = `translate(${tx}px, ${ty}px)`;
+                        fw.appendChild(p);
+                    }
+                    document.body.appendChild(fw);
+                    setTimeout(() => fw.remove(), 1500);
+                }, f * 600);
+            }
+        }
+    </script>
+</body>
+</html>
